@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import styles from './ae.module.css';
 
 const AerospaceEngineering = () => {
@@ -537,8 +538,28 @@ const AerospaceEngineering = () => {
 
             {/* Hero Section */}
             <div className={styles.heroSection}>
-                <span className={styles.heroTag}>UNDERGRADUATE PROGRAM</span>
-                <h1 className={styles.heroHeading}>Aerospace Engineering</h1>
+                <div style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    backgroundColor: 'rgba(0,0,0,0.7)',
+                    zIndex: 1
+                }} />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <Image
+                    src="/banner_hq_2.jpg"
+                    alt="Aerospace Engineering Banner"
+                    fill
+                    priority
+                    style={{ objectFit: 'cover', zIndex: 0 }}
+                    sizes="100vw"
+                />
+                <div style={{ position: 'relative', zIndex: 2 }}>
+                    <span className={styles.heroTag}>UNDERGRADUATE PROGRAM</span>
+                    <h1 className={styles.heroHeading}>Aerospace Engineering</h1>
+                </div>
             </div>
 
             <div className={styles.contentWrapper}>
