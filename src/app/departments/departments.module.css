@@ -1,0 +1,209 @@
+/* Main Wrapper */
+.pageWrapper {
+    width: 100%;
+    min-height: 80vh;
+    font-family: var(--font-inter, sans-serif);
+    padding-bottom: 4rem;
+}
+
+/* Full Width Hero Header */
+.heroHeader {
+    width: 100%;
+    min-height: 300px;
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.contentContainer {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.subtitle {
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 400;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Program Overview Section */
+.overviewSection {
+    margin-bottom: 3rem;
+    max-width: 900px;
+}
+
+.overviewTitle {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.overviewTitle::before {
+    content: "";
+    width: 6px;
+    height: 24px;
+    background-color: #2563eb;
+    /* Accent blue bar */
+    border-radius: 4px;
+    display: block;
+}
+
+.overviewText {
+    font-size: 1.05rem;
+    color: #475569;
+    line-height: 1.7;
+}
+
+/* Departments Grid Layout */
+.grid {
+    display: block;
+    /* Removed grid columns to allow full width */
+    width: 100%;
+}
+
+/* Section Title */
+.sectionHeading {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #1e293b;
+    margin-bottom: 2rem;
+    position: relative;
+    padding-left: 1rem;
+    border-left: 5px solid #2563eb;
+}
+
+/* Department Grid */
+.deptList {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* 4 departments in 1 line */
+    gap: 1.25rem;
+    /* Tighter gap */
+    margin-bottom: 4rem;
+}
+
+.deptCard {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    height: 100%;
+}
+
+.deptCard:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border-color: #2563eb;
+}
+
+.cardImageWrapper {
+    width: 100%;
+    height: 280px;
+    /* Further reduced height for perfect balance */
+    position: relative;
+    overflow: hidden;
+}
+
+.cardImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.deptCard:hover .cardImage {
+    transform: scale(1.08);
+}
+
+.cardContent {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    /* Group title and link tightly */
+}
+
+.cardTitle {
+    font-size: 1.3rem;
+    /* Increased title size */
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.2;
+}
+
+.cardDesc {
+    display: none;
+    /* Hide description */
+}
+
+.cardCurriculumLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #2563eb;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.cardCurriculumLink:hover {
+    gap: 0.75rem;
+    color: #1e40af;
+}
+
+.badge {
+    background-color: #2563eb;
+    color: white;
+    font-size: 0.7rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 100px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+@media (max-width: 1400px) {
+    .deptList {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .deptList {
+        grid-template-columns: 1fr;
+    }
+
+    .title {
+        font-size: 2.5rem;
+    }
+}

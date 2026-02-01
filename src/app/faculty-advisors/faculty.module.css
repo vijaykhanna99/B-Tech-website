@@ -1,0 +1,172 @@
+/* Faculty Advisors Page Styles */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+    font-family: var(--font-inter, sans-serif);
+}
+
+.pageTitle {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1e3a8a;
+    /* Dark Blue */
+    margin-bottom: 3rem;
+    padding-bottom: 1rem;
+    border-bottom: 3px solid #bfdbfe;
+    /* Light Blue */
+}
+
+/* Deans Section */
+.deansGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2.5rem;
+    margin-bottom: 4rem;
+}
+
+.deanCard {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.deanCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.deanImage {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 2rem;
+    border: 4px solid #eff6ff;
+    flex-shrink: 0;
+}
+
+.deanInfo h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 0.25rem 0;
+}
+
+.deanLink {
+    text-decoration: none;
+    color: #1e293b;
+    transition: color 0.2s;
+}
+
+.deanLink:hover {
+    color: #2563eb;
+}
+
+.deanRole {
+    color: #2563eb;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+}
+
+.deanDept {
+    color: #64748b;
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+}
+
+.deanDesc {
+    color: #475569;
+    font-style: italic;
+    font-size: 0.95rem;
+}
+
+/* Advisors Section */
+.sectionTitle {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 2rem;
+}
+
+.advisorsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.advisorCard {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.advisorCard:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+    transform: translateY(-2px);
+}
+
+.advisorImageWrapper {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    background-color: #f1f5f9;
+}
+
+.advisorImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.advisorName {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.advisorLink {
+    text-decoration: none;
+    color: #1e293b;
+    transition: color 0.2s;
+}
+
+.advisorLink:hover {
+    color: #2563eb;
+}
+
+.advisorDept {
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .deansGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .deanCard {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
+    }
+
+    .deanImage {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+}

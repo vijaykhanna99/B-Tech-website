@@ -1,0 +1,241 @@
+.pageContainer {
+    min-height: 100vh;
+    background-color: #f8fafc;
+    padding-bottom: 4rem;
+}
+
+.headerSection {
+    background: white;
+    padding: 3rem 2rem 2rem;
+    text-align: center;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: #64748b;
+}
+
+.contentWrapper {
+    max-width: 1400px;
+    margin: 3rem auto 0;
+    padding: 0 2rem;
+}
+
+.splitLayout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* 50/50 split as per image */
+    gap: 2rem;
+}
+
+.leftColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.contactCard {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+/* Card Header Styles */
+.cardHeader {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.iconBox {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.iconBoxBlue {
+    background-color: #eff6ff;
+    color: #3b82f6;
+}
+
+.iconBoxPurple {
+    background-color: #f3e8ff;
+    color: #a855f7;
+}
+
+.cardTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+/* Timings Box */
+.timingsBox {
+    background-color: #f8fafc;
+    padding: 1.25rem;
+    border-radius: 12px;
+    margin-bottom: 2.5rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.clockIcon {
+    color: #94a3b8;
+    margin-top: 0.1rem;
+}
+
+.timingsLabel {
+    font-weight: 700;
+    color: #334155;
+    margin-bottom: 0.25rem;
+    font-size: 0.95rem;
+}
+
+.timingsValue {
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+/* Section Styles */
+.querySection {
+    margin-bottom: 2.5rem;
+}
+
+.querySection:last-child {
+    margin-bottom: 0;
+}
+
+.sectionTitle {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 1.25rem;
+}
+
+.fieldGroup {
+    margin-bottom: 1.25rem;
+}
+
+.fieldLabel {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}
+
+.fieldValue,
+.fieldValue a {
+    font-size: 1rem;
+    color: #334155;
+    font-weight: 500;
+    text-decoration: none;
+    line-height: 1.6;
+}
+
+.fieldValue a:hover {
+    color: #2563eb;
+    text-decoration: underline;
+}
+
+.phoneRow {
+    display: flex;
+    justify-content: space-between;
+    max-width: 350px;
+}
+
+/* Officials Grid */
+.officialsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.officialTitle {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+}
+
+.officialAddress {
+    color: #64748b;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+}
+
+/* Right Column (Map) */
+.mapContainer {
+    height: 100%;
+    min-height: 600px;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    position: sticky;
+    top: 2rem;
+    border: 1px solid #e2e8f0;
+}
+
+.mapFrame {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+@media (max-width: 1024px) {
+    .splitLayout {
+        grid-template-columns: 1fr;
+    }
+
+    .mapContainer {
+        height: 400px;
+        min-height: 400px;
+        position: static;
+    }
+
+    .iconBox {
+        width: 40px;
+        height: 40px;
+        font-size: 1.25rem;
+    }
+
+    .cardTitle {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .officialsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .headerSection {
+        padding: 2rem 1rem;
+    }
+
+    .contentWrapper {
+        padding: 0 1rem;
+    }
+
+    .contactCard {
+        padding: 1.5rem;
+    }
+}

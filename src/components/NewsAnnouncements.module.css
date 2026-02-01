@@ -1,0 +1,203 @@
+.container {
+    padding: 2rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-top: 1px solid #f3f4f6;
+}
+
+.heading {
+    font-size: 1.75rem;
+    color: #111827;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    position: relative;
+}
+
+.heading::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: #002855;
+    margin: 1rem auto 0;
+}
+
+.contentWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+    .contentWrapper {
+        flex-direction: row;
+        gap: 3rem;
+    }
+}
+
+.section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.sectionTitle {
+    font-size: 1rem;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.newsList,
+.announcementList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.newsItem {
+    padding: 1rem 0;
+    border-bottom: 1px solid #f3f4f6;
+    transition: transform 0.2s ease;
+}
+
+.newsItem:first-child {
+    padding-top: 0;
+}
+
+.newsItem:hover {
+    /* transform: translateX(5px); Removed to prevent shift */
+    background-color: #fafafa;
+}
+
+.announcementItem {
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    background: #f9fafb;
+    border-left: 3px solid transparent;
+    transition: background-color 0.2s, border-left-color 0.2s;
+    border-radius: 0 6px 6px 0;
+}
+
+.announcementItem:hover {
+    background: #eef2ff;
+    border-left-color: #002855;
+    /* padding-left: 1.25rem; Removed to fix layout shift */
+}
+
+.date {
+    font-size: 0.75rem;
+    color: #0056b3;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.link {
+    font-size: 1rem;
+    color: #111827;
+    text-decoration: none;
+    font-weight: 700;
+    line-height: 1.4;
+    transition: color 0.2s;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.link:hover {
+    color: #002855;
+}
+
+.excerpt {
+    font-size: 0.9rem;
+    color: #4b5563;
+    line-height: 1.5;
+}
+
+.accordionContent {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px dashed #e5e7eb;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.visitLink {
+    display: inline-block;
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #0056b3;
+    text-decoration: none;
+}
+
+.visitLink:hover {
+    text-decoration: underline;
+}
+
+.clickableHeader {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.chevron {
+    font-size: 0.8rem;
+    color: #9ca3af;
+    transition: transform 0.2s;
+    margin-top: 5px;
+}
+
+.rotated {
+    transform: rotate(180deg);
+}
+
+.viewAll {
+    margin-top: 1.5rem;
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    font-weight: 600;
+    color: #002855;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+    font-size: 0.9rem;
+}
+
+.viewAll:hover {
+    border-bottom-color: #002855;
+}
+
+.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+    color: #9ca3af;
+}

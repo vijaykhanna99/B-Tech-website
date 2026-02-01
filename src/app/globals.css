@@ -1,0 +1,28 @@
+:root {
+  --primary-blue: #0f2c67; /* Approximation of the dark blue */
+  --nav-blue: #284c98; /* Lighter blue for nav */
+  --text-white: #ffffff;
+  --text-dark: #333333;
+  --bg-white: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-white);
+  color: var(--text-dark);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
