@@ -4,15 +4,19 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './Header.module.css';
+import { useLanguage } from '@/context/LanguageContext';
+import { Language } from '@/utils/translations';
 
 const Header = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
     const [activeMobileSubmenu, setActiveMobileSubmenu] = React.useState<string | null>(null);
 
+    const { language, setLanguage, t } = useLanguage();
+
     const toggleMobileMenu = () => {
         setMobileMenuOpen(!mobileMenuOpen);
         if (!mobileMenuOpen) {
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            document.body.style.overflow = 'hidden';
         } else {
             document.body.style.overflow = '';
         }
@@ -27,6 +31,31 @@ const Header = () => {
         setActiveMobileSubmenu(null);
         document.body.style.overflow = '';
     };
+
+    const [isLangDropdownOpen, setIsLangDropdownOpen] = React.useState(false);
+
+    // Close dropdown when clicking outside
+    React.useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            const target = event.target as HTMLElement;
+            if (!target.closest(`.${styles.langContainer}`)) {
+                setIsLangDropdownOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
+    const handleLanguageSelect = (lang: Language) => {
+        console.log('Language selected:', lang);
+        setLanguage(lang);
+        setIsLangDropdownOpen(false);
+    };
+
+    // ... existing code ...
 
     return (
         <header className={styles.header}>
@@ -45,10 +74,10 @@ const Header = () => {
                     </div>
                     <div className={styles.titleContainer}>
                         <h1 className={styles.title}>
-                            Bachelor of Technology
+                            {t('title')}
                         </h1>
                         <p className={styles.subtitle}>
-                            Indian Institute of Science Bangalore
+                            {t('subtitle')}
                         </p>
                     </div>
                 </div>
@@ -68,17 +97,56 @@ const Header = () => {
                             </svg>
                             <input
                                 type="text"
-                                placeholder="Search..."
+                                placeholder={t('searchPlaceholder')}
                                 className={styles.searchInput}
                             />
                         </div>
                     </div>
 
-                    <div className={styles.langSelector}>
-                        <span className={styles.langText}>English</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" className={styles.chevronIcon} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
+                    <div className={styles.langContainer}>
+                        <div
+                            className={styles.langSelector}
+                            onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
+                            style={{ cursor: 'pointer', userSelect: 'none' }}
+                            title="Click to switch language"
+                        >
+                            <span className={styles.langText}>
+                                {language === 'en' ? 'English' : language === 'hi' ? 'हिंदी' : 'ಕನ್ನಡ'}
+                            </span>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className={styles.chevronIcon}
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                style={{ transform: isLangDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s' }}
+                            >
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </div>
+
+                        {isLangDropdownOpen && (
+                            <div className={styles.langDropdown}>
+                                <div
+                                    className={`${styles.langOption} ${language === 'en' ? styles.activeLang : ''}`}
+                                    onClick={() => handleLanguageSelect('en')}
+                                >
+                                    English
+                                </div>
+                                <div
+                                    className={`${styles.langOption} ${language === 'hi' ? styles.activeLang : ''}`}
+                                    onClick={() => handleLanguageSelect('hi')}
+                                >
+                                    हिंदी
+                                </div>
+                                <div
+                                    className={`${styles.langOption} ${language === 'kn' ? styles.activeLang : ''}`}
+                                    onClick={() => handleLanguageSelect('kn')}
+                                >
+                                    ಕನ್ನಡ
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
@@ -88,13 +156,13 @@ const Header = () => {
                 <ul className={styles.navList}>
                     <li className={styles.navItem}>
                         <Link href="/" className={styles.navLink}>
-                            Home
+                            {t('home')}
                         </Link>
                     </li>
 
                     <li className={styles.navItem}>
                         <Link href="/departments" className={styles.navButton}>
-                            Departments & Curriculum
+                            {t('departments')}
                             <svg xmlns="http://www.w3.org/2000/svg" className={styles.chevronIcon} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                             </svg>
@@ -102,32 +170,32 @@ const Header = () => {
                         {/* Dropdown Content */}
                         <div className={styles.dropdownMenu}>
                             <Link href="/departments/mathematics-and-computing" className={styles.dropdownItem}>
-                                Mathematics and Computing
+                                {t('mathComputing')}
                             </Link>
                             <Link href="/departments/mechanics-and-computing" className={styles.dropdownItem}>
-                                Mechanics and Computing
-                                <span className={styles.badge}>New</span>
+                                {t('mechComputing')}
+                                <span className={styles.badge}>{t('newBadge')}</span>
                             </Link>
                             <Link href="/departments/aerospace-engineering" className={styles.dropdownItem}>
-                                Aerospace Engineering
-                                <span className={styles.badge}>New</span>
+                                {t('aeroEng')}
+                                <span className={styles.badge}>{t('newBadge')}</span>
                             </Link>
                             <Link href="/departments/materials-science-and-engineering" className={styles.dropdownItem}>
-                                Materials Science and Engineering
-                                <span className={styles.badge}>New</span>
+                                {t('matScience')}
+                                <span className={styles.badge}>{t('newBadge')}</span>
                             </Link>
                         </div>
                     </li>
 
                     <li className={styles.navItem}>
                         <Link href="/handbook" className={styles.navLink}>
-                            Student Handbook
+                            {t('studentHandbook')}
                         </Link>
                     </li>
 
                     <li className={styles.navItem}>
                         <Link href="/admissions" className={styles.navButton}>
-                            Admissions
+                            {t('admissions')}
                             <svg xmlns="http://www.w3.org/2000/svg" className={styles.chevronIcon} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                             </svg>
@@ -140,7 +208,7 @@ const Header = () => {
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                                     </svg>
                                 </div>
-                                Apply Online
+                                {t('applyOnline')}
                             </Link>
                             <Link href="#" className={styles.iconDropdownItem}>
                                 <div className={`${styles.iconBox} ${styles.iconBoxOrange}`}>
@@ -148,7 +216,7 @@ const Header = () => {
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
                                     </svg>
                                 </div>
-                                Important Dates
+                                {t('importantDates')}
                             </Link>
                             <Link href="#" className={styles.iconDropdownItem}>
                                 <div className={`${styles.iconBox} ${styles.iconBoxGreen}`}>
@@ -156,7 +224,7 @@ const Header = () => {
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
                                     </svg>
                                 </div>
-                                Selection Process
+                                {t('selectionProcess')}
                             </Link>
                             <Link href="#" className={styles.iconDropdownItem}>
                                 <div className={`${styles.iconBox} ${styles.iconBoxPink}`}>
@@ -164,7 +232,7 @@ const Header = () => {
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z" />
                                     </svg>
                                 </div>
-                                Fee Structure
+                                {t('feeStructure')}
                             </Link>
                             <Link href="#" className={styles.iconDropdownItem}>
                                 <div className={`${styles.iconBox} ${styles.iconBoxPurple}`}>
@@ -172,32 +240,32 @@ const Header = () => {
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
                                     </svg>
                                 </div>
-                                FAQ
+                                {t('faq')}
                             </Link>
                         </div>
                     </li>
 
                     <li className={styles.navItem}>
                         <Link href="https://odaa.iisc.ac.in/fellowships/" className={styles.navLink} target="_blank">
-                            Fellowship
+                            {t('fellowship')}
                         </Link>
                     </li>
 
                     <li className={styles.navItem}>
                         <Link href="https://occap.iisc.ac.in/" className={styles.navLink} target="_blank">
-                            Placements
+                            {t('placements')}
                         </Link>
                     </li>
 
                     <li className={styles.navItem}>
                         <Link href="/faculty-advisors" className={styles.navLink}>
-                            Faculty Advisors
+                            {t('facultyAdvisors')}
                         </Link>
                     </li>
 
                     <li className={styles.navItem}>
                         <Link href="/contact" className={styles.navLink}>
-                            Contact Us
+                            {t('contactUs')}
                         </Link>
                     </li>
                 </ul>
@@ -225,7 +293,7 @@ const Header = () => {
 
                 <div className={styles.mobileNavContent}>
                     <Link href="/" className={styles.mobileNavItem} onClick={closeMobileMenu}>
-                        Home
+                        {t('home')}
                     </Link>
 
                     {/* Departments Mobile Submenu */}
@@ -234,7 +302,7 @@ const Header = () => {
                             className={`${styles.mobileSubmenuHeader} ${activeMobileSubmenu === 'departments' ? styles.activeMobileSubmenuHeader : ''}`}
                             onClick={() => toggleSubmenu('departments')}
                         >
-                            Departments & Curriculum
+                            {t('departments')}
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -252,25 +320,25 @@ const Header = () => {
                         </button>
                         <div className={`${styles.mobileSubmenuList} ${activeMobileSubmenu === 'departments' ? styles.mobileSubmenuOpen : ''}`}>
                             <Link href="/departments" className={styles.mobileSubItem} onClick={closeMobileMenu}>
-                                All Departments
+                                {t('allDepartments')}
                             </Link>
                             <Link href="/departments/mathematics-and-computing" className={styles.mobileSubItem} onClick={closeMobileMenu}>
-                                Mathematics and Computing
+                                {t('mathComputing')}
                             </Link>
                             <Link href="/departments/mechanics-and-computing" className={styles.mobileSubItem} onClick={closeMobileMenu}>
-                                Mechanics and Computing
+                                {t('mechComputing')}
                             </Link>
                             <Link href="/departments/aerospace-engineering" className={styles.mobileSubItem} onClick={closeMobileMenu}>
-                                Aerospace Engineering
+                                {t('aeroEng')}
                             </Link>
                             <Link href="/departments/materials-science-and-engineering" className={styles.mobileSubItem} onClick={closeMobileMenu}>
-                                Materials Science and Engineering
+                                {t('matScience')}
                             </Link>
                         </div>
                     </div>
 
                     <Link href="/handbook" className={styles.mobileNavItem} onClick={closeMobileMenu}>
-                        Student Handbook
+                        {t('studentHandbook')}
                     </Link>
 
                     {/* Admissions Mobile Submenu */}
@@ -279,7 +347,7 @@ const Header = () => {
                             className={`${styles.mobileSubmenuHeader} ${activeMobileSubmenu === 'admissions' ? styles.activeMobileSubmenuHeader : ''}`}
                             onClick={() => toggleSubmenu('admissions')}
                         >
-                            Admissions
+                            {t('admissions')}
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -297,37 +365,37 @@ const Header = () => {
                         </button>
                         <div className={`${styles.mobileSubmenuList} ${activeMobileSubmenu === 'admissions' ? styles.mobileSubmenuOpen : ''}`}>
                             <Link href="/admissions" className={styles.mobileSubItem} onClick={closeMobileMenu}>
-                                Apply Online
+                                {t('applyOnline')}
                             </Link>
                             <Link href="#" className={styles.mobileSubItem} onClick={closeMobileMenu}>
-                                Important Dates
+                                {t('importantDates')}
                             </Link>
                             <Link href="#" className={styles.mobileSubItem} onClick={closeMobileMenu}>
-                                Selection Process
+                                {t('selectionProcess')}
                             </Link>
                             <Link href="#" className={styles.mobileSubItem} onClick={closeMobileMenu}>
-                                Fee Structure
+                                {t('feeStructure')}
                             </Link>
                             <Link href="#" className={styles.mobileSubItem} onClick={closeMobileMenu}>
-                                FAQ
+                                {t('faq')}
                             </Link>
                         </div>
                     </div>
 
                     <Link href="https://odaa.iisc.ac.in/fellowships/" className={styles.mobileNavItem} target="_blank" onClick={closeMobileMenu}>
-                        Fellowship
+                        {t('fellowship')}
                     </Link>
 
                     <Link href="https://occap.iisc.ac.in/" className={styles.mobileNavItem} target="_blank" onClick={closeMobileMenu}>
-                        Placements
+                        {t('placements')}
                     </Link>
 
                     <Link href="/faculty-advisors" className={styles.mobileNavItem} onClick={closeMobileMenu}>
-                        Faculty Advisors
+                        {t('facultyAdvisors')}
                     </Link>
 
                     <Link href="/contact" className={styles.mobileNavItem} onClick={closeMobileMenu}>
-                        Contact Us
+                        {t('contactUs')}
                     </Link>
                 </div>
 

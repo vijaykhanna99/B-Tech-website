@@ -3,96 +3,106 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles from './NewsAnnouncements.module.css';
+import { useLanguage } from '@/context/LanguageContext';
 
 const NewsAnnouncements = () => {
-    // Current date logic
-    // Helper to format date relative to today
-    const getDisplayDate = (dateString: string) => {
-        const inputDate = new Date(dateString);
-        const today = new Date();
-        const yesterday = new Date();
-        yesterday.setDate(today.getDate() - 1);
+    const { t } = useLanguage();
+    const [expandedId, setExpandedId] = useState<number | null>(null);
 
-        const isSameDay = (d1: Date, d2: Date) => {
-            return d1.getDate() === d2.getDate() &&
-                d1.getMonth() === d2.getMonth() &&
-                d1.getFullYear() === d2.getFullYear();
+    // Helper to format date relative to today
+    // We use a state to store formatted dates to avoid hydration mismatch
+    const [formattedDates, setFormattedDates] = useState<Record<string, string>>({});
+
+    useEffect(() => {
+        const calculateDisplayDate = (dateString: string) => {
+            const inputDate = new Date(dateString);
+            const today = new Date();
+            const yesterday = new Date();
+            yesterday.setDate(today.getDate() - 1);
+
+            const isSameDay = (d1: Date, d2: Date) => {
+                return d1.getDate() === d2.getDate() &&
+                    d1.getMonth() === d2.getMonth() &&
+                    d1.getFullYear() === d2.getFullYear();
+            };
+
+            if (isSameDay(inputDate, today)) {
+                return t('today');
+            } else if (isSameDay(inputDate, yesterday)) {
+                return t('yesterday');
+            } else {
+                return dateString;
+            }
         };
 
-        if (isSameDay(inputDate, today)) {
-            return "Today";
-        } else if (isSameDay(inputDate, yesterday)) {
-            return "Yesterday";
-        } else {
-            return dateString;
-        }
+        const newFormattedDates: Record<string, string> = {};
+        [...newsItems, ...announcements].forEach(item => {
+            newFormattedDates[item.date] = calculateDisplayDate(item.date);
+        });
+        setFormattedDates(newFormattedDates);
+    }, [t]); // Recalculate if language changes
+
+    const getDisplayDate = (dateString: string) => {
+        return formattedDates[dateString] || dateString;
     };
 
     const newsItems = [
         {
             id: 0,
             date: 'August 01, 2023',
-            title: 'New Computer Lab Opened for All UG Students',
-            excerpt: 'A new state-of-the-art computer lab facility is now open and accessible to all undergraduate students for academic and research purposes.'
+            title: t('newsTitle1'),
+            excerpt: t('newsExcerpt1')
         },
         {
             id: 1,
             date: 'January 28, 2026',
-            title: 'IISc Researchers Develop New Material for Aerospace Applications',
-            excerpt: 'A team of researchers at the Department of Materials Engineering has developed a novel lightweight alloy...'
+            title: t('newsTitle2'),
+            excerpt: t('newsExcerpt2')
         },
         {
             id: 2,
             date: 'January 15, 2026',
-            title: 'Mathematics and Computing Student Wins International Hackathon',
-            excerpt: 'Second-year B.Tech student secures first place in the global AI challenge hosted by...'
+            title: t('newsTitle3'),
+            excerpt: t('newsExcerpt3')
         },
         {
             id: 3,
             date: 'December 10, 2025',
-            title: 'New Interdisciplinary Centre for Mechanics Announced',
-            excerpt: 'The institute announces the opening of a state-of-the-art facility dedicated to computational mechanics...'
+            title: t('newsTitle4'),
+            excerpt: t('newsExcerpt4')
         }
     ];
 
     const announcements = [
         {
             id: 1,
-            // 'Today' - Fixed date so it becomes 'Yesterday' tomorrow
             date: 'February 01, 2026',
-            title: '🎓 Admissions for the Academic Year 2026–2027 (Coming Soon)',
-            excerpt: 'Admissions for the Bachelor of Technology programmes for the Academic Year 2026–2027 will open soon. Please stay tuned for official updates and announcements through JoSAA.',
+            title: t('announceTitle1'),
+            excerpt: t('announceExcerpt1'),
             link: 'https://josaa.nic.in/'
         },
         {
             id: 2,
-            // 'Today' - Fixed date so it becomes 'Yesterday' tomorrow
             date: 'February 01, 2026',
-            title: '🏫 Introduction of New B.Tech Departments (2026–2027)',
-            excerpt: (
-                <>
-                    We are pleased to announce the introduction of new departments under the Bachelor of Technology programme starting from the Academic Year 2026–2027: <strong>Aerospace Engineering, Mechanics and Computing, and Materials Science and Engineering</strong>. These programmes will be offered along with the existing <strong>Mathematics and Computing</strong> programme.
-                </>
-            ),
+            title: t('announceTitle2'),
+            excerpt: t('announceExcerpt2'),
             link: '#'
         },
         {
             id: 3,
-            date: 'December 20, 2025', // User said "December 2025", setting specific day to parse correctly
-            title: '🌞 Applications Open: Summer Internship Programme 2026',
-            excerpt: 'Applications are now open for the Summer Internship Programme 2026. Eligible students are encouraged to apply through the official application portal.',
+            date: 'December 20, 2025',
+            title: t('announceTitle3'),
+            excerpt: t('announceExcerpt3'),
             link: 'https://occap.iisc.ac.in/'
         },
         {
             id: 4,
             date: 'January 01, 2026',
-            title: '🚀 Annual Tech Symposium “Pravega” – Schedule Released',
-            excerpt: 'The schedule for the Annual Technical Symposium “Pravega” has been released. Students are invited to visit the official event website for details on sessions, workshops, competitions, and registrations.',
+            title: t('announceTitle4'),
+            excerpt: t('announceExcerpt4'),
             link: 'https://www.pravega.in/'
         }
     ];
-
-    const [expandedId, setExpandedId] = useState<number | null>(null);
 
     const toggleExpand = (id: number) => {
         setExpandedId(expandedId === id ? null : id);
@@ -100,12 +110,12 @@ const NewsAnnouncements = () => {
 
     return (
         <section className={styles.container}>
-            <h2 className={styles.heading}>Latest News & Announcements</h2>
+            <h2 className={styles.heading}>{t('latestNewsAnnouncements')}</h2>
 
             <div className={styles.contentWrapper}>
                 {/* News Section */}
                 <div className={styles.section}>
-                    <h3 className={styles.sectionTitle}>Latest News</h3>
+                    <h3 className={styles.sectionTitle}>{t('latestNews')}</h3>
                     <ul className={styles.newsList}>
                         {newsItems.map(item => (
                             <li key={item.id} className={styles.newsItem}>
@@ -118,13 +128,13 @@ const NewsAnnouncements = () => {
                         ))}
                     </ul>
                     <span className={`${styles.viewAll} ${styles.disabled}`}>
-                        View All News &rarr;
+                        {t('viewAllNews')} &rarr;
                     </span>
                 </div>
 
                 {/* Announcements Section */}
                 <div className={styles.section}>
-                    <h3 className={styles.sectionTitle}>Announcements</h3>
+                    <h3 className={styles.sectionTitle}>{t('announcements')}</h3>
                     <ul className={styles.announcementList}>
                         {announcements.map(item => (
                             <li key={item.id} className={styles.announcementItem} onClick={() => toggleExpand(item.id)}>
@@ -144,7 +154,7 @@ const NewsAnnouncements = () => {
                                         <p className={styles.excerpt}>{item.excerpt}</p>
                                         {item.link && item.link !== '#' && (
                                             <Link href={item.link} className={styles.visitLink} target="_blank">
-                                                Visit Official Website &rarr;
+                                                {t('visitWebsite')} &rarr;
                                             </Link>
                                         )}
                                     </div>
@@ -153,7 +163,7 @@ const NewsAnnouncements = () => {
                         ))}
                     </ul>
                     <span className={`${styles.viewAll} ${styles.disabled}`}>
-                        View All Announcements &rarr;
+                        {t('viewAllAnnouncements')} &rarr;
                     </span>
                 </div>
             </div>

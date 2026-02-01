@@ -1,16 +1,21 @@
+"use client";
+
 import React from 'react';
 import Link from 'next/link';
 import styles from './Footer.module.css';
+import { useLanguage } from '@/context/LanguageContext';
 
 const Footer = () => {
+    const { t } = useLanguage();
+
     return (
         <footer className={styles.footer}>
             <div className={styles.container}>
                 <div className={styles.topSection}>
                     <div className={styles.contactSection}>
-                        <h3 className={styles.heading}>Contact Us</h3>
+                        <h3 className={styles.heading}>{t('contactUsFooter')}</h3>
                         <p className={styles.contactInfo}>
-                            Indian Institute of Science, Bangalore<br />
+                            {t('instituteAddress')}<br />
                             080 2293 4060<br />
                             <a href="mailto:admission.ug@iisc.ac.in" className={styles.emailLink}>admission.ug@iisc.ac.in</a>
                         </p>
@@ -34,12 +39,12 @@ const Footer = () => {
                     </div>
 
                     <div className={styles.linksSection}>
-                        <h3 className={styles.heading}>Quick Links</h3>
+                        <h3 className={styles.heading}>{t('quickLinks')}</h3>
                         <div className={styles.linksColumns}>
                             <div className={styles.column}>
-                                <a href="https://scouncil.iisc.ac.in/" target="_blank" rel="noopener noreferrer" className={styles.footerLink}>Student Council</a>
-                                <a href="https://iisc.ac.in/complaints/" target="_blank" rel="noopener noreferrer" className={styles.footerLink}>Internal Complaint Committee</a>
-                                <a href="https://www.iisc.ac.in/health-centre/" target="_blank" rel="noopener noreferrer" className={styles.footerLink}>Health Center</a>
+                                <a href="https://scouncil.iisc.ac.in/" target="_blank" rel="noopener noreferrer" className={styles.footerLink}>{t('studentCouncil')}</a>
+                                <a href="https://iisc.ac.in/complaints/" target="_blank" rel="noopener noreferrer" className={styles.footerLink}>{t('internalComplaint')}</a>
+                                <a href="https://www.iisc.ac.in/health-centre/" target="_blank" rel="noopener noreferrer" className={styles.footerLink}>{t('healthCenter')}</a>
                             </div>
                         </div>
                     </div>
@@ -48,7 +53,7 @@ const Footer = () => {
                 <div className={styles.borderLine}></div>
 
                 <div className={styles.bottomSection}>
-                    <p className={styles.copyright}>© 2026 Indian Institute of Science. All rights reserved.</p>
+                    <p className={styles.copyright}>{t('copyright')}</p>
                 </div>
             </div>
         </footer>

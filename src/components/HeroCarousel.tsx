@@ -2,7 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from './HeroCarousel.module.css';
+import { useLanguage } from '@/context/LanguageContext';
 
 const images = [
     "/banner1.jpg",
@@ -12,7 +14,27 @@ const images = [
 ];
 
 const HeroCarousel = () => {
+    const { t } = useLanguage();
     const [currentIndex, setCurrentIndex] = useState(0);
+
+    const slidesContent = [
+        {
+            title: t('heroTitle1'),
+            desc: t('heroDesc1'),
+        },
+        {
+            title: t('heroTitle2'),
+            desc: t('heroDesc2'),
+        },
+        {
+            title: t('heroTitle3'),
+            desc: t('heroDesc3'),
+        },
+        {
+            title: t('heroTitle1'), // Repeating first logic for now or specific if needed
+            desc: t('heroDesc1'),
+        }
+    ];
 
     // Auto-rotate every 15 seconds. Resets whenever currentIndex changes (including manual clicks).
     useEffect(() => {

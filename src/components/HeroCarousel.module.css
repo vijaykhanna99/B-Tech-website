@@ -21,11 +21,76 @@
     z-index: 2;
 }
 
+/* Overlay Styles */
+.overlay {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    width: 40%;
+    z-index: 5;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    background: linear-gradient(90deg, #ffffff, #e0e0e0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.description {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    color: #f0f0f0;
+}
+
+.buttonGroup {
+    display: flex;
+    gap: 1rem;
+}
+
+.primaryButton {
+    padding: 12px 24px;
+    background-color: #007bff;
+    color: white;
+    font-weight: 600;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.primaryButton:hover {
+    background-color: #0056b3;
+}
+
+.secondaryButton {
+    padding: 12px 24px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-weight: 600;
+    border-radius: 4px;
+    text-decoration: none;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    transition: background-color 0.3s;
+}
+
+.secondaryButton:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
 .arrowButton {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.3);
     border: none;
     cursor: pointer;
     z-index: 10;
@@ -34,10 +99,12 @@
     align-items: center;
     justify-content: center;
     transition: background-color 0.3s;
+    border-radius: 50%;
+    backdrop-filter: blur(5px);
 }
 
 .arrowButton:hover {
-    background-color: rgba(255, 255, 255, 1);
+    background-color: rgba(255, 255, 255, 0.6);
 }
 
 .prevButton {
@@ -51,7 +118,7 @@
 .arrowIcon {
     width: 24px;
     height: 24px;
-    color: #333;
+    color: #000;
 }
 
 .dotsContainer {
@@ -76,6 +143,27 @@
 
 .activeDot {
     background-color: #007bff;
-    /* Blue active dot like in screenshot, or white/filled */
     border-color: #007bff;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .overlay {
+        width: 80%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .description {
+        font-size: 1rem;
+    }
+
+    .buttonGroup {
+        justify-content: center;
+    }
 }
