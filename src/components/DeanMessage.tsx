@@ -4,7 +4,7 @@ import styles from './DeanMessage.module.css';
 const DeanMessage = () => {
     return (
         <section className={styles.container}>
-            <h2 className={styles.heading}>Message from the Dean, Undergraduate Studies</h2>
+            <h2 className={styles.heading}>Message from the Dean's, Undergraduate Studies</h2>
 
             <div className={styles.contentWrapper}>
                 <div className={styles.messageColumn}>

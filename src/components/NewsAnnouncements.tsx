@@ -58,16 +58,16 @@ const NewsAnnouncements = () => {
     const announcements = [
         {
             id: 1,
-            // 'Today'
-            date: new Date().toISOString(),
+            // 'Today' - Fixed date so it becomes 'Yesterday' tomorrow
+            date: 'February 01, 2026',
             title: '🎓 Admissions for the Academic Year 2026–2027 (Coming Soon)',
             excerpt: 'Admissions for the Bachelor of Technology programmes for the Academic Year 2026–2027 will open soon. Please stay tuned for official updates and announcements through JoSAA.',
             link: 'https://josaa.nic.in/'
         },
         {
             id: 2,
-            // 'Today'
-            date: new Date().toISOString(),
+            // 'Today' - Fixed date so it becomes 'Yesterday' tomorrow
+            date: 'February 01, 2026',
             title: '🏫 Introduction of New B.Tech Departments (2026–2027)',
             excerpt: (
                 <>

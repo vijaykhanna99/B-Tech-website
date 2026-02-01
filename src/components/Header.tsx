@@ -45,10 +45,10 @@ const Header = () => {
                     </div>
                     <div className={styles.titleContainer}>
                         <h1 className={styles.title}>
-                            Indian Institute of Science
+                            Bachelor of Technology
                         </h1>
                         <p className={styles.subtitle}>
-                            Bachelor of Technology
+                            Indian Institute of Science Bangalore
                         </p>
                     </div>
                 </div>

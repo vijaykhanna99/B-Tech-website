@@ -773,52 +773,42 @@ const AerospaceEngineering = () => {
                         Students can obtain an M.Tech. degree in any department, provided they satisfy both the general criteria and any specific eligibility criteria specified by the admitting department (e.g., Material Science and Engineering). Similar criteria apply for continuing in Aerospace Engineering.
                     </p>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginTop: '2rem' }}>
+                    <div className={styles.mtechGrid}>
                         {/* Eligibility Criteria Card */}
-                        <div style={{
-                            background: 'white',
-                            borderRadius: '12px',
-                            padding: '2rem',
-                            boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-                            borderTop: '4px solid #3b82f6'
-                        }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
-                                <div style={{ background: '#dbeafe', padding: '0.5rem', borderRadius: '50%', color: '#3b82f6' }}>
+                        <div className={styles.mtechCard}>
+                            <div className={styles.mtechCardAccent} style={{ backgroundColor: '#2563eb' }} />
+                            <div className={styles.mtechCardTitle}>
+                                <div className={styles.mtechIcon} style={{ background: '#dbeafe', color: '#2563eb' }}>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                                     </svg>
                                 </div>
-                                <h3 style={{ fontSize: '1.25rem', fontWeight: '700', color: '#1e293b', margin: 0 }}>Eligibility Criteria</h3>
+                                Eligibility Criteria
                             </div>
-                            <ul style={{ paddingLeft: '1.5rem', color: '#475569', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                                <li>Completed minimum <strong>80% credit requirements</strong> for B.Tech (102 credits).</li>
-                                <li>Maintain a <strong>CGPA of 8.0 or above</strong> at the end of the 6th semester.</li>
-                                <li>Satisfy <strong>eligibility criteria</strong> of the admitting department.</li>
+                            <ul className={styles.mtechList}>
+                                <li className={styles.mtechItem}>Completed minimum <strong>80% credit requirements</strong> for B.Tech (102 credits).</li>
+                                <li className={styles.mtechItem}>Maintain a <strong>CGPA of 8.0 or above</strong> at the end of the 6th semester.</li>
+                                <li className={styles.mtechItem}>Satisfy <strong>eligibility criteria</strong> of the admitting department.</li>
                             </ul>
                         </div>
 
                         {/* Degree Requirements Card */}
-                        <div style={{
-                            background: 'white',
-                            borderRadius: '12px',
-                            padding: '2rem',
-                            boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-                            borderTop: '4px solid #10b981'
-                        }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
-                                <div style={{ background: '#d1fae5', padding: '0.5rem', borderRadius: '50%', color: '#10b981' }}>
+                        <div className={styles.mtechCard}>
+                            <div className={styles.mtechCardAccent} style={{ backgroundColor: '#10b981' }} />
+                            <div className={styles.mtechCardTitle}>
+                                <div className={styles.mtechIcon} style={{ background: '#d1fae5', color: '#10b981' }}>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
                                     </svg>
                                 </div>
-                                <h3 style={{ fontSize: '1.25rem', fontWeight: '700', color: '#1e293b', margin: 0 }}>Degree Requirements</h3>
+                                Degree Requirements
                             </div>
-                            <ul style={{ paddingLeft: '1.5rem', color: '#475569', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                                <li>Complete all core, soft-core, elective, and project requirements of the M.Tech program.</li>
-                                <li>Complete <strong>64 additional credits</strong> during 4th and 5th years.</li>
-                                <li>Total: <strong>102 B.Tech + 64 M.Tech credits</strong>.</li>
+                            <ul className={styles.mtechList}>
+                                <li className={styles.mtechItem}>Complete all core, soft-core, elective, and project requirements of the M.Tech program.</li>
+                                <li className={styles.mtechItem}>Complete <strong>64 additional credits</strong> during 4th and 5th years.</li>
+                                <li className={styles.mtechItem}>Total: <strong>102 B.Tech + 64 M.Tech credits</strong>.</li>
                             </ul>
                         </div>
                     </div>
