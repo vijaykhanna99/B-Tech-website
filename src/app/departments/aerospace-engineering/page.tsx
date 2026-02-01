@@ -742,7 +742,7 @@ const AerospaceEngineering = () => {
 
                 {/* Continuing for MTech Degree */}
                 <div className={styles.overviewSection} style={{ marginTop: '3rem' }}>
-                    <h2 className={styles.sectionHeading} style={{ borderLeft: '4px solid #3b82f6', paddingLeft: '1rem', fontSize: '1.75rem', marginBottom: '1.5rem', color: '#1e293b' }}>
+                    <h2 className={styles.sectionHeading}>
                         Continuing for MTech Degree
                     </h2>
                     <p className={styles.overviewText} style={{ marginBottom: '1.5rem' }}>

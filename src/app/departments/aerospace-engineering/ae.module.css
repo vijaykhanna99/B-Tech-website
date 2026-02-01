@@ -90,6 +90,16 @@
     padding-left: 1rem;
 }
 
+@media (max-width: 768px) {
+    .sectionHeading {
+        font-size: 1.25rem;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        padding-left: 0.75rem;
+        line-height: 1.4;
+    }
+}
+
 .overviewText {
     font-size: 1.1rem;
     line-height: 1.7;
