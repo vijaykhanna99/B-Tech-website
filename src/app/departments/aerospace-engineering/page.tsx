@@ -761,56 +761,106 @@ const AerospaceEngineering = () => {
                     </div>
                 </div>
 
-                {/* Continuing for MTech Degree */}
+                {/* Continuing to M.Tech / M.Tech (Research) - Updated Section */}
                 <div className={styles.overviewSection} style={{ marginTop: '3rem' }}>
-                    <h2 className={styles.sectionHeading}>
-                        Continuing for MTech Degree
-                    </h2>
+                    <h2 className={styles.sectionHeading}>Continuing to M.Tech / M.Tech (Research)</h2>
                     <p className={styles.overviewText} style={{ marginBottom: '1.5rem' }}>
-                        Students can choose to obtain an additional M.Tech. degree, in any eligible program, provided they satisfy the eligibility norms as prescribed by the Institute Senate and the corresponding M.Tech. program.
-                    </p>
-                    <p className={styles.overviewText} style={{ marginBottom: '2rem' }}>
-                        Students can obtain an M.Tech. degree in any department, provided they satisfy both the general criteria and any specific eligibility criteria specified by the admitting department (e.g., Material Science and Engineering). Similar criteria apply for continuing in Aerospace Engineering.
+                        B.Tech students of IISc may apply for admission to the M.Tech and M.Tech (Research) programmes at the end of their third year, subject to fulfilling the existing rules and regulations.
                     </p>
 
-                    <div className={styles.mtechGrid}>
-                        {/* Eligibility Criteria Card */}
-                        <div className={styles.mtechCard}>
-                            <div className={styles.mtechCardAccent} style={{ backgroundColor: '#2563eb' }} />
-                            <div className={styles.mtechCardTitle}>
-                                <div className={styles.mtechIcon} style={{ background: '#dbeafe', color: '#2563eb' }}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
+                    <div className={styles.mtechGrid} style={{ gridTemplateColumns: '1fr', gap: '2rem' }}>
+
+                        {/* Eligibility & Selection */}
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+                            {/* Eligibility Card */}
+                            <div className={styles.mtechCard}>
+                                <div className={styles.mtechCardAccent} style={{ backgroundColor: '#2563eb' }} />
+                                <div className={styles.mtechCardTitle}>
+                                    <div className={styles.mtechIcon} style={{ background: '#dbeafe', color: '#2563eb' }}>✓</div>
+                                    Eligibility
                                 </div>
-                                Eligibility Criteria
+                                <ul className={styles.mtechList}>
+                                    <li className={styles.mtechItem}>
+                                        <span style={{ fontWeight: '500' }}>Students must be in the third year of the B.Tech programme.</span>
+                                    </li>
+                                    <li className={styles.mtechItem}>
+                                        <span style={{ fontWeight: '500' }}>Students must have completed at least 80% of the prescribed credits (i.e., 102 credits) with a minimum CGPA of 8.0.</span>
+                                    </li>
+                                    <li className={styles.mtechItem}>
+                                        <span style={{ fontWeight: '500' }}>Students must have completed the minimum pool-wise credit requirements prescribed for the programme for continuation to M.Tech / M.Tech (Research).</span>
+                                    </li>
+                                </ul>
                             </div>
-                            <ul className={styles.mtechList}>
-                                <li className={styles.mtechItem}>Completed minimum <strong>80% credit requirements</strong> for B.Tech (102 credits).</li>
-                                <li className={styles.mtechItem}>Maintain a <strong>CGPA of 8.0 or above</strong> at the end of the 6th semester.</li>
-                                <li className={styles.mtechItem}>Satisfy <strong>eligibility criteria</strong> of the admitting department.</li>
-                            </ul>
+
+                            {/* Selection Card */}
+                            <div className={styles.mtechCard}>
+                                <div className={styles.mtechCardAccent} style={{ backgroundColor: '#8b5cf6' }} />
+                                <div className={styles.mtechCardTitle}>
+                                    <div className={styles.mtechIcon} style={{ background: '#ede9fe', color: '#8b5cf6' }}>🎯</div>
+                                    Selection
+                                </div>
+                                <ul className={styles.mtechList}>
+                                    <li className={styles.mtechItem}>
+                                        <span style={{ fontWeight: '500' }}>Applicants must satisfy the programme-specific eligibility conditions as notified by the concerned department from time to time.</span>
+                                    </li>
+                                    <li className={styles.mtechItem}>
+                                        <span style={{ fontWeight: '500' }}>Selection shall be based on interviews conducted by the respective department.</span>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
 
-                        {/* Degree Requirements Card */}
-                        <div className={styles.mtechCard}>
-                            <div className={styles.mtechCardAccent} style={{ backgroundColor: '#10b981' }} />
-                            <div className={styles.mtechCardTitle}>
-                                <div className={styles.mtechIcon} style={{ background: '#d1fae5', color: '#10b981' }}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
-                                    </svg>
+                        {/* Programme Structure */}
+                        <h3 style={{ fontSize: '1.4rem', fontWeight: '700', color: '#1e293b', marginTop: '1rem', marginBottom: '0.5rem' }}>
+                            Programme Structure
+                        </h3>
+
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+                            {/* M.Tech Structure */}
+                            <div className={styles.mtechCard}>
+                                <div className={styles.mtechCardAccent} style={{ backgroundColor: '#10b981' }} />
+                                <div className={styles.mtechCardTitle}>
+                                    <div className={styles.mtechIcon} style={{ background: '#ecfdf5', color: '#10b981' }}>🎓</div>
+                                    M.Tech
                                 </div>
-                                Degree Requirements
+                                <ul className={styles.mtechList}>
+                                    <li className={styles.mtechItem}>
+                                        <span style={{ fontWeight: '500' }}>Admission is from the seventh semester onwards.</span>
+                                    </li>
+                                    <li className={styles.mtechItem}>
+                                        <span style={{ fontWeight: '500' }}>Students are required to complete 64 additional credits and fulfil all M.Tech degree requirements of the programme.</span>
+                                    </li>
+                                    <li className={styles.mtechItem}>
+                                        <span style={{ fontWeight: '500' }}>On successful completion, separate B. Tech and M. Tech degrees shall be awarded.</span>
+                                    </li>
+                                </ul>
                             </div>
-                            <ul className={styles.mtechList}>
-                                <li className={styles.mtechItem}>Complete all core, soft-core, elective, and project requirements of the M.Tech program.</li>
-                                <li className={styles.mtechItem}>Complete <strong>64 additional credits</strong> during 4th and 5th years.</li>
-                                <li className={styles.mtechItem}>Total: <strong>102 B.Tech + 64 M.Tech credits</strong>.</li>
-                            </ul>
+
+                            {/* M.Tech (Research) Structure */}
+                            <div className={styles.mtechCard}>
+                                <div className={styles.mtechCardAccent} style={{ backgroundColor: '#f59e0b' }} />
+                                <div className={styles.mtechCardTitle}>
+                                    <div className={styles.mtechIcon} style={{ background: '#fef3c7', color: '#f59e0b' }}>🔬</div>
+                                    M.Tech (Research)
+                                </div>
+                                <ul className={styles.mtechList}>
+                                    <li className={styles.mtechItem}>
+                                        <span style={{ fontWeight: '500' }}>Students are required to complete 12 course credits beyond the B.Tech requirements, along with a research thesis.</span>
+                                    </li>
+                                    <li className={styles.mtechItem}>
+                                        <span style={{ fontWeight: '500' }}>On successful completion, separate B. Tech and M.Tech (Research) degrees shall be awarded.</span>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
+
+                        {/* Footer Note */}
+                        <div style={{ marginTop: '1rem', padding: '1rem', backgroundColor: '#f8fafc', borderRadius: '8px', borderLeft: '4px solid #3b82f6' }}>
+                            <p style={{ margin: 0, color: '#475569', fontSize: '0.95rem' }}>
+                                <strong>Note:</strong> For detailed rules, eligibility conditions, and procedural requirements, students are advised to refer to the <Link href="/handbook" style={{ color: '#2563eb', textDecoration: 'underline' }}>Student Information Handbook</Link>.
+                            </p>
+                        </div>
+
                     </div>
                 </div>
             </div>
