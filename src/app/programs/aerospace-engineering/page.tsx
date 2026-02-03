@@ -8,6 +8,26 @@ import styles from './ae.module.css';
 const AerospaceEngineering = () => {
     const [activeSemester, setActiveSemester] = useState(1);
     const [selectedCourse, setSelectedCourse] = useState<any>(null);
+    const [activeTab, setActiveTab] = useState('home');
+
+    const dummyNews = [
+        {
+            date: "October 10, 2025",
+            title: "Aerospace Team Wins Design Award",
+            excerpt: "The IISc DBF team secured the first place in the National Unmanned Flight Vehicle Design competition."
+        },
+        {
+            date: "September 15, 2025",
+            title: "New Propulsion Lab Opened",
+            excerpt: "The program inaugurated a state-of-the-art propulsion testing facility for advanced research."
+        }
+    ];
+
+    const dummyAnnouncements = [
+        { text: "Workshop on 'Computational Fluid Dynamics' scheduled for Nov 5th.", link: "#" },
+        { text: "Registration for Spring 2026 electives is now open.", link: "#" },
+        { text: "Selected students for international internship announced.", link: "#" }
+    ];
 
     const semesters = [1, 2, 3, 4, 5, 6, 7, 8];
 
@@ -56,7 +76,7 @@ const AerospaceEngineering = () => {
                     instructorLink: "https://physics.iisc.ac.in/people/sebabrata-mukherjee/"
                 }
             },
-            { code: "UHS", name: "Humanities (Mandatory)", instructor: "-", credits: "2:0", pdf: "/humanities_courses.pdf" },
+            { code: "UHS**", name: "Humanities", instructor: "-", credits: "2:0", pdf: "/humanities_courses.pdf" },
             {
                 code: "UENG 101",
                 name: "Algorithms & Programming",
@@ -173,7 +193,7 @@ const AerospaceEngineering = () => {
                     instructorLink: "https://chep.iisc.ac.in/faculty/"
                 }
             },
-            { code: "Elective", name: "Humanities / UG elective", instructor: "-", credits: "2-4" },
+            { code: "-", name: "Humanities** / UG elective", instructor: "-", credits: "2-4" },
             {
                 code: "UENG 102",
                 name: "Electrical and Electronics Engineering",
@@ -270,7 +290,7 @@ const AerospaceEngineering = () => {
                     ]
                 }
             },
-            { code: "Elective", name: "Humanities / UG elective", instructor: "-", credits: "2-4" },
+            { code: "-", name: "Humanities**/ UG elective", instructor: "-", credits: "2-4" },
         ],
         4: [
             {
@@ -314,7 +334,7 @@ const AerospaceEngineering = () => {
                     ]
                 }
             },
-            { code: "Elective", name: "Humanities / UG elective / Elective", instructor: "-", credits: "2-4" },
+            { code: "-", name: "Humanities** / UG elective / Elective", instructor: "-", credits: "2-4" },
             { code: "UENG 206", name: "Science of Design", instructor: "-", credits: "3:1" },
         ],
         5: [
@@ -378,7 +398,7 @@ const AerospaceEngineering = () => {
                     instructorLink: "https://aero.iisc.ac.in/people/ashwini-ratnoo/"
                 }
             },
-            { code: "Elective", name: "Humanities / UG elective / Elective", instructor: "-", credits: "6-8" },
+            { code: "-", name: "Humanities** / UG elective / Elective", instructor: "-", credits: "6-8" },
             {
                 code: "UENG 207",
                 name: "Solids and Fluids Lab",
@@ -408,7 +428,7 @@ const AerospaceEngineering = () => {
                     parts: [
                         {
                             title: "Course Description",
-                            content: "The Flight Lab will be conducted in the Department of Aerospace Engineering. The students participate to collect, analyze and evaluate performance and handling qualities of the airplanes through flight simulator and/or on an instrumented aircraft."
+                            content: "The Flight Lab will be conducted in the Program of Aerospace Engineering. The students participate to collect, analyze and evaluate performance and handling qualities of the airplanes through flight simulator and/or on an instrumented aircraft."
                         }
                     ]
                 }
@@ -463,12 +483,12 @@ const AerospaceEngineering = () => {
                     parts: [
                         {
                             title: "Course Description",
-                            content: "Small groups of students are trained in the research labs in the Aerospace Engineering Department for over a semester. This laboratory experience will provide a deep understanding of measurement techniques and principles while allowing students to contribute to ongoing research problems in these labs. This not only enriches the UG students' experience by participating in a research laboratory but also supports AE Department experiment research."
+                            content: "Small groups of students are trained in the research labs in the Aerospace Engineering Program for over a semester. This laboratory experience will provide a deep understanding of measurement techniques and principles while allowing students to contribute to ongoing research problems in these labs. This not only enriches the UG students' experience by participating in a research laboratory but also supports AE Program experiment research."
                         }
                     ]
                 }
             },
-            { code: "Elective", name: "Humanities / UG elective / Elective", instructor: "-", credits: "8-10" },
+            { code: "-", name: "Humanities** / UG elective / Elective", instructor: "-", credits: "8-10" },
         ],
         7: [
             {
@@ -528,12 +548,9 @@ const AerospaceEngineering = () => {
         <div className={styles.pageContainer}>
             {/* Top Header Bar */}
             <div className={styles.headerSection}>
-                <Link href="/departments" className={styles.backLink}>
-                    ← Back to Departments
+                <Link href="/programs" className={styles.backLink}>
+                    ← Back to Programs
                 </Link>
-                <div className={styles.programTitle}>
-                    B.Tech in Aerospace Engineering
-                </div>
             </div>
 
             {/* Hero Section */}
@@ -557,312 +574,407 @@ const AerospaceEngineering = () => {
                     sizes="100vw"
                 />
                 <div style={{ position: 'relative', zIndex: 2 }}>
-                    <span className={styles.heroTag}>UNDERGRADUATE PROGRAM</span>
+                    <span className={styles.heroTag}>Bachelor of Technology</span>
                     <h1 className={styles.heroHeading}>Aerospace Engineering</h1>
                 </div>
             </div>
 
             <div className={styles.contentWrapper}>
-                {/* Course Overview */}
-                <div className={styles.overviewSection}>
-                    <h2 className={styles.sectionHeading}>Course Overview</h2>
-                    <p className={styles.overviewText}>
-                        The B.Tech program in Aerospace Engineering is designed to provide students with a strong foundation in the fundamental principles of flight, propulsion, structures, and control. The curriculum blends theoretical knowledge with hands-on laboratory experience and design projects to prepare graduates for careers in the aerospace industry and research.
-                    </p>
+                {/* Top Level Tabs */}
+                <div className={styles.pageTabs}>
+                    <div className={styles.pageTabContainer}>
+                        <button
+                            className={`${styles.pageTabButton} ${activeTab === 'home' ? styles.pageTabButtonActive : ''}`}
+                            onClick={() => setActiveTab('home')}
+                        >
+                            <svg className={styles.tabIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                                <polyline points="9 22 9 12 15 12 15 22" />
+                            </svg>
+                            Home
+                        </button>
+                        <button
+                            className={`${styles.pageTabButton} ${activeTab === 'structure' ? styles.pageTabButtonActive : ''}`}
+                            onClick={() => setActiveTab('structure')}
+                        >
+                            <svg className={styles.tabIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                                <polyline points="2 17 12 22 22 17" />
+                                <polyline points="2 12 12 17 22 12" />
+                            </svg>
+                            Course Structure
+                        </button>
+                    </div>
                 </div>
 
-                {/* Semester-wise Requirements Section */}
-                <div className={styles.semesterSection}>
-                    <h2 className={styles.sectionHeading} style={{ borderLeft: 'none', paddingLeft: 0, fontSize: '1.75rem', marginBottom: '1.5rem' }}>
-                        Semester-wise Course Requirements
-                    </h2>
+                {/* Home Tab Content */}
+                {activeTab === 'home' && (
+                    <div className={styles.homeGrid}>
+                        <div className={styles.mainContent}>
+                            <div className={styles.introSection}>
+                                <h1 className={styles.heroHeading} style={{ fontSize: '2rem', color: '#0f172a', marginBottom: '1rem' }}>
+                                    About the Programme
+                                </h1>
+                                <p className={styles.introText}>
+                                    The B.Tech program in Aerospace Engineering at IISc offers a comprehensive education that integrates science, mathematics, and engineering principles with a focus on flight vehicles and systems. Students engage in rigorous coursework and research in aerodynamics, structures, propulsion, and flight mechanics, preparing them for leadership roles in the aerospace sector.
+                                </p>
+                            </div>
 
-                    {/* Semester Navigation */}
-                    <div className={styles.semesterNav}>
-                        {semesters.map(sem => (
-                            <button
-                                key={sem}
-                                className={`${styles.semesterTab} ${activeSemester === sem ? styles.activeTab : ''}`}
-                                onClick={() => setActiveSemester(sem)}
-                            >
-                                Semester {sem}
-                            </button>
-                        ))}
+                            <div className={styles.newsSection}>
+                                <div className={styles.newsSectionTitle}>
+                                    <span style={{ fontSize: '1.5rem' }}>📰</span> Latest News
+                                </div>
+                                {dummyNews.map((news, index) => (
+                                    <div key={index} className={styles.newsCard}>
+                                        <div className={styles.newsContent}>
+                                            <div className={styles.newsDate}>{news.date}</div>
+                                            <div className={styles.newsTitle}>{news.title}</div>
+                                            <div className={styles.newsExcerpt}>{news.excerpt}</div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className={styles.sidebar}>
+                            <div className={styles.announcementList}>
+                                <div className={styles.newsSectionTitle} style={{ marginBottom: '1rem', fontSize: '1.1rem' }}>
+                                    <span style={{ fontSize: '1.2rem' }}>📢</span> Announcements
+                                </div>
+                                {dummyAnnouncements.map((ann, index) => (
+                                    <div key={index} className={styles.announcementItem}>
+                                        <div className={styles.announcementBadge}>New</div>
+                                        <div className={styles.announcementText}>{ann.text}</div>
+                                        {ann.link && (
+                                            <Link href={ann.link} className={styles.announcementLink}>
+                                                Read More →
+                                            </Link>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
                     </div>
+                )}
 
-                    {/* Course Table */}
-                    <div className={styles.tableContainer}>
-                        <table className={styles.courseTable}>
-                            <thead>
-                                <tr>
-                                    <th style={{ width: '15%' }}>Course Code</th>
-                                    <th style={{ width: '40%' }}>Course Name</th>
-                                    <th style={{ width: '25%' }}>Instructor</th>
-                                    <th style={{ width: '10%', textAlign: 'center' }}>Credits</th>
-                                    <th style={{ width: '10%', textAlign: 'center' }}>Details</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {currentCourses.map((course: any, index: number) => (
-                                    <tr key={index}>
-                                        <td className={styles.courseCode}>{course.code}</td>
-                                        <td className={styles.courseName}>{course.name}</td>
-                                        <td>
-                                            {course.details?.instructors ? (
-                                                course.details.instructors.map((inst: any, idx: number) => (
-                                                    <React.Fragment key={idx}>
-                                                        {idx > 0 && ", "}
+                {/* Course Structure Tab Content */}
+                {activeTab === 'structure' && (
+                    <>
+                        {/* Course Overview */}
+                        <div className={styles.overviewSection}>
+                            <h2 className={styles.sectionHeading}>Course Overview</h2>
+                            <p className={styles.overviewText}>
+                                The B.Tech program in Aerospace Engineering is designed to provide students with a strong foundation in the fundamental principles of flight, propulsion, structures, and control. The curriculum blends theoretical knowledge with hands-on laboratory experience and design projects to prepare graduates for careers in the aerospace industry and research.
+                            </p>
+                        </div>
+
+                        {/* Semester-wise Requirements Section */}
+                        <div className={styles.semesterSection}>
+                            <h2 className={styles.sectionHeading} style={{ borderLeft: 'none', paddingLeft: 0, fontSize: '1.75rem', marginBottom: '1.5rem' }}>
+                                Semester-wise Course Requirements
+                            </h2>
+
+                            {/* Semester Navigation */}
+                            <div className={styles.semesterNav}>
+                                {semesters.map(sem => (
+                                    <button
+                                        key={sem}
+                                        className={`${styles.semesterTab} ${activeSemester === sem ? styles.activeTab : ''}`}
+                                        onClick={() => setActiveSemester(sem)}
+                                    >
+                                        Semester {sem}
+                                    </button>
+                                ))}
+                            </div>
+
+                            {/* Course Table */}
+                            <div className={styles.tableContainer}>
+                                <table className={styles.courseTable}>
+                                    <thead>
+                                        <tr>
+                                            <th style={{ width: '15%' }}>Course Code</th>
+                                            <th style={{ width: '40%' }}>Course Name</th>
+                                            <th style={{ width: '25%' }}>Instructor</th>
+                                            <th style={{ width: '10%', textAlign: 'center' }}>Credits</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {currentCourses.map((course: any, index: number) => (
+                                            <tr key={index}>
+                                                <td className={styles.courseCode}>
+                                                    {course.details ? (
+                                                        <span
+                                                            className={styles.courseLink}
+                                                            onClick={() => setSelectedCourse(course)}
+                                                        >
+                                                            {course.code}
+                                                        </span>
+                                                    ) : course.pdf ? (
                                                         <a
-                                                            href={inst.link}
+                                                            href={course.pdf}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className={styles.courseLink}
+                                                        >
+                                                            {course.code}
+                                                        </a>
+                                                    ) : (
+                                                        course.code
+                                                    )}
+                                                </td>
+                                                <td className={styles.courseName}>
+                                                    {course.details ? (
+                                                        <span
+                                                            className={styles.courseLink}
+                                                            onClick={() => setSelectedCourse(course)}
+                                                        >
+                                                            {course.name}
+                                                        </span>
+                                                    ) : course.pdf ? (
+                                                        <a
+                                                            href={course.pdf}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className={styles.courseLink}
+                                                        >
+                                                            {course.name}
+                                                        </a>
+                                                    ) : (
+                                                        course.name
+                                                    )}
+                                                </td>
+                                                <td>
+                                                    {course.details?.instructors ? (
+                                                        course.details.instructors.map((inst: any, idx: number) => (
+                                                            <React.Fragment key={idx}>
+                                                                {idx > 0 && ", "}
+                                                                <a
+                                                                    href={inst.link}
+                                                                    target="_blank"
+                                                                    rel="noopener noreferrer"
+                                                                    className={styles.instructorLink}
+                                                                >
+                                                                    {inst.name}
+                                                                </a>
+                                                            </React.Fragment>
+                                                        ))
+                                                    ) : course.details?.instructorLink ? (
+                                                        <a
+                                                            href={course.details.instructorLink}
                                                             target="_blank"
                                                             rel="noopener noreferrer"
                                                             className={styles.instructorLink}
                                                         >
-                                                            {inst.name}
+                                                            {course.instructor}
                                                         </a>
-                                                    </React.Fragment>
-                                                ))
-                                            ) : course.details?.instructorLink ? (
-                                                <a
-                                                    href={course.details.instructorLink}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className={styles.instructorLink}
-                                                >
-                                                    {course.instructor}
-                                                </a>
-                                            ) : (
-                                                <span style={{ color: '#64748b' }}>{course.instructor}</span>
-                                            )}
-                                        </td>
-                                        <td style={{ textAlign: 'center' }}>{course.credits}</td>
-                                        <td style={{ textAlign: 'center' }}>
-                                            {course.pdf ? (
-                                                <a
-                                                    href={course.pdf}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className={styles.pdfBadge}
-                                                >
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                                    </svg>
-                                                    View all Courses
-                                                </a>
-                                            ) : (
-                                                <div
-                                                    className={styles.infoIcon}
-                                                    style={{ opacity: course.details ? 1 : 0.4, cursor: course.details ? 'pointer' : 'default' }}
-                                                    onClick={() => course.details && setSelectedCourse(course)}
-                                                >
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                    </svg>
-                                                </div>
-                                            )}
-                                        </td>
-                                    </tr>
-                                ))}
+                                                    ) : (
+                                                        <span style={{ color: '#64748b' }}>{course.instructor}</span>
+                                                    )}
+                                                </td>
+                                                <td style={{ textAlign: 'center' }}>{course.credits}</td>
+                                            </tr>
+                                        ))}
 
-                                {/* Total Row - Normal Load */}
-                                <tr className={styles.totalRow}>
-                                    <td colSpan={3} className={styles.totalLabel}>Normal Load</td>
-                                    <td className={styles.totalCredits}>{getTotalCredits(activeSemester)}</td>
-                                    <td></td>
-                                </tr>
+                                        {/* Total Row - Normal Load */}
+                                        <tr className={styles.totalRow}>
+                                            <td colSpan={3} className={styles.totalLabel}>Normal Load</td>
+                                            <td className={styles.totalCredits}>{getTotalCredits(activeSemester)}</td>
+                                        </tr>
 
-                                {/* Reduced Load Row */}
-                                {getReducedCredits(activeSemester) && (
-                                    <tr className={styles.totalRow} style={{ borderTop: '1px solid #e5e7eb' }}>
-                                        <td colSpan={3} className={styles.totalLabel}>
-                                            Reduced Load
-                                            <div style={{ fontWeight: '400', fontSize: '0.8rem', color: '#64748b', marginTop: '0.2rem' }}>
-                                                {activeSemester === 2 ? '(drop any one course)' :
-                                                    activeSemester === 3 ? '(drop any one course)' :
-                                                        activeSemester === 4 ? '(drop one core course; can register for a maximum of 4 additional credits)' :
-                                                            activeSemester === 5 ? '(drop any one course)' : ''}
-                                            </div>
-                                        </td>
-                                        <td className={styles.totalCredits} style={{ verticalAlign: 'top' }}>
-                                            {getReducedCredits(activeSemester).split(' ')[0]}
-                                        </td>
-                                        <td></td>
-                                    </tr>
-                                )}
+                                        {/* Reduced Load Row */}
+                                        {getReducedCredits(activeSemester) && (
+                                            <tr className={styles.totalRow} style={{ borderTop: '1px solid #e5e7eb' }}>
+                                                <td colSpan={3} className={styles.totalLabel}>
+                                                    Reduced Load
+                                                    <div style={{ fontWeight: '400', fontSize: '0.8rem', color: '#64748b', marginTop: '0.2rem' }}>
+                                                        {activeSemester === 2 ? '(drop any one course)' :
+                                                            activeSemester === 3 ? '(drop any one course)' :
+                                                                activeSemester === 4 ? '(drop one core course; can register for a maximum of 4 additional credits)' :
+                                                                    activeSemester === 5 ? '(drop any one course)' : ''}
+                                                    </div>
+                                                </td>
+                                                <td className={styles.totalCredits} style={{ verticalAlign: 'top' }}>
+                                                    {getReducedCredits(activeSemester).split(' ')[0]}
+                                                </td>
+                                            </tr>
+                                        )}
 
-                                {/* Enhanced Load Row */}
-                                {getEnhancedCredits(activeSemester) && (
-                                    <tr className={styles.totalRow} style={{ borderTop: '1px solid #e5e7eb' }}>
-                                        <td colSpan={3} className={styles.totalLabel} style={{ verticalAlign: 'top' }}>
-                                            Enhanced Load
-                                        </td>
-                                        <td className={styles.totalCredits} style={{ verticalAlign: 'top' }}>
-                                            {getEnhancedCredits(activeSemester)}
-                                        </td>
-                                        <td></td>
-                                    </tr>
-                                )}
-                            </tbody>
-                        </table>
-                    </div>
-                    {/* Note below table */}
-                    {(activeSemester >= 2 && activeSemester <= 6) && (
-                        <div className={styles.note}>
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem', color: '#475569', fontSize: '0.9rem' }}>
-                                <div>A. Humanities courses cannot be dropped in both semesters II and III.</div>
-                                <div>B. Humanities courses cannot be dropped in both semesters IV and V.</div>
-                                <div>C. Students must complete 9 credits in humanities pool by the end of six semester.</div>
+                                        {/* Enhanced Load Row */}
+                                        {getEnhancedCredits(activeSemester) && (
+                                            <tr className={styles.totalRow} style={{ borderTop: '1px solid #e5e7eb' }}>
+                                                <td colSpan={3} className={styles.totalLabel} style={{ verticalAlign: 'top' }}>
+                                                    Enhanced Load
+                                                </td>
+                                                <td className={styles.totalCredits} style={{ verticalAlign: 'top' }}>
+                                                    {getEnhancedCredits(activeSemester)}
+                                                </td>
+                                            </tr>
+                                        )}
+                                    </tbody>
+                                </table>
                             </div>
+                            {/* Note below table */}
+                            {(activeSemester >= 2 && activeSemester <= 6) && (
+                                <div className={styles.note}>
+                                    <div style={{ fontWeight: 700, marginBottom: '0.75rem', color: '#0f172a', fontSize: '1rem' }}>Note:</div>
+                                    <div style={{ marginLeft: '0.5rem' }}>
+                                        <div style={{ fontWeight: 700, marginBottom: '0.5rem', color: '#334155' }}>** Humanities:</div>
+                                        <div style={{ paddingLeft: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.35rem', color: '#475569' }}>
+                                            <div>A. Humanities courses cannot be dropped in both semesters II and III.</div>
+                                            <div>B. Humanities courses cannot be dropped in both semesters IV and V.</div>
+                                            <div>C. Students must complete 9 credits in humanities pool by the end of six semester.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
                         </div>
-                    )}
-                </div>
 
-                {/* Course Load Information */}
-                <div className={styles.overviewSection} style={{ marginTop: '3rem' }}>
-                    <p className={styles.overviewText} style={{ marginBottom: '1.5rem' }}>
-                        All students must complete a total of at least 128 credits comprising courses and other components like projects. The course load details for Normal, Reduced, and Enhanced loads are specified in the semester tables above. Based on their CGPA and previous-term TGPA, students must register for an appropriate course load as specified in the table below. Any deviation from the recommended load will be allowed only with the permission of the Dean.
-                    </p>
+                        {/* Course Load Information */}
+                        <div className={styles.overviewSection} style={{ marginTop: '3rem' }}>
 
-                    <h3 style={{ fontSize: '1.25rem', fontWeight: '700', color: '#1e293b', marginBottom: '1rem', marginTop: '2rem' }}>
-                        Recommended Course Load
-                    </h3>
 
-                    <div className={styles.tableContainer}>
-                        <table className={styles.courseTable}>
-                            <thead>
-                                <tr>
-                                    <th style={{ width: '40%' }}>Criteria</th>
-                                    <th style={{ width: '60%' }}>Course Load</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td style={{ fontWeight: '500', color: '#334155' }}>CGPA ≤ 6.0 AND Prev-TGPA ≤ 5.5</td>
-                                    <td>
-                                        Reduced in Semester II to IV,<br />
-                                        Normal in Semester V to VIII
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style={{ fontWeight: '500', color: '#334155' }}>
-                                        6.0 &lt; CGPA &lt; 8.0 OR 5.5 &lt; Prev-TGPA &lt; 8.0
-                                    </td>
-                                    <td>Normal in Semester II to VIII</td>
-                                </tr>
-                                <tr>
-                                    <td style={{ fontWeight: '500', color: '#334155' }}>CGPA ≥ 8.0 AND Prev-TGPA ≥ 8.0</td>
-                                    <td>
-                                        Normal in Semester II and III,<br />
-                                        Enhanced in Semester IV to VIII
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                            <h3 style={{ fontSize: '1.25rem', fontWeight: '700', color: '#1e293b', marginBottom: '1rem', marginTop: '2rem' }}>
+                                Recommended Course Load
+                            </h3>
 
-                {/* Continuing to M.Tech / M.Tech (Research) - Updated Section */}
-                <div className={styles.overviewSection} style={{ marginTop: '3rem' }}>
-                    <h2 className={styles.sectionHeading}>Continuing to M.Tech / M.Tech (Research)</h2>
-                    <p className={styles.overviewText} style={{ marginBottom: '1.5rem' }}>
-                        B.Tech students of IISc may apply for admission to the M.Tech and M.Tech (Research) programmes at the end of their third year, subject to fulfilling the existing rules and regulations.
-                    </p>
-
-                    <div className={styles.mtechGrid} style={{ gridTemplateColumns: '1fr', gap: '2rem' }}>
-
-                        {/* Eligibility & Selection */}
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
-                            {/* Eligibility Card */}
-                            <div className={styles.mtechCard}>
-                                <div className={styles.mtechCardAccent} style={{ backgroundColor: '#2563eb' }} />
-                                <div className={styles.mtechCardTitle}>
-                                    <div className={styles.mtechIcon} style={{ background: '#dbeafe', color: '#2563eb' }}>✓</div>
-                                    Eligibility
-                                </div>
-                                <ul className={styles.mtechList}>
-                                    <li className={styles.mtechItem}>
-                                        <span style={{ fontWeight: '500' }}>Students must be in the third year of the B.Tech programme.</span>
-                                    </li>
-                                    <li className={styles.mtechItem}>
-                                        <span style={{ fontWeight: '500' }}>Students must have completed at least 80% of the prescribed credits (i.e., 102 credits) with a minimum CGPA of 8.0.</span>
-                                    </li>
-                                    <li className={styles.mtechItem}>
-                                        <span style={{ fontWeight: '500' }}>Students must have completed the minimum pool-wise credit requirements prescribed for the programme for continuation to M.Tech / M.Tech (Research).</span>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            {/* Selection Card */}
-                            <div className={styles.mtechCard}>
-                                <div className={styles.mtechCardAccent} style={{ backgroundColor: '#8b5cf6' }} />
-                                <div className={styles.mtechCardTitle}>
-                                    <div className={styles.mtechIcon} style={{ background: '#ede9fe', color: '#8b5cf6' }}>🎯</div>
-                                    Selection
-                                </div>
-                                <ul className={styles.mtechList}>
-                                    <li className={styles.mtechItem}>
-                                        <span style={{ fontWeight: '500' }}>Applicants must satisfy the programme-specific eligibility conditions as notified by the concerned department from time to time.</span>
-                                    </li>
-                                    <li className={styles.mtechItem}>
-                                        <span style={{ fontWeight: '500' }}>Selection shall be based on interviews conducted by the respective department.</span>
-                                    </li>
-                                </ul>
+                            <div className={styles.tableContainer}>
+                                <table className={styles.courseTable}>
+                                    <thead>
+                                        <tr>
+                                            <th style={{ width: '40%' }}>Criteria</th>
+                                            <th style={{ width: '60%' }}>Course Load</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td style={{ fontWeight: '500', color: '#334155' }}>CGPA ≤ 6.0 AND Prev-TGPA ≤ 5.5</td>
+                                            <td>
+                                                Reduced in Semester II to IV,<br />
+                                                Normal in Semester V to VIII
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style={{ fontWeight: '500', color: '#334155' }}>
+                                                6.0 &lt; CGPA &lt; 8.0 OR 5.5 &lt; Prev-TGPA &lt; 8.0
+                                            </td>
+                                            <td>Normal in Semester II to VIII</td>
+                                        </tr>
+                                        <tr>
+                                            <td style={{ fontWeight: '500', color: '#334155' }}>CGPA ≥ 8.0 AND Prev-TGPA ≥ 8.0</td>
+                                            <td>
+                                                Normal in Semester II and III,<br />
+                                                Enhanced in Semester IV to VIII
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
 
-                        {/* Programme Structure */}
-                        <h3 style={{ fontSize: '1.4rem', fontWeight: '700', color: '#1e293b', marginTop: '1rem', marginBottom: '0.5rem' }}>
-                            Programme Structure
-                        </h3>
-
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
-                            {/* M.Tech Structure */}
-                            <div className={styles.mtechCard}>
-                                <div className={styles.mtechCardAccent} style={{ backgroundColor: '#10b981' }} />
-                                <div className={styles.mtechCardTitle}>
-                                    <div className={styles.mtechIcon} style={{ background: '#ecfdf5', color: '#10b981' }}>🎓</div>
-                                    M.Tech
-                                </div>
-                                <ul className={styles.mtechList}>
-                                    <li className={styles.mtechItem}>
-                                        <span style={{ fontWeight: '500' }}>Admission is from the seventh semester onwards.</span>
-                                    </li>
-                                    <li className={styles.mtechItem}>
-                                        <span style={{ fontWeight: '500' }}>Students are required to complete 64 additional credits and fulfil all M.Tech degree requirements of the programme.</span>
-                                    </li>
-                                    <li className={styles.mtechItem}>
-                                        <span style={{ fontWeight: '500' }}>On successful completion, separate B. Tech and M. Tech degrees shall be awarded.</span>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            {/* M.Tech (Research) Structure */}
-                            <div className={styles.mtechCard}>
-                                <div className={styles.mtechCardAccent} style={{ backgroundColor: '#f59e0b' }} />
-                                <div className={styles.mtechCardTitle}>
-                                    <div className={styles.mtechIcon} style={{ background: '#fef3c7', color: '#f59e0b' }}>🔬</div>
-                                    M.Tech (Research)
-                                </div>
-                                <ul className={styles.mtechList}>
-                                    <li className={styles.mtechItem}>
-                                        <span style={{ fontWeight: '500' }}>Students are required to complete 12 course credits beyond the B.Tech requirements, along with a research thesis.</span>
-                                    </li>
-                                    <li className={styles.mtechItem}>
-                                        <span style={{ fontWeight: '500' }}>On successful completion, separate B. Tech and M.Tech (Research) degrees shall be awarded.</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        {/* Footer Note */}
-                        <div style={{ marginTop: '1rem', padding: '1rem', backgroundColor: '#f8fafc', borderRadius: '8px', borderLeft: '4px solid #3b82f6' }}>
-                            <p style={{ margin: 0, color: '#475569', fontSize: '0.95rem' }}>
-                                <strong>Note:</strong> For detailed rules, eligibility conditions, and procedural requirements, students are advised to refer to the <Link href="/handbook" style={{ color: '#2563eb', textDecoration: 'underline' }}>Student Information Handbook</Link>.
+                        {/* Continuing to M.Tech / M.Tech (Research) - Updated Section */}
+                        <div className={styles.overviewSection} style={{ marginTop: '3rem' }}>
+                            <h2 className={styles.sectionHeading}>Continuing to M.Tech / M.Tech (Research)</h2>
+                            <p className={styles.overviewText} style={{ marginBottom: '1.5rem' }}>
+                                B.Tech students of IISc may apply for admission to the M.Tech and M.Tech (Research) programmes at the end of their third year, subject to fulfilling the existing rules and regulations.
                             </p>
-                        </div>
 
-                    </div>
-                </div>
+                            <div className={styles.mtechGrid} style={{ gridTemplateColumns: '1fr', gap: '2rem' }}>
+
+                                {/* Eligibility & Selection */}
+                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+                                    {/* Eligibility Card */}
+                                    <div className={styles.mtechCard}>
+                                        <div className={styles.mtechCardAccent} style={{ backgroundColor: '#2563eb' }} />
+                                        <div className={styles.mtechCardTitle}>
+                                            <div className={styles.mtechIcon} style={{ background: '#dbeafe', color: '#2563eb' }}>✓</div>
+                                            Eligibility
+                                        </div>
+                                        <ul className={styles.mtechList}>
+                                            <li className={styles.mtechItem}>
+                                                <span style={{ fontWeight: '500' }}>Students must be in the third year of the B.Tech programme.</span>
+                                            </li>
+                                            <li className={styles.mtechItem}>
+                                                <span style={{ fontWeight: '500' }}>Students must have completed at least 80% of the prescribed credits (i.e., 102 credits) with a minimum CGPA of 8.0.</span>
+                                            </li>
+                                            <li className={styles.mtechItem}>
+                                                <span style={{ fontWeight: '500' }}>Students must have completed the minimum pool-wise credit requirements prescribed for the programme for continuation to M.Tech / M.Tech (Research).</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    {/* Selection Card */}
+                                    <div className={styles.mtechCard}>
+                                        <div className={styles.mtechCardAccent} style={{ backgroundColor: '#8b5cf6' }} />
+                                        <div className={styles.mtechCardTitle}>
+                                            <div className={styles.mtechIcon} style={{ background: '#ede9fe', color: '#8b5cf6' }}>🎯</div>
+                                            Selection
+                                        </div>
+                                        <ul className={styles.mtechList}>
+                                            <li className={styles.mtechItem}>
+                                                <span style={{ fontWeight: '500' }}>Applicants must satisfy the programme-specific eligibility conditions as notified by the concerned program from time to time.</span>
+                                            </li>
+                                            <li className={styles.mtechItem}>
+                                                <span style={{ fontWeight: '500' }}>Selection shall be based on interviews conducted by the respective program.</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                {/* Programme Structure */}
+                                <h3 style={{ fontSize: '1.4rem', fontWeight: '700', color: '#1e293b', marginTop: '1rem', marginBottom: '0.5rem' }}>
+                                    Programme Structure
+                                </h3>
+
+                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+                                    {/* M.Tech Structure */}
+                                    <div className={styles.mtechCard}>
+                                        <div className={styles.mtechCardAccent} style={{ backgroundColor: '#10b981' }} />
+                                        <div className={styles.mtechCardTitle}>
+                                            <div className={styles.mtechIcon} style={{ background: '#ecfdf5', color: '#10b981' }}>🎓</div>
+                                            M.Tech
+                                        </div>
+                                        <ul className={styles.mtechList}>
+                                            <li className={styles.mtechItem}>
+                                                <span style={{ fontWeight: '500' }}>Admission is from the seventh semester onwards.</span>
+                                            </li>
+                                            <li className={styles.mtechItem}>
+                                                <span style={{ fontWeight: '500' }}>Students are required to complete 64 additional credits and fulfil all M.Tech degree requirements of the programme.</span>
+                                            </li>
+                                            <li className={styles.mtechItem}>
+                                                <span style={{ fontWeight: '500' }}>On successful completion, separate B. Tech and M. Tech degrees shall be awarded.</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    {/* M.Tech (Research) Structure */}
+                                    <div className={styles.mtechCard}>
+                                        <div className={styles.mtechCardAccent} style={{ backgroundColor: '#f59e0b' }} />
+                                        <div className={styles.mtechCardTitle}>
+                                            <div className={styles.mtechIcon} style={{ background: '#fef3c7', color: '#f59e0b' }}>🔬</div>
+                                            M.Tech (Research)
+                                        </div>
+                                        <ul className={styles.mtechList}>
+                                            <li className={styles.mtechItem}>
+                                                <span style={{ fontWeight: '500' }}>Students are required to complete 12 course credits beyond the B.Tech requirements, along with a research thesis.</span>
+                                            </li>
+                                            <li className={styles.mtechItem}>
+                                                <span style={{ fontWeight: '500' }}>On successful completion, separate B. Tech and M.Tech (Research) degrees shall be awarded.</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                {/* Footer Note */}
+                                <div style={{ marginTop: '1rem', padding: '1rem', backgroundColor: '#f8fafc', borderRadius: '8px', borderLeft: '4px solid #3b82f6' }}>
+                                    <p style={{ margin: 0, color: '#475569', fontSize: '0.95rem' }}>
+                                        <strong>Note:</strong> For detailed rules, eligibility conditions, and procedural requirements, students are advised to refer to the <Link href="/handbook" style={{ color: '#2563eb', textDecoration: 'underline' }}>Student Information Handbook</Link>.
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </>
+                )}
             </div>
 
             {/* Course Details Modal */}

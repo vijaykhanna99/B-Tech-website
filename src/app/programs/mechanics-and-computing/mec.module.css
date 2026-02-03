@@ -39,6 +39,8 @@
 }
 
 /* Hero Section */
+/* Hero Section */
+/* Hero Section */
 .heroSection {
     position: relative;
     padding: 6rem 2rem;
@@ -64,6 +66,12 @@
     font-weight: 800;
     margin: 0;
     letter-spacing: -0.02em;
+}
+
+@media (max-width: 768px) {
+    .heroHeading {
+        font-size: 2.5rem;
+    }
 }
 
 /* Main Content Layout */
@@ -265,6 +273,19 @@
     color: #111827;
 }
 
+.courseLink {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: inherit;
+    transition: all 0.2s;
+}
+
+.courseLink:hover {
+    text-decoration: underline;
+    color: #2563eb;
+}
+
 .instructorLink {
     color: #2563eb;
     text-decoration: none;
@@ -279,11 +300,32 @@
     color: #1e40af;
 }
 
-.infoIcon {
-    color: #2563eb;
+.infoBtn {
+    background: none;
+    border: none;
     cursor: pointer;
+    padding: 8px;
+    /* Larger hit area */
     display: flex;
+    align-items: center;
     justify-content: center;
+    transition: all 0.2s;
+    color: #2563eb;
+    position: relative;
+    z-index: 10;
+    border-radius: 50%;
+}
+
+.infoBtn:hover:not(:disabled) {
+    background-color: #eff6ff;
+    transform: scale(1.1);
+    color: #1d4ed8;
+}
+
+.infoBtn:disabled {
+    cursor: default;
+    opacity: 0.4;
+    color: #94a3b8;
 }
 
 .detailsBtn {
@@ -318,14 +360,14 @@
 
 /* Responsive */
 .note {
-    font-size: 0.85rem;
-    color: #64748b;
-    margin-top: 0.5rem;
-    font-style: italic;
-    background: #f8fafc;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    border-left: 3px solid #64748b;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 1.5rem;
+    background-color: #fcfcfc;
+    margin-top: 1.5rem;
+    color: #334155;
+    font-size: 0.9rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 @media (max-width: 768px) {
@@ -518,331 +560,6 @@
     background: #94a3b8;
 }
 
-/* Modal Styles */
-.modalOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    padding: 1rem;
-    backdrop-filter: blur(4px);
-}
-
-.modalContent {
-    background-color: white;
-    border-radius: 16px;
-    width: 100%;
-    max-width: 900px;
-    max-height: 90vh;
-    overflow-y: auto;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    animation: modalSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@keyframes modalSlideIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px) scale(0.96);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-.modalHeader {
-    padding: 1.5rem 2rem;
-    border-bottom: 1px solid #e2e8f0;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    background: #f8fafc;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
-
-.modalTitle {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #0f172a;
-    line-height: 1.4;
-}
-
-.closeButton {
-    background: transparent;
-    border: none;
-    color: #64748b;
-    cursor: pointer;
-    padding: 0.5rem;
-    border-radius: 8px;
-    transition: all 0.2s;
-    margin-left: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.closeButton:hover {
-    background-color: #e2e8f0;
-    color: #0f172a;
-}
-
-.modalBody {
-    padding: 2rem;
-}
-
-.modalSection {
-    margin-bottom: 2rem;
-}
-
-.modalSection:last-child {
-    margin-bottom: 0;
-}
-
-.modalSectionTitle {
-    font-size: 0.875rem;
-    font-weight: 700;
-    color: #64748b;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.75rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.modalSectionTitle::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: #e2e8f0;
-}
-
-.modalList {
-    margin: 0;
-    padding-left: 1.5rem;
-    color: #334155;
-    line-height: 1.6;
-}
-
-.modalList li {
-    margin-bottom: 0.5rem;
-}
-
-/* Badge Styles */
-.modalBadgeContainer {
-    display: flex;
-    gap: 0.75rem;
-    margin-bottom: 0.75rem;
-}
-
-.courseBadge {
-    font-size: 0.75rem;
-    font-weight: 700;
-    padding: 0.35rem 0.75rem;
-    border-radius: 6px;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-}
-
-.badgeBlue {
-    background-color: #eff6ff;
-    color: #2563eb;
-    border: 1px solid #dbeafe;
-}
-
-.badgeGreen {
-    background-color: #f0fdf4;
-    color: #16a34a;
-    border: 1px solid #dcfce7;
-}
-
-/* Syllabus List */
-.syllabusList {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-}
-
-.syllabusItem {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-    font-size: 1rem;
-    color: #334155;
-    line-height: 1.6;
-}
-
-.syllabusBullet {
-    color: #3b82f6;
-    font-size: 1.25rem;
-    line-height: 1;
-    margin-top: 0.2rem;
-    flex-shrink: 0;
-}
-
-/* Section Header with Icon */
-.sectionHeaderWithIcon {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 1rem;
-    font-weight: 800;
-    color: #1e3a8a;
-    /* Dark Blue */
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding-bottom: 1rem;
-    border-bottom: 2px solid #e2e8f0;
-    margin-bottom: 1.5rem;
-}
-
-.bookIcon {
-    width: 24px;
-    height: 24px;
-    color: #2563eb;
-}
-
-/* Book List */
-.bookList {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-}
-
-.bookItem {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    background-color: #f8fafc;
-    padding: 1.25rem;
-    border-radius: 12px;
-    border: 1px solid #f1f5f9;
-}
-
-.bookNumber {
-    width: 32px;
-    height: 32px;
-    background-color: #dbeafe;
-    color: #1e40af;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 700;
-    font-size: 0.9rem;
-    flex-shrink: 0;
-    margin-top: 0.1rem;
-}
-
-.bookText {
-    font-size: 0.95rem;
-    color: #334155;
-    line-height: 1.5;
-    font-weight: 600;
-}
-
-/* Material Science Thematic Electives Grid */
-.mtechGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.mtechCard {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    padding: 1.75rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.mtechCard:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.1);
-    border-color: #cbd5e1;
-}
-
-.mtechCardAccent {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-}
-
-.mtechCardTitle {
-    font-size: 1.15rem;
-    font-weight: 800;
-    color: #1e293b;
-    margin-bottom: 1.25rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-
-.mtechIcon {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.85rem;
-    font-weight: 800;
-    flex-shrink: 0;
-}
-
-.mtechList {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.mtechItem {
-    position: relative;
-    padding-left: 1.25rem;
-    margin-bottom: 0.75rem;
-    font-size: 0.95rem;
-    color: #475569;
-    line-height: 1.5;
-}
-
-.mtechItem::before {
-    content: "•";
-    position: absolute;
-    left: 0;
-    color: #cbd5e1;
-    font-weight: bold;
-    font-size: 1.25rem;
-    line-height: 1rem;
-    top: 0.15rem;
-}
-
-.mtechCard:hover .mtechItem::before {
-    color: inherit;
-    /* The specific color needs to come from the parent's color property or similar, 
-       but for now we'll rely on the accent coloring handled in JS styles or specific text colors */
-}
-
 /* PDF Badge Style */
 .pdfBadge {
     display: inline-flex;
@@ -905,4 +622,489 @@
 .redirectIcon svg {
     width: 18px;
     height: 18px;
+}
+
+/* Modal Styles */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.2s ease-out;
+}
+
+.modalContent {
+    background-color: #ffffff;
+    width: 90%;
+    max-width: 800px;
+    max-height: 85vh;
+    border-radius: 16px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modalHeader {
+    padding: 2rem 2.5rem;
+    border-bottom: 1px solid #e2e8f0;
+    background-color: #ffffff;
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    z-index: 10;
+}
+
+.modalTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.3;
+}
+
+.modalBadgeContainer {
+    margin-bottom: 0.75rem;
+}
+
+.courseBadge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.badgeBlue {
+    background-color: #eff6ff;
+    color: #2563eb;
+    border: 1px solid #dbeafe;
+}
+
+.closeButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #64748b;
+    padding: 0.5rem;
+    margin-left: 1rem;
+    border-radius: 50%;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.closeButton:hover {
+    background-color: #f1f5f9;
+    color: #ef4444;
+    transform: rotate(90deg);
+}
+
+.modalBody {
+    padding: 2.5rem;
+    overflow-y: auto;
+    color: #334155;
+    line-height: 1.7;
+}
+
+/* Modal Content Styling */
+.modalSection {
+    margin-bottom: 2.5rem;
+}
+
+.sectionHeaderWithIcon {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 1.25rem;
+    border-bottom: 2px solid #f1f5f9;
+    padding-bottom: 0.75rem;
+}
+
+.bookIcon {
+    width: 24px;
+    height: 24px;
+    color: #2563eb;
+}
+
+.syllabusList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.syllabusItem {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+    color: #475569;
+}
+
+.syllabusBullet {
+    color: #2563eb;
+    font-weight: bold;
+}
+
+.bookList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.75rem;
+}
+
+.bookItem {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    align-items: flex-start;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.bookNumber {
+    background-color: #dbeafe;
+    color: #2563eb;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 0.75rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.bookText {
+    font-size: 0.95rem;
+    color: #334155;
+    font-style: italic;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Overwriting styles to match Materials Science & Engineering standard */
+
+.sectionHeaderWithIcon {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1rem;
+    font-weight: 800;
+    color: #1e3a8a;
+    /* Dark Blue */
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+    margin-bottom: 1.5rem;
+}
+
+.bookIcon {
+    width: 24px;
+    height: 24px;
+    color: #2563eb;
+}
+
+.syllabusList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.syllabusItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 1rem;
+    color: #334155;
+    line-height: 1.6;
+}
+
+.syllabusBullet {
+    color: #3b82f6;
+    font-size: 1.25rem;
+    line-height: 1;
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+    font-weight: normal;
+    /* Override existing bold */
+}
+
+.bookList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.bookItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background-color: #f8fafc;
+    padding: 1.25rem;
+    border-radius: 12px;
+    border: 1px solid #f1f5f9;
+}
+
+.bookNumber {
+    width: 32px;
+    height: 32px;
+    background-color: #dbeafe;
+    color: #1e40af;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+}
+
+.bookText {
+    font-size: 0.95rem;
+    color: #334155;
+    line-height: 1.5;
+    font-weight: 600;
+    font-style: normal;
+    /* Override existing italic */
+}
+
+/* Top Level Page Tabs - Premium Acrylic Style */
+/* Top Level Page Tabs - Modern Glassmorphism Style */
+.pageTabs {
+    display: flex;
+    justify-content: center;
+    margin-top: -3.5rem;
+    /* Overlap hero */
+    margin-bottom: 4rem;
+    position: relative;
+    z-index: 20;
+    padding: 0 1rem;
+}
+
+.pageTabContainer {
+    background: rgba(15, 23, 42, 0.4);
+    /* Dark tinted glass for legibility */
+    padding: 0.6rem;
+    border-radius: 16px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    gap: 0.75rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.pageTabButton {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.85rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    letter-spacing: 0.02em;
+}
+
+.pageTabButton:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.pageTabButtonActive {
+    background-color: #ffffff !important;
+    color: #1e40af !important;
+    /* Dark Blue */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ffffff;
+}
+
+.pageTabButtonActive:hover {
+    transform: translateY(-2px);
+    background-color: #f8fafc !important;
+}
+
+.tabIcon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+/* Home Tab Content */
+.homeGrid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    margin-bottom: 4rem;
+}
+
+@media (max-width: 900px) {
+    .homeGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.newsSectionTitle {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.newsCard {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.2s ease;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.newsCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+.newsContent {
+    padding: 1.5rem;
+}
+
+.newsDate {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.newsTitle {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+}
+
+.newsExcerpt {
+    font-size: 0.95rem;
+    color: #475569;
+    line-height: 1.6;
+}
+
+.announcementList {
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid #e2e8f0;
+}
+
+.announcementItem {
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.announcementItem:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.announcementBadge {
+    display: inline-block;
+    background: #dbeafe;
+    color: #2563eb;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+}
+
+.announcementText {
+    font-size: 0.95rem;
+    color: #334155;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.announcementLink {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.announcementLink:hover {
+    text-decoration: underline;
+}
+
+.introSection {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.introText {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #334155;
 }

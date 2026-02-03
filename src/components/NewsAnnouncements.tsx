@@ -39,7 +39,7 @@ const NewsAnnouncements = () => {
             id: 1,
             date: 'January 28, 2026',
             title: 'IISc Researchers Develop New Material for Aerospace Applications',
-            excerpt: 'A team of researchers at the Department of Materials Engineering has developed a novel lightweight alloy...'
+            excerpt: 'A team of researchers at the Program of Materials Engineering has developed a novel lightweight alloy...'
         },
         {
             id: 2,
@@ -68,10 +68,10 @@ const NewsAnnouncements = () => {
             id: 2,
             // 'Today' - Fixed date so it becomes 'Yesterday' tomorrow
             date: 'February 01, 2026',
-            title: '🏫 Introduction of New B.Tech Departments (2026–2027)',
+            title: '🏫 Introduction of New B.Tech Programs (2026–2027)',
             excerpt: (
                 <>
-                    We are pleased to announce the introduction of new departments under the Bachelor of Technology programme starting from the Academic Year 2026–2027: <strong>Aerospace Engineering, Mechanics and Computing, and Materials Science and Engineering</strong>. These programmes will be offered along with the existing <strong>Mathematics and Computing</strong> programme.
+                    We are pleased to announce the introduction of new programs under the Bachelor of Technology programme starting from the Academic Year 2026–2027: <strong>Aerospace Engineering, Mechanics and Computing, and Materials Science and Engineering</strong>. These programmes will be offered along with the existing <strong>Mathematics and Computing</strong> programme.
                 </>
             ),
             link: '#'

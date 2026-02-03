@@ -1,0 +1,46 @@
+.container {
+    padding: 3rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+.heading {
+    display: block;
+    font-size: 2rem;
+    color: #002855;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 700;
+}
+
+/* We'll use contentWrapper to constrain width but keep it open */
+
+.contentWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.messageColumn {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #333;
+    text-align: center;
+}
+
+.introText {
+    font-weight: bold;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.highlight {
+    font-weight: 600;
+    color: #002855;
+}
+
+/* Removed video styles */

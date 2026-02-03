@@ -93,26 +93,25 @@ const Header = () => {
                     </li>
 
                     <li className={styles.navItem}>
-                        <Link href="/departments" className={styles.navButton}>
-                            Departments & Curriculum
+                        <Link href="/programs" className={styles.navButton}>
+                            Programs & Curriculum
                             <svg xmlns="http://www.w3.org/2000/svg" className={styles.chevronIcon} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                             </svg>
                         </Link>
-                        {/* Dropdown Content */}
                         <div className={styles.dropdownMenu}>
-                            <Link href="/departments/mathematics-and-computing" className={styles.dropdownItem}>
+                            <Link href="/programs/mathematics-and-computing" className={styles.dropdownItem}>
                                 Mathematics and Computing
                             </Link>
-                            <Link href="/departments/mechanics-and-computing" className={styles.dropdownItem}>
+                            <Link href="/programs/mechanics-and-computing" className={styles.dropdownItem}>
                                 Mechanics and Computing
                                 <span className={styles.badge}>New</span>
                             </Link>
-                            <Link href="/departments/aerospace-engineering" className={styles.dropdownItem}>
+                            <Link href="/programs/aerospace-engineering" className={styles.dropdownItem}>
                                 Aerospace Engineering
                                 <span className={styles.badge}>New</span>
                             </Link>
-                            <Link href="/departments/materials-science-and-engineering" className={styles.dropdownItem}>
+                            <Link href="/programs/materials-science-and-engineering" className={styles.dropdownItem}>
                                 Materials Science and Engineering
                                 <span className={styles.badge}>New</span>
                             </Link>
@@ -190,9 +189,29 @@ const Header = () => {
                     </li>
 
                     <li className={styles.navItem}>
-                        <Link href="/faculty-advisors" className={styles.navLink}>
-                            Faculty Advisors
-                        </Link>
+                        <button className={styles.navButton}>
+                            People
+                            <svg xmlns="http://www.w3.org/2000/svg" className={styles.chevronIcon} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div className={styles.dropdownMenu}>
+                            <Link href="/people/deans" className={styles.dropdownItem}>
+                                Deans
+                            </Link>
+                            <Link href="/people/coordinators" className={styles.dropdownItem}>
+                                Coordinators
+                            </Link>
+                            <Link href="/people/ug-instructors" className={styles.dropdownItem}>
+                                UG Instructors
+                            </Link>
+                            <Link href="/people/teaching-assistants" className={styles.dropdownItem}>
+                                Teaching Assistants
+                            </Link>
+                            <Link href="/people/office-staff" className={styles.dropdownItem}>
+                                Office Staff
+                            </Link>
+                        </div>
                     </li>
 
                     <li className={styles.navItem}>
@@ -228,13 +247,13 @@ const Header = () => {
                         Home
                     </Link>
 
-                    {/* Departments Mobile Submenu */}
+                    {/* Programs Mobile Submenu */}
                     <div>
                         <button
-                            className={`${styles.mobileSubmenuHeader} ${activeMobileSubmenu === 'departments' ? styles.activeMobileSubmenuHeader : ''}`}
-                            onClick={() => toggleSubmenu('departments')}
+                            className={`${styles.mobileSubmenuHeader} ${activeMobileSubmenu === 'programs' ? styles.activeMobileSubmenuHeader : ''}`}
+                            onClick={() => toggleSubmenu('programs')}
                         >
-                            Departments & Curriculum
+                            Programs & Curriculum
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -243,27 +262,27 @@ const Header = () => {
                                 style={{
                                     width: 20,
                                     height: 20,
-                                    transform: activeMobileSubmenu === 'departments' ? 'rotate(180deg)' : 'rotate(0deg)',
+                                    transform: activeMobileSubmenu === 'programs' ? 'rotate(180deg)' : 'rotate(0deg)',
                                     transition: 'transform 0.2s'
                                 }}
                             >
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                             </svg>
                         </button>
-                        <div className={`${styles.mobileSubmenuList} ${activeMobileSubmenu === 'departments' ? styles.mobileSubmenuOpen : ''}`}>
-                            <Link href="/departments" className={styles.mobileSubItem} onClick={closeMobileMenu}>
-                                All Departments
+                        <div className={`${styles.mobileSubmenuList} ${activeMobileSubmenu === 'programs' ? styles.mobileSubmenuOpen : ''}`}>
+                            <Link href="/programs" className={styles.mobileSubItem} onClick={closeMobileMenu}>
+                                All Programs
                             </Link>
-                            <Link href="/departments/mathematics-and-computing" className={styles.mobileSubItem} onClick={closeMobileMenu}>
+                            <Link href="/programs/mathematics-and-computing" className={styles.mobileSubItem} onClick={closeMobileMenu}>
                                 Mathematics and Computing
                             </Link>
-                            <Link href="/departments/mechanics-and-computing" className={styles.mobileSubItem} onClick={closeMobileMenu}>
+                            <Link href="/programs/mechanics-and-computing" className={styles.mobileSubItem} onClick={closeMobileMenu}>
                                 Mechanics and Computing
                             </Link>
-                            <Link href="/departments/aerospace-engineering" className={styles.mobileSubItem} onClick={closeMobileMenu}>
+                            <Link href="/programs/aerospace-engineering" className={styles.mobileSubItem} onClick={closeMobileMenu}>
                                 Aerospace Engineering
                             </Link>
-                            <Link href="/departments/materials-science-and-engineering" className={styles.mobileSubItem} onClick={closeMobileMenu}>
+                            <Link href="/programs/materials-science-and-engineering" className={styles.mobileSubItem} onClick={closeMobileMenu}>
                                 Materials Science and Engineering
                             </Link>
                         </div>
@@ -322,9 +341,46 @@ const Header = () => {
                         Placements
                     </Link>
 
-                    <Link href="/faculty-advisors" className={styles.mobileNavItem} onClick={closeMobileMenu}>
-                        Faculty Advisors
-                    </Link>
+                    {/* People Mobile Submenu */}
+                    <div>
+                        <button
+                            className={`${styles.mobileSubmenuHeader} ${activeMobileSubmenu === 'people' ? styles.activeMobileSubmenuHeader : ''}`}
+                            onClick={() => toggleSubmenu('people')}
+                        >
+                            People
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                style={{
+                                    width: 20,
+                                    height: 20,
+                                    transform: activeMobileSubmenu === 'people' ? 'rotate(180deg)' : 'rotate(0deg)',
+                                    transition: 'transform 0.2s'
+                                }}
+                            >
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div className={`${styles.mobileSubmenuList} ${activeMobileSubmenu === 'people' ? styles.mobileSubmenuOpen : ''}`}>
+                            <Link href="/people/deans" className={styles.mobileSubItem} onClick={closeMobileMenu}>
+                                Deans
+                            </Link>
+                            <Link href="/people/coordinators" className={styles.mobileSubItem} onClick={closeMobileMenu}>
+                                Coordinators
+                            </Link>
+                            <Link href="/people/ug-instructors" className={styles.mobileSubItem} onClick={closeMobileMenu}>
+                                UG Instructors
+                            </Link>
+                            <Link href="/people/teaching-assistants" className={styles.mobileSubItem} onClick={closeMobileMenu}>
+                                Teaching Assistants
+                            </Link>
+                            <Link href="/people/office-staff" className={styles.mobileSubItem} onClick={closeMobileMenu}>
+                                Office Staff
+                            </Link>
+                        </div>
+                    </div>
 
                     <Link href="/contact" className={styles.mobileNavItem} onClick={closeMobileMenu}>
                         Contact Us

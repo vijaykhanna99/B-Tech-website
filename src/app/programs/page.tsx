@@ -3,14 +3,14 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import styles from './departments.module.css';
+import styles from './programs.module.css';
 
-const DepartmentsPage = () => {
+const ProgramsPage = () => {
     return (
         <div className={styles.pageWrapper}>
             {/* Hero Header */}
             <div className={styles.heroHeader}>
-                <h1 className={styles.title}>Departments & Curriculum</h1>
+                <h1 className={styles.title}>Programs & Curriculum</h1>
                 <p className={styles.subtitle}>
                     Explore the interdisciplinary programs and academic structure offered by the B.Tech program at IISc.
                 </p>
@@ -27,16 +27,16 @@ const DepartmentsPage = () => {
                     </p>
                 </div>
 
-                {/* Departments Section */}
-                <h2 className={styles.sectionHeading}>Our Departments</h2>
+                {/* Programs Section */}
+                <h2 className={styles.sectionHeading}>Available B.Tech Programs</h2>
 
                 <div className={styles.grid}>
-                    <div className={styles.deptList}>
+                    <div className={styles.programList}>
                         {/* Mathematics & Computing */}
-                        <Link href="/departments/mathematics-and-computing" className={styles.deptCard}>
+                        <Link href="/programs/mathematics-and-computing" className={styles.programCard}>
                             <div className={styles.cardImageWrapper}>
                                 <Image
-                                    src="/assets/images/departments/math.png"
+                                    src="/assets/images/programs/math.png"
                                     alt="Mathematics & Computing"
                                     fill
                                     priority
@@ -55,10 +55,10 @@ const DepartmentsPage = () => {
                         </Link>
 
                         {/* Mechanics & Computing */}
-                        <Link href="/departments/mechanics-and-computing" className={styles.deptCard}>
+                        <Link href="/programs/mechanics-and-computing" className={styles.programCard}>
                             <div className={styles.cardImageWrapper}>
                                 <Image
-                                    src="/assets/images/departments/mechanics.png"
+                                    src="/assets/images/programs/mechanics.png"
                                     alt="Mechanics & Computing"
                                     fill
                                     className={styles.cardImage}
@@ -79,10 +79,10 @@ const DepartmentsPage = () => {
                         </Link>
 
                         {/* Aerospace Engineering */}
-                        <Link href="/departments/aerospace-engineering" className={styles.deptCard}>
+                        <Link href="/programs/aerospace-engineering" className={styles.programCard}>
                             <div className={styles.cardImageWrapper}>
                                 <Image
-                                    src="/assets/images/departments/aerospace.png"
+                                    src="/assets/images/programs/aerospace.png"
                                     alt="Aerospace Engineering"
                                     fill
                                     className={styles.cardImage}
@@ -103,10 +103,10 @@ const DepartmentsPage = () => {
                         </Link>
 
                         {/* Materials Science */}
-                        <Link href="/departments/materials-science-and-engineering" className={styles.deptCard}>
+                        <Link href="/programs/materials-science-and-engineering" className={styles.programCard}>
                             <div className={styles.cardImageWrapper}>
                                 <Image
-                                    src="/assets/images/departments/materials.png"
+                                    src="/assets/images/programs/materials.png"
                                     alt="Materials Science"
                                     fill
                                     className={styles.cardImage}
@@ -132,4 +132,4 @@ const DepartmentsPage = () => {
     );
 };
 
-export default DepartmentsPage;
+export default ProgramsPage;

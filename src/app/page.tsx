@@ -2,7 +2,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 
 import HeroCarousel from "@/components/HeroCarousel";
-import DeanMessage from "@/components/DeanMessage";
+import AboutProgramme from "@/components/AboutProgramme";
 
 import NewsAnnouncements from "@/components/NewsAnnouncements";
 
@@ -19,9 +19,9 @@ export default function Home() {
 
             </div>
 
-            {/* Dean's Message & Video Section */}
+            {/* About Programme & Video Section */}
             <div className={styles.contentSection}>
-                <DeanMessage />
+                <AboutProgramme />
             </div>
 
             {/* News & Announcements Section */}

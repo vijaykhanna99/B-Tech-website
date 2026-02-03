@@ -39,6 +39,8 @@
 }
 
 /* Hero Section */
+/* Hero Section */
+/* Hero Section */
 .heroSection {
     position: relative;
     padding: 6rem 2rem;
@@ -64,6 +66,12 @@
     font-weight: 800;
     margin: 0;
     letter-spacing: -0.02em;
+}
+
+@media (max-width: 768px) {
+    .heroHeading {
+        font-size: 2.5rem;
+    }
 }
 
 /* Main Content Layout */
@@ -265,6 +273,19 @@
     color: #111827;
 }
 
+.courseLink {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: inherit;
+    transition: all 0.2s;
+}
+
+.courseLink:hover {
+    text-decoration: underline;
+    color: #2563eb;
+}
+
 .instructorLink {
     color: #2563eb;
     text-decoration: none;
@@ -318,14 +339,14 @@
 
 /* Responsive */
 .note {
-    font-size: 0.85rem;
-    color: #64748b;
-    margin-top: 0.5rem;
-    font-style: italic;
-    background: #f8fafc;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    border-left: 3px solid #64748b;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 1.5rem;
+    background-color: #fcfcfc;
+    margin-top: 1.5rem;
+    color: #334155;
+    font-size: 0.9rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 @media (max-width: 768px) {
@@ -637,6 +658,7 @@
     margin-bottom: 0.5rem;
 }
 
+/* Badge Styles */
 .modalBadgeContainer {
     display: flex;
     gap: 0.75rem;
@@ -664,6 +686,7 @@
     border: 1px solid #dcfce7;
 }
 
+/* Syllabus List */
 .syllabusList {
     list-style: none;
     padding: 0;
@@ -690,6 +713,7 @@
     flex-shrink: 0;
 }
 
+/* Section Header with Icon */
 .sectionHeaderWithIcon {
     display: flex;
     align-items: center;
@@ -697,6 +721,7 @@
     font-size: 1rem;
     font-weight: 800;
     color: #1e3a8a;
+    /* Dark Blue */
     text-transform: uppercase;
     letter-spacing: 0.05em;
     padding-bottom: 1rem;
@@ -710,6 +735,7 @@
     color: #2563eb;
 }
 
+/* Book List */
 .bookList {
     list-style: none;
     padding: 0;
@@ -739,7 +765,9 @@
     justify-content: center;
     align-items: center;
     font-weight: 700;
+    font-size: 0.9rem;
     flex-shrink: 0;
+    margin-top: 0.1rem;
 }
 
 .bookText {
@@ -747,6 +775,93 @@
     color: #334155;
     line-height: 1.5;
     font-weight: 600;
+}
+
+/* Material Science Thematic Electives Grid */
+.mtechGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.mtechCard {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.75rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.mtechCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.1);
+    border-color: #cbd5e1;
+}
+
+.mtechCardAccent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+}
+
+.mtechCardTitle {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #1e293b;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.mtechIcon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 800;
+    flex-shrink: 0;
+}
+
+.mtechList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mtechItem {
+    position: relative;
+    padding-left: 1.25rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+    color: #475569;
+    line-height: 1.5;
+}
+
+.mtechItem::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #cbd5e1;
+    font-weight: bold;
+    font-size: 1.25rem;
+    line-height: 1rem;
+    top: 0.15rem;
+}
+
+.mtechCard:hover .mtechItem::before {
+    color: inherit;
+    /* The specific color needs to come from the parent's color property or similar, 
+       but for now we'll rely on the accent coloring handled in JS styles or specific text colors */
 }
 
 /* PDF Badge Style */
@@ -775,4 +890,233 @@
 .pdfBadge svg {
     width: 16px;
     height: 16px;
+}
+
+/* Redirect Icon Style */
+.redirectIcon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.85rem;
+    width: auto;
+    height: auto;
+    border-radius: 6px;
+    background-color: #f0fdf4;
+    /* Green-50 */
+    color: #15803d;
+    /* Green-700 */
+    border: 1px solid #dcfce7;
+    /* Green-100 */
+    transition: all 0.2s ease;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.redirectIcon:hover {
+    background-color: #dcfce7;
+    border-color: #86efac;
+    color: #166534;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(21, 128, 61, 0.1);
+}
+
+.redirectIcon svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Top Level Page Tabs - Premium Acrylic Style */
+/* Top Level Page Tabs - Modern Glassmorphism Style */
+.pageTabs {
+    display: flex;
+    justify-content: center;
+    margin-top: -3.5rem;
+    /* Overlap hero */
+    margin-bottom: 4rem;
+    position: relative;
+    z-index: 20;
+    padding: 0 1rem;
+}
+
+.pageTabContainer {
+    background: rgba(15, 23, 42, 0.4);
+    /* Dark tinted glass for legibility */
+    padding: 0.6rem;
+    border-radius: 16px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    gap: 0.75rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.pageTabButton {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.85rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    letter-spacing: 0.02em;
+}
+
+.pageTabButton:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.pageTabButtonActive {
+    background-color: #ffffff !important;
+    color: #1e40af !important;
+    /* Dark Blue */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ffffff;
+}
+
+.pageTabButtonActive:hover {
+    transform: translateY(-2px);
+    background-color: #f8fafc !important;
+}
+
+.tabIcon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+/* Home Tab Content */
+.homeGrid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    margin-bottom: 4rem;
+}
+
+@media (max-width: 900px) {
+    .homeGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.newsSectionTitle {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.newsCard {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.2s ease;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.newsCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+.newsContent {
+    padding: 1.5rem;
+}
+
+.newsDate {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.newsTitle {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+}
+
+.newsExcerpt {
+    font-size: 0.95rem;
+    color: #475569;
+    line-height: 1.6;
+}
+
+.announcementList {
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid #e2e8f0;
+}
+
+.announcementItem {
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.announcementItem:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.announcementBadge {
+    display: inline-block;
+    background: #dbeafe;
+    color: #2563eb;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+}
+
+.announcementText {
+    font-size: 0.95rem;
+    color: #334155;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.announcementLink {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.announcementLink:hover {
+    text-decoration: underline;
+}
+
+.introSection {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.introText {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #334155;
 }
