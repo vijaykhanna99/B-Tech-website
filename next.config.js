@@ -35,7 +35,7 @@ const nextConfig = {
                     },
                     {
                         key: 'Content-Security-Policy',
-                        value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' *.google.com *.gstatic.com; style-src 'self' 'unsafe-inline' *.googleapis.com; img-src 'self' data: https: *.iisc.ac.in; font-src 'self' data: *.gstatic.com; frame-src 'self' *.google.com;"
+                        value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' *.google.com *.gstatic.com *.youtube.com *.youtube-nocookie.com; style-src 'self' 'unsafe-inline' *.googleapis.com; img-src 'self' data: https: *.iisc.ac.in *.youtube.com *.youtube-nocookie.com; font-src 'self' data: *.gstatic.com; frame-src 'self' *.google.com *.youtube.com *.youtube-nocookie.com;"
                     },
                     {
                         key: 'Permissions-Policy',

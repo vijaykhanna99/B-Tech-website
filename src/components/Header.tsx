@@ -125,9 +125,46 @@ const Header = () => {
                     </li>
 
                     <li className={styles.navItem}>
-                        <Link href="/admissions" className={styles.navLink}>
+                        <Link href="/admissions" className={styles.navButton}>
                             Admissions
+                            <svg xmlns="http://www.w3.org/2000/svg" className={styles.chevronIcon} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            </svg>
                         </Link>
+                        <div className={`${styles.dropdownMenu} ${styles.dropdownMenuAdmissions}`}>
+                            <Link href="/admissions/news-and-updates" className={styles.iconDropdownItem}>
+                                <div className={`${styles.iconBox} ${styles.iconBoxBlue}`}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                                    </svg>
+                                </div>
+                                <span>News and Updates</span>
+                            </Link>
+                            <Link href="/admissions/selection-process" className={styles.iconDropdownItem}>
+                                <div className={`${styles.iconBox} ${styles.iconBoxOrange}`}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                    </svg>
+                                </div>
+                                <span>Application & Selection Process</span>
+                            </Link>
+                            <Link href="/admissions/fee-structure" className={styles.iconDropdownItem}>
+                                <div className={`${styles.iconBox} ${styles.iconBoxGreen}`}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </div>
+                                <span>Fee Structure</span>
+                            </Link>
+                            <Link href="/admissions/faqs" className={styles.iconDropdownItem}>
+                                <div className={`${styles.iconBox} ${styles.iconBoxPurple}`}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </div>
+                                <span>FAQs</span>
+                            </Link>
+                        </div>
 
                     </li>
 
@@ -245,9 +282,46 @@ const Header = () => {
                         Student Handbook
                     </Link>
 
-                    <Link href="/admissions" className={styles.mobileNavItem} onClick={closeMobileMenu}>
-                        Admissions
-                    </Link>
+                    {/* Admissions Mobile Submenu */}
+                    <div>
+                        <button
+                            className={`${styles.mobileSubmenuHeader} ${activeMobileSubmenu === 'admissions' ? styles.activeMobileSubmenuHeader : ''}`}
+                            onClick={() => toggleSubmenu('admissions')}
+                        >
+                            Admissions
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                style={{
+                                    width: 20,
+                                    height: 20,
+                                    transform: activeMobileSubmenu === 'admissions' ? 'rotate(180deg)' : 'rotate(0deg)',
+                                    transition: 'transform 0.2s'
+                                }}
+                            >
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div className={`${styles.mobileSubmenuList} ${activeMobileSubmenu === 'admissions' ? styles.mobileSubmenuOpen : ''}`}>
+                            <Link href="/admissions/news-and-updates" className={styles.mobileSubItem} onClick={closeMobileMenu}>
+                                News and Updates
+                            </Link>
+                            <Link href="/admissions/selection-process" className={styles.mobileSubItem} onClick={closeMobileMenu}>
+                                Application & Selection Process
+                            </Link>
+                            <Link href="/admissions/fee-structure" className={styles.mobileSubItem} onClick={closeMobileMenu}>
+                                Fee Structure
+                            </Link>
+                            <Link href="/admissions/faqs" className={styles.mobileSubItem} onClick={closeMobileMenu}>
+                                FAQs
+                            </Link>
+                            <Link href="/admissions" className={styles.mobileSubItem} onClick={closeMobileMenu}>
+                                View All (Admissions)
+                            </Link>
+                        </div>
+                    </div>
 
                     <Link href="https://odaa.iisc.ac.in/fellowships/" className={styles.mobileNavItem} target="_blank" rel="noopener noreferrer" onClick={closeMobileMenu}>
                         Fellowship
