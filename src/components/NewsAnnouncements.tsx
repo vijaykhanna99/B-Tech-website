@@ -143,7 +143,7 @@ const NewsAnnouncements = () => {
                                     <div className={styles.accordionContent}>
                                         <p className={styles.excerpt}>{item.excerpt}</p>
                                         {item.link && item.link !== '#' && (
-                                            <Link href={item.link} className={styles.visitLink} target="_blank">
+                                            <Link href={item.link} className={styles.visitLink} target="_blank" rel="noopener noreferrer">
                                                 Visit Official Website &rarr;
                                             </Link>
                                         )}

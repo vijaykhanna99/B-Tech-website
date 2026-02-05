@@ -7,10 +7,16 @@ import styles from './mnc.module.css';
 
 const MathematicsAndComputing = () => {
     const [activeSemester, setActiveSemester] = useState(1);
-    const [activeSoftCoreTab, setActiveSoftCoreTab] = useState('mathematics');
+
+    const [activeOverviewSoftCoreTab, setActiveOverviewSoftCoreTab] = useState<string | null>(null);
+    const [activeMasterPath, setActiveMasterPath] = useState<string>('mnc');
+    const [activeElectivesTab, setActiveElectivesTab] = useState<boolean>(false);
+
     const [selectedCourse, setSelectedCourse] = useState<any>(null);
     const [openTrack, setOpenTrack] = useState<string | null>(null);
     const [activeTab, setActiveTab] = useState('home');
+    const [showTestimonials, setShowTestimonials] = useState(false);
+    const [selectedStudentTestimonial, setSelectedStudentTestimonial] = useState<any>(null);
 
     const dummyNews = [
         {
@@ -754,12 +760,36 @@ const MathematicsAndComputing = () => {
                     </div>
                 </div>
             )}
-            {/* Top Header Bar */}
-            <div className={styles.headerSection}>
-                <Link href="/programs" className={styles.backLink}>
-                    ← Back to Programs
-                </Link>
 
+            {/* Student Testimonial Modal */}
+            {selectedStudentTestimonial && (
+                <div className={styles.modalOverlay} onClick={() => setSelectedStudentTestimonial(null)}>
+                    <div className={styles.modalContent} onClick={e => e.stopPropagation()} style={{ maxWidth: '800px' }}>
+                        <div className={styles.modalHeader}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                                <div className={styles.testimonialAvatarPlaceholder} style={{ width: '40px', height: '40px' }}>
+                                    {selectedStudentTestimonial.name.split(' ').map((n: string) => n[0]).join('')}
+                                </div>
+                                <div>
+                                    <div className={styles.modalTitle} style={{ fontSize: '1.2rem' }}>{selectedStudentTestimonial.name}</div>
+                                    <div className={styles.testimonialYear}>{selectedStudentTestimonial.year}</div>
+                                </div>
+                            </div>
+                            <button className={styles.closeButton} onClick={() => setSelectedStudentTestimonial(null)}>
+                                <span style={{ fontSize: '1.5rem', lineHeight: 1 }}>×</span>
+                            </button>
+                        </div>
+                        <div className={styles.modalBody} style={{ padding: '2rem' }}>
+                            <div className={styles.testimonialQuote} style={{ fontSize: '1.1rem', fontStyle: 'italic', color: '#1e293b' }}>
+                                "{selectedStudentTestimonial.quote}"
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+            {/* Top Header Bar */}
+            {/* Top Header Bar - Removed Back Link */}
+            <div className={styles.headerSection}>
             </div>
 
             {/* Hero Section */}
@@ -821,20 +851,25 @@ const MathematicsAndComputing = () => {
                     <div className={styles.homeGrid}>
                         <div className={styles.mainContent}>
                             <div className={styles.introSection}>
-                                <h1 className={styles.heroHeading} style={{ fontSize: '2rem', color: '#0f172a', marginBottom: '1rem' }}>
-                                    About the Programme
-                                </h1>
-                                <p className={styles.introText}>
-                                    The BTech program in Mathematics and Computing is aimed at producing leaders who will be at the forefront of research, development, and innovation in futuristic disciplines and next generation technologies that require deep use of mathematics, computer science, and data science.
-                                </p>
-                                <div style={{ marginTop: '2rem', position: 'relative', paddingBottom: '45%', height: 0, overflow: 'hidden', borderRadius: '12px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}>
-                                    <iframe
-                                        src="https://www.youtube.com/embed/2Pvr06wBOXk"
-                                        title="B.Tech in Mathematics and Computing at IISc"
-                                        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowFullScreen
-                                    />
+                                <div className={styles.aboutWithVideo}>
+                                    <div>
+                                        <h1 className={styles.heroHeading} style={{ fontSize: '2rem', color: '#0f172a', marginBottom: '1rem' }}>
+                                            About the Programme
+                                        </h1>
+                                        <p className={styles.introText} style={{ marginBottom: 0 }}>
+                                            The BTech program in Mathematics and Computing is aimed at producing leaders who will be at the forefront of research, development, and innovation in futuristic disciplines and next generation technologies that require deep use of mathematics, computer science, and data science.
+                                        </p>
+                                    </div>
+                                    <div className={styles.videoSection}>
+                                        <div className={styles.videoWrapper}>
+                                            <iframe
+                                                src="https://www.youtube.com/embed/2Pvr06wBOXk"
+                                                title="B.Tech in Mathematics and Computing at IISc"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                allowFullScreen
+                                            />
+                                        </div>
+                                    </div>
                                 </div>
                                 <div style={{ marginTop: '2rem', color: '#334155', lineHeight: '1.7' }}>
                                     <h3 style={{ fontSize: '1.25rem', fontWeight: '700', color: '#1e293b', marginBottom: '1rem' }}>
@@ -851,41 +886,270 @@ const MathematicsAndComputing = () => {
                                 </div>
                             </div>
 
+                            {/* Why IISc B.Tech - Exact Content from Image */}
+                            <div style={{ marginTop: '5rem', marginBottom: '4rem' }}>
+                                <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+                                    <h2 style={{
+                                        fontSize: '2rem',
+                                        fontWeight: '700',
+                                        color: '#0f172a',
+                                        letterSpacing: '-0.02em',
+                                        marginBottom: '1rem'
+                                    }}>
+                                        Why <span style={{ color: '#d97706' }}>IISc BTech</span>
+                                    </h2>
+                                    <p style={{
+                                        color: '#475569',
+                                        fontSize: '1.1rem',
+                                        maxWidth: '900px',
+                                        margin: '0 auto',
+                                        lineHeight: '1.7'
+                                    }}>
+                                        Empowering future leaders with a rigorous, interdisciplinary blend of Mathematics and Computing.
+                                    </p>
+                                </div>
 
+                                <div className="features-grid" style={{
+                                    display: 'grid',
+                                    gridTemplateColumns: 'repeat(2, 1fr)',
+                                    gap: '2rem',
+                                    marginBottom: '4rem',
+                                    width: '100%'
+                                }}>
+                                    {[
+                                        {
+                                            title: "The Difference",
+                                            heading: "Why Maths & Computing (M&C) instead of CSE?",
+                                            text: "Traditionally Computer Science did not demand a solid mathematics foundation. However, with the advent of math intensive fields such as AI (Artificial Intelligence) and Data Science, a solid Mathematics foundation is required even for a computer engineer.",
+                                            theme: "sky",
+                                            icon: (
+                                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                                                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                                                </svg>
+                                            )
+                                        },
+                                        {
+                                            title: "The Advantage",
+                                            heading: "Why Maths & Computing (M&C) at IISc?",
+                                            text: "Majority of M&C programs are run by Mathematics department with a heavy focus on Mathematics. In contrast, M&C at IISc is truly interdisciplinary with flexible weightage of mathematics & computer science. This provides students with a strong foundation in mathematics and also the freedom to pursue any field they are interested in.",
+                                            theme: "purple",
+                                            icon: (
+                                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                                                </svg>
+                                            )
+                                        },
+                                        {
+                                            title: "Uniqueness",
+                                            heading: "What is unique about the Program?",
+                                            text: "At IISc, the core courses are completed by 2nd year. From third year, a student can choose electives, based on career aspirations. This flexibility is not offered in any other academic institutions.",
+                                            theme: "lime",
+                                            icon: (
+                                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                                </svg>
+                                            )
+                                        },
+                                        {
+                                            title: "Future Paths",
+                                            heading: "What are the Career Options?",
+                                            text: "Students can choose to pursue jobs or higher studies and focus on research. They can explore multiple career options such as Mathematics, AI & ML, Computational Science, Theoretical Computer Science, Quantum Computing, Computational Biology, Signal Processing, Mathematical Finance, and more.",
+                                            theme: "red",
+                                            icon: (
+                                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                                                </svg>
+                                            )
+                                        }
+                                    ].map((card, idx) => (
+                                        <div key={idx} style={{
+                                            background: '#ffffff',
+                                            borderRadius: '16px',
+                                            padding: '2.5rem',
+                                            border: '1px solid #e2e8f0',
+                                            boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)',
+                                            transition: 'all 0.3s ease',
+                                            position: 'relative',
+                                            overflow: 'hidden',
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            height: '100%',
+                                            isolation: 'isolate'
+                                        }}
+                                            onMouseEnter={(e) => {
+                                                e.currentTarget.style.transform = 'translateY(-5px)';
+                                                e.currentTarget.style.boxShadow = '0 20px 25px -5px rgba(0, 0, 0, 0.1)';
+                                                e.currentTarget.style.borderColor = '#cbd5e1';
+                                            }}
+                                            onMouseLeave={(e) => {
+                                                e.currentTarget.style.transform = 'translateY(0)';
+                                                e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.05)';
+                                                e.currentTarget.style.borderColor = '#e2e8f0';
+                                            }}
+                                        >
+                                            {/* Accent Top Line */}
+                                            <div style={{
+                                                position: 'absolute',
+                                                top: 0,
+                                                left: 0,
+                                                right: 0,
+                                                height: '4px',
+                                                background: card.theme === 'sky' ? '#0ea5e9' :
+                                                    card.theme === 'purple' ? '#9333ea' :
+                                                        card.theme === 'lime' ? '#65a30d' : '#dc2626'
+                                            }} />
+
+                                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem' }}>
+                                                <span style={{
+                                                    fontSize: '0.8rem',
+                                                    fontWeight: '700',
+                                                    textTransform: 'uppercase',
+                                                    letterSpacing: '0.05em',
+                                                    color: card.theme === 'sky' ? '#0ea5e9' :
+                                                        card.theme === 'purple' ? '#9333ea' :
+                                                            card.theme === 'lime' ? '#65a30d' : '#dc2626',
+                                                    background: card.theme === 'sky' ? '#e0f2fe' :
+                                                        card.theme === 'purple' ? '#f3e8ff' :
+                                                            card.theme === 'lime' ? '#ecfccb' : '#fee2e2',
+                                                    padding: '0.4rem 0.8rem',
+                                                    borderRadius: '6px'
+                                                }}>
+                                                    {card.title}
+                                                </span>
+                                                <div style={{ color: '#94a3b8' }}>
+                                                    {card.icon}
+                                                </div>
+                                            </div>
+
+                                            <h3 style={{
+                                                fontSize: '1.25rem',
+                                                fontWeight: '800',
+                                                color: '#0f172a',
+                                                marginBottom: '1rem',
+                                                lineHeight: '1.3',
+                                                minHeight: '3rem'
+                                            }}>
+                                                {card.heading}
+                                            </h3>
+                                            <p style={{
+                                                fontSize: '1rem',
+                                                lineHeight: '1.7',
+                                                color: '#475569',
+                                                flex: 1
+                                            }}>
+                                                {card.text}
+                                            </p>
+                                        </div>
+                                    ))}
+                                </div>
+                                <style jsx>{`
+                                    @media (max-width: 900px) {
+                                        .features-grid {
+                                            grid-template-columns: 1fr !important;
+                                        }
+                                    }
+                                `}</style>
+
+                                {/* Student Voice Section */}
+                                <div className={styles.studentVoiceSection}>
+                                    <h2 className={styles.studentVoiceHeading}>Student Voice</h2>
+                                    <p className={styles.studentVoiceText}>
+                                        Hear from our students about their experiences in the B.Tech Mathematics and Computing program at IISc.
+                                    </p>
+                                    <button
+                                        className={styles.studentVoiceButton}
+                                        onClick={() => setShowTestimonials(!showTestimonials)}
+                                    >
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                        </svg>
+                                        {showTestimonials ? 'Hide Student Testimonials' : 'Read Student Testimonials'}
+                                    </button>
+
+                                    {/* Testimonials Grid - Shows when button is clicked */}
+                                    {showTestimonials && (
+                                        <div className={styles.testimonialsGrid}>
+                                            {[
+                                                {
+                                                    name: "Mrigank Pawagi",
+                                                    year: "2022",
+                                                    quote: "As a school student, I wished for a college experience that provided me with the opportunity to explore a wide variety of disciplines, while offering the resources to dive into what I like at whatever depth I want. IISc has exceeded my expectations in both regards. On one hand, through the various courses which I have taken across different areas of computer science and even the natural sciences, I am confident that my career choices are well-informed and that I have a solid understanding of basics of areas beyond my own. At the same time, I have had the opportunity to take advanced classes in areas of my interest and thus develop a deep understanding of the method and the kind of research that they involve. The faculty in IISc has been extremely helpful, not just in academic matters where their expertise and willingness to answer questions is well-known, but also in matters related to career guidance and administrative tasks. The student body, though small, is very talented, and my peers, who are experts in their own varied fields, teach me something new every day. I feel lucky to have made the decision to join IISc three years ago."
+                                                },
+                                                {
+                                                    name: "R Balaji",
+                                                    year: "2022",
+                                                    quote: "Choosing B.Tech at IISc was notably one of the most significant and unexpected decisions of my life. And it turned out to be one of the best decisions I have made. It has opened me to the significantly challenging world of applied mathematics and modelling and rewarded my thought process while solving a complex problem. I have learnt a systematic and methodical approach to problem solving requiring deep conceptual understanding. The teaching here is very interactive and at par with western style education which emphasizes on depth of knowledge as opposed to an engineering curriculum where shortcuts are the key to success. IISc has truly inspired me to pursue my research interests and has given me a solid foundation in computational techniques so that I can pursue modelling in the field of my choice, let it be finance, data science, astronomy or quantum computing. I have interned in Purdue university because of the mathematical background I gained at IISc. As I move on to the next chapter in my life, IISc has given me clarity, direction and helped making dreams come true."
+                                                },
+                                                {
+                                                    name: "Varivashva Poladi",
+                                                    year: "2022",
+                                                    quote: "I've been a student of IISc for three years, and my time here so far has helped me grow as a person in unimaginable ways. What I hoped to do in college was explore each and every field that intrigued me, learn as much as possible from every person I meet, make great friends, and find myself as a person. IISc is a place where everyone can do all that, and more. Reflecting upon my experiences here, I strongly feel that there is no other place like IISc. Students here are encouraged to learn about different disciplines, take up a variety of courses. The professors are the most helpful people you will find on campus. Their extensive knowledge, experience in their respective fields, and eagerness to explain everything will not only enhance your skillset but also instill basic work ethics, punctuality, and encourage you to take on future challenges. The peer group and seniors are the people you will interact with the most. You will make new friends who will transform your 'difficult' journey into a much cooler experience. Their enthusiasm and diverse ways of thinking will undoubtedly drive you to work harder and improve constantly. In the B.Tech Programme, alongside the Computer Science courses, you will gain significant exposure to the rigour of Core Mathematics, creating a deeper level of appreciation for every mathematical statement you write. The faculties are usually very helpful and cooperative beyond the standard working hours, providing valuable research experience early on. Overall, the environment at IISc never makes you feel away from home. After every semester, you will discover a better version of yourself, both professionally and personally."
+                                                },
+                                                {
+                                                    name: "Saksham Agrawal",
+                                                    year: "2023",
+                                                    quote: "After completing my four semesters at IISc, I can proudly say that studying here has been nothing short of a blessing. This place encapsulates an immense wealth of knowledge, allowing anyone to satisfy their urge for learning in any field imaginable. The lush green campus, pleasant weather, historical buildings, and super-cooperative faculties make the journey unforgettable. The professors are the most helpful people you will find on campus. Their extensive knowledge, experience in their respective fields, and eagerness to explain everything will not only enhance your deftset but also instill basic work ethics, punctuality, and encourage you to take on future challenges. The peer group and seniors are the people you will interact with the most. You will make new friends who will transform your 'difficult' journey into a much cooler experience. Their enthusiasm and diverse ways of thinking will undoubtedly drive you to work harder and improve constantly. In the B.Tech Programme, alongside the Computer Science courses, you will gain significant exposure to the rigour of Core Mathematics, creating a deeper level of appreciation for every mathematical statement you write. The faculties are usually very helpful and cooperative beyond the standard working hours, providing valuable research experience early on. Overall, the environment at IISc never makes you feel away from home. After every semester, you will discover a better version of yourself, both professionally and personally."
+                                                },
+                                                {
+                                                    name: "Durga Naniwadekar",
+                                                    year: "2024",
+                                                    quote: "My first year at IISc has been a truly enjoyable and enriching experience. I came here with an interest in Math, a desire to learn Computer Science, and a love for Biology — and the program has been perfect for me. The breadth of courses offered has been amazing. The atmosphere was refreshingly focused on learning, and I've felt truly at home interacting with professors who are so experienced and committed, and peers who are open and thoughtful. I'm very happy to be here, and I'm looking forward to the years ahead!"
+                                                },
+                                                {
+                                                    name: "Aditey Nandan",
+                                                    year: "2024",
+                                                    quote: "Joining IISc has been one of the most transformative experiences of my life. Right from the start of my undergraduate journey, IISc has offered the unique opportunity to explore diverse fields while building a strong foundation in my chosen discipline. The academic culture here encourages exploration across a wide range of subjects, extending beyond my core branch into areas such as the natural sciences. The Institute provides ample opportunities for students to engage in research and computing courses have expanded my thinking abilities, emphasizing rigor and fostering a deep and structured approach to problem solving. The professors are genuinely invested in helping students learn, often going out of their way to simplify complex concepts and connect them to real world applications. They also provide numerous opportunities to work with them outside of coursework, helping us to gain valuable research experience. The seniors here are equally supportive, always willing to guide us and help us find opportunities aligned with our interests and future goals. I couldn't have asked for a better place, as the wide range of opportunities, stimulating peer group, and supportive environment have continually contributed to my academic development and personal growth."
+                                                },
+                                                {
+                                                    name: "Pratham Gupta",
+                                                    year: "2023",
+                                                    quote: "After spending four incredible semesters at the Indian Institute of Science (IISc), I can confidently say it has exceeded all my expectations. What truly sets IISc apart is its unique blend of academic rigour, a supportive community, and a strong focus on research. The coursework here is demanding, pushing you outside your comfort zone and forcing you to think critically. Yet, the environment remains supportive, with professors who are invested in your success. Transforming challenges into opportunities to gain a deep and meaningful understanding of your chosen field. My batchmates and seniors have been incredibly supportive, making hostel life feel like a second home. The vibrant student life at IISc extends beyond the classroom. Participating in clubs like Databased, Vicharaka, Samaasy, and Ensemble allowed me to connect with like-minded peers and explore various fields. The students here are very enthusiastic and eager to learn and make their mark in society. In IISc, I've found amazing opportunities to learn various disciplines to great depth, a wonderful peer group and the opportunity to better myself as a student and person. If you're looking for an institute that fosters a spirit of curiosity, research, and collaboration, then IISc is definitely worth exploring."
+                                                },
+                                                {
+                                                    name: "Sehaj Ganjoo",
+                                                    year: "2023",
+                                                    quote: "My past two years at IISc has been like stepping into a hidden world. Sure, everyone knows about academics, research and all but what they don't tell you is the feeling you get when you walk onto campus and suddenly you're surrounded by your people. The campus's lush greens and delightful weather will easily push you past your daily step goal. With the best faculty and best-tailored courses, the curriculum is a perfect blend of theoretical depth and practical application. Diving deep into the foundations of computer science and the core of mathematics, the BTech program prepares you for anything the tech industry can throw your way. The professors here are super minds; they can explain complex concepts with remarkable patience. Even the research opportunities come in, allowing you to contribute to real-world problems alongside these brilliant minds. But the best part? The people you meet become your family. My batchmates and seniors are a hilarious, supportive bunch— the kind who'll transform the finer points of quantum mechanics over chai at the mess, then dive headfirst into a late-night coding session fuelled by filter coffee. We push each other to new heights, celebrate each other's victories and cry together over debugging nightmares. IISc offers a lot more than just academics, its a sense of belonging. It provides a platform for exploring diverse interests, from cultural fests to sporting events. It's just the beginning of a lifelong journey of learning."
+                                                }
+                                            ].map((testimonial, idx) => {
+                                                const previewLength = 150;
+                                                const shouldShowReadMore = testimonial.quote.length > previewLength;
+                                                const displayText = shouldShowReadMore ? testimonial.quote.slice(0, previewLength) + '...' : testimonial.quote;
+
+                                                return (
+                                                    <div key={idx} className={styles.testimonialCard}>
+                                                        <div className={styles.testimonialHeader}>
+                                                            <div className={styles.testimonialAvatarPlaceholder}>
+                                                                {testimonial.name.split(' ').map(n => n[0]).join('')}
+                                                            </div>
+                                                            <div>
+                                                                <div className={styles.testimonialName}>{testimonial.name}</div>
+                                                                <div className={styles.testimonialYear}>{testimonial.year}</div>
+                                                            </div>
+                                                        </div>
+                                                        <div className={styles.testimonialQuote}>
+                                                            "{displayText}"
+                                                        </div>
+                                                        {shouldShowReadMore && (
+                                                            <button
+                                                                className={styles.readMoreBtn}
+                                                                onClick={() => setSelectedStudentTestimonial(testimonial)}
+                                                            >
+                                                                Read More <span style={{ fontSize: '1.2rem' }}>→</span>
+                                                            </button>
+                                                        )}
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
                         </div>
 
                         <div className={styles.sidebar}>
-                            <div className={styles.announcementList}>
-                                <div className={styles.newsSectionTitle} style={{ marginBottom: '1rem', fontSize: '1.1rem' }}>
-                                    <span style={{ fontSize: '1.2rem' }}>📢</span> Announcements
-                                </div>
-                                {dummyAnnouncements.map((ann, index) => (
-                                    <div key={index} className={styles.announcementItem}>
-                                        <div className={styles.announcementBadge}>New</div>
-                                        <div className={styles.announcementText}>{ann.text}</div>
-                                        {ann.link && (
-                                            <Link href={ann.link} className={styles.announcementLink}>
-                                                Read More →
-                                            </Link>
-                                        )}
-                                    </div>
-                                ))}
-                            </div>
-
-                            <div className={styles.newsSection} style={{ marginTop: '2.5rem' }}>
-                                <div className={styles.newsSectionTitle} style={{ marginBottom: '1rem', fontSize: '1.1rem' }}>
-                                    <span style={{ fontSize: '1.2rem' }}>📰</span> Latest News
-                                </div>
-                                {dummyNews.map((news, index) => (
-                                    <div key={index} className={styles.newsCard} style={{ marginBottom: '1rem' }}>
-                                        <div className={styles.newsContent}>
-                                            <div className={styles.newsDate} style={{ fontSize: '0.85rem', color: '#64748b' }}>{news.date}</div>
-                                            <div className={styles.newsTitle} style={{ fontSize: '1.05rem', lineHeight: '1.4' }}>{news.title}</div>
-                                            <div className={styles.newsExcerpt} style={{ fontSize: '0.9rem', color: '#475569', marginTop: '0.5rem' }}>{news.excerpt}</div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
+                            {/* Sidebar kept empty as per previous request */}
                         </div>
                     </div>
                 )}
@@ -981,16 +1245,173 @@ const MathematicsAndComputing = () => {
                                 </div>
 
                                 {/* iii) SOFT CORE */}
-                                <div style={{ marginBottom: '1.5rem' }}>
+                                <div id="soft-core-section" style={{ marginBottom: '1.5rem' }}>
                                     <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#1e293b', marginBottom: '0.5rem', textTransform: 'uppercase' }}>
                                         iii) SOFT CORE
                                     </h3>
                                     <p style={{ margin: 0, color: '#444' }}>
-                                        The soft core consists of the Mathematics and Computing streams. Students have to take at least 6 credits in each stream. Students have to take at least 21 credits from the combined list of soft-core courses.
+                                        The soft core consists of the Mathematics and Computing streams. Students have to take at least 6 credits in each stream. Students have to take at least 21 credits from the combined list of soft-core courses. The list of courses in each stream is listed below.
                                     </p>
-                                    <p style={{ margin: '0.25rem 0 0 0', fontStyle: 'italic', fontSize: '0.9rem', color: '#64748b' }}>
-                                        The list of courses in each stream is <span style={{ color: '#2563eb', cursor: 'pointer', textDecoration: 'underline' }} onClick={() => document.getElementById('soft-core-section')?.scrollIntoView({ behavior: 'smooth' })}>specified in the Scheme of Instructions (SoI)</span>.
-                                    </p>
+
+                                    {/* Soft Core Accordions */}
+                                    <div className={styles.studyTrackAccordionContainer} style={{ marginTop: '1rem', marginBottom: '1rem' }}>
+                                        {/* Mathematics Accordion */}
+                                        <div className={styles.accordionItem}>
+                                            <button
+                                                className={`${styles.accordionHeader} ${activeOverviewSoftCoreTab === 'mathematics' ? styles.accordionHeaderActive : ''}`}
+                                                onClick={() => setActiveOverviewSoftCoreTab(activeOverviewSoftCoreTab === 'mathematics' ? null : 'mathematics')}
+                                            >
+                                                <span className={styles.accordionTitle} style={{ fontSize: '1rem' }}>
+                                                    Soft Core: Mathematics
+                                                </span>
+                                                <span className={styles.accordionIcon} style={{ fontSize: '1.25rem' }}>
+                                                    {activeOverviewSoftCoreTab === 'mathematics' ? '−' : '+'}
+                                                </span>
+                                            </button>
+
+                                            {activeOverviewSoftCoreTab === 'mathematics' && (
+                                                <div className={styles.accordionContent} style={{ padding: '1.5rem' }}>
+                                                    <div style={{ marginBottom: '1rem', color: '#475569', fontSize: '0.95rem' }}>
+                                                        For details of below mathematics courses, Please <a href="https://math.iisc.ac.in/catalogue.html#ma-212" target="_blank" rel="noopener noreferrer" style={{ color: '#2563eb', fontWeight: '600', textDecoration: 'underline' }}>click here</a>.
+                                                    </div>
+                                                    <div className={styles.softCoreScrollableTable} style={{ border: '1px solid #e2e8f0', borderRadius: '8px', marginBottom: 0 }}>
+                                                        <table className={styles.courseTable}>
+                                                            <thead>
+                                                                <tr>
+                                                                    <th style={{ width: '15%' }}>Code</th>
+                                                                    <th style={{ width: '70%' }}>Title</th>
+                                                                    <th style={{ width: '15%', textAlign: 'center' }}>Credits</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                {[
+                                                                    { code: "E0 220", title: "Graph Theory", credits: "3:1" },
+                                                                    { code: "E0 228", title: "Combinatorics", credits: "3:1" },
+                                                                    { code: "E0 265", title: "Convex Optimization and Applications", credits: "3:1" },
+                                                                    { code: "E0 298", title: "Linear Algebra and its Applications", credits: "3:1" },
+                                                                    { code: "E0 350", title: "Advanced Convex Optimization", credits: "3:1" },
+                                                                    { code: "E1 222", title: "Stochastic Models and Applications", credits: "3:0" },
+                                                                    { code: "E1 251", title: "Linear and Nonlinear Optimization", credits: "3:0" },
+                                                                    { code: "E2 202", title: "Random Processes", credits: "3:0" },
+                                                                    { code: "E2 212", title: "Matrix Theory", credits: "3:0" },
+                                                                    { code: "MA 200", title: "Multivariable Calculus", credits: "3:1" },
+                                                                    { code: "MA 212", title: "Algebra I", credits: "3:0" },
+                                                                    { code: "MA 216", title: "Introduction to Graph Theory", credits: "3:0" },
+                                                                    { code: "MA 218", title: "Number Theory", credits: "3:0" },
+                                                                    { code: "MA 219", title: "Linear Algebra", credits: "3:1" },
+                                                                    { code: "MA 222", title: "Analysis – II", credits: "3:1" },
+                                                                    { code: "MA 223", title: "Functional Analysis", credits: "3:0" },
+                                                                    { code: "MA 224", title: "Complex Analysis", credits: "3:1" },
+                                                                    { code: "MA 231", title: "Topology", credits: "3:1" },
+                                                                    { code: "MA 232", title: "Introduction to Algebraic Topology", credits: "3:0" },
+                                                                    { code: "MA 235", title: "Introduction to Differentiable Manifolds", credits: "3:0" },
+                                                                    { code: "MA 241", title: "Ordinary Differential Equations", credits: "3:1" },
+                                                                    { code: "MA 242", title: "Partial Differential Equations", credits: "3:0" },
+                                                                    { code: "MA 262", title: "Introduction to Stochastic Processes", credits: "3:0" },
+                                                                    { code: "MA 278", title: "Introduction to Dynamical Systems Theory", credits: "3:0" },
+                                                                    { code: "MA 347A", title: "Topics in Finite Element Methods", credits: "3:1" },
+                                                                    { code: "MA 361", title: "Probability Theory", credits: "3:0" },
+                                                                    { code: "PH 205", title: "Mathematical Methods of Physics", credits: "3:0" },
+                                                                ].map((course, index) => (
+                                                                    <tr key={index}>
+                                                                        <td className={styles.courseCode}>{course.code}</td>
+                                                                        <td className={styles.courseName}>{course.title}</td>
+                                                                        <td style={{ textAlign: 'center' }}>{course.credits}</td>
+                                                                    </tr>
+                                                                ))}
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+
+                                        {/* Computing Accordion */}
+                                        <div className={styles.accordionItem}>
+                                            <button
+                                                className={`${styles.accordionHeader} ${activeOverviewSoftCoreTab === 'computing' ? styles.accordionHeaderActive : ''}`}
+                                                onClick={() => setActiveOverviewSoftCoreTab(activeOverviewSoftCoreTab === 'computing' ? null : 'computing')}
+                                            >
+                                                <span className={styles.accordionTitle} style={{ fontSize: '1rem' }}>
+                                                    Soft Core: Computing
+                                                </span>
+                                                <span className={styles.accordionIcon} style={{ fontSize: '1.25rem' }}>
+                                                    {activeOverviewSoftCoreTab === 'computing' ? '−' : '+'}
+                                                </span>
+                                            </button>
+
+                                            {activeOverviewSoftCoreTab === 'computing' && (
+                                                <div className={styles.accordionContent} style={{ padding: '1.5rem' }}>
+                                                    <div style={{ marginBottom: '1rem', color: '#475569', fontSize: '0.95rem' }}>
+                                                        For details of below computing courses, Please <a href="https://www.csa.iisc.ac.in/academics-all/courses/descriptions/" target="_blank" rel="noopener noreferrer" style={{ color: '#2563eb', fontWeight: '600', textDecoration: 'underline' }}>click here</a>.
+                                                    </div>
+                                                    <div className={styles.softCoreScrollableTable} style={{ border: '1px solid #e2e8f0', borderRadius: '8px', marginBottom: 0 }}>
+                                                        <table className={styles.courseTable}>
+                                                            <thead>
+                                                                <tr>
+                                                                    <th style={{ width: '15%' }}>Code</th>
+                                                                    <th style={{ width: '70%' }}>Title</th>
+                                                                    <th style={{ width: '15%', textAlign: 'center' }}>Credits</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                {[
+                                                                    { code: "UMC 301", title: "Applied Data Science and Artificial Intelligence", credits: "3:1" },
+                                                                    { code: "DS 207", title: "Introduction to Natural Language Processing", credits: "3:1" },
+                                                                    { code: "DS 211", title: "Numerical Optimization", credits: "3:0" },
+                                                                    { code: "DS 221", title: "Introduction to Scalable Systems", credits: "3:1" },
+                                                                    { code: "DS 250", title: "Multigrid Methods", credits: "3:1" },
+                                                                    { code: "DS 252", title: "Introduction to Cloud Computing", credits: "3:1" },
+                                                                    { code: "DS 256", title: "Scalable Systems for Data Science", credits: "3:1" },
+                                                                    { code: "DS 284", title: "Numerical Linear Algebra", credits: "2:1" },
+                                                                    { code: "DS 289", title: "Numerical Solution of Differential Equations", credits: "3:1" },
+                                                                    { code: "DS 291", title: "Finite Elements: Theory and Algorithms", credits: "3:1" },
+                                                                    { code: "DS 294", title: "Data Analysis and Visualization", credits: "3:0" },
+                                                                    { code: "DS 295", title: "Parallel Programming", credits: "3:1" },
+                                                                    { code: "DS 301", title: "Bioinformatics", credits: "2:0" },
+                                                                    { code: "E0 205", title: "Mathematical Logic and Theorem Proving", credits: "3:1" },
+                                                                    { code: "E0 206", title: "Theorist’s Toolkit", credits: "3:1" },
+                                                                    { code: "E0 208", title: "Computational Geometry", credits: "3:1" },
+                                                                    { code: "E0 209", title: "Principles of Distributed Software", credits: "3:1" },
+                                                                    { code: "E0 224", title: "Computational Complexity Theory", credits: "3:1" },
+                                                                    { code: "E0 225", title: "Design and Analysis of Algorithms", credits: "3:1" },
+                                                                    { code: "E0 227", title: "Program Analysis and Verification", credits: "3:1" },
+                                                                    { code: "E0 230", title: "Computational Methods of Optimization", credits: "3:1" },
+                                                                    { code: "E0 234", title: "Introduction to Randomized Algorithms", credits: "3:1" },
+                                                                    { code: "E0 235", title: "Cryptography", credits: "3:1" },
+                                                                    { code: "E0 240", title: "Modelling and Simulation", credits: "3:1" },
+                                                                    { code: "E0 244", title: "Computational Geometry and Topology", credits: "3:1" },
+                                                                    { code: "E0 248", title: "Theoretical Foundations of Cryptography", credits: "3:1" },
+                                                                    { code: "E0 249", title: "Approximation Algorithms", credits: "3:1" },
+                                                                    { code: "E0 255", title: "Compiler Design", credits: "3:1" },
+                                                                    { code: "E0 259", title: "Data Analytics", credits: "3:1" },
+                                                                    { code: "E0 267", title: "Soft Computing", credits: "3:1" },
+                                                                    { code: "E0 270", title: "Machine Learning", credits: "3:1" },
+                                                                    { code: "E0 272", title: "Formal Methods in Software Engineering", credits: "3:1" },
+                                                                    { code: "E1 213", title: "Pattern Recognition and Neural Networks", credits: "3:1" },
+                                                                    { code: "E1 244", title: "Detection and Estimation Theory", credits: "3:0" },
+                                                                    { code: "E1 254", title: "Game Theory", credits: "3:1" },
+                                                                    { code: "E1 277", title: "Reinforcement Learning", credits: "3:1" },
+                                                                    { code: "E2 201", title: "Information Theory", credits: "3:0" },
+                                                                    { code: "E2 230", title: "Network Science and Modelling", credits: "3:0" },
+                                                                    { code: "E2 232", title: "TCP/IP Networking", credits: "2:1" },
+                                                                    { code: "QT 207", title: "Introduction to Quantum Computation", credits: "3:0" },
+                                                                    { code: "BE 218", title: "Computational Epidemiology", credits: "3:1" },
+                                                                    { code: "MA 208", title: "Proofs and Programs", credits: "3:1" },
+                                                                ].map((course, index) => (
+                                                                    <tr key={index}>
+                                                                        <td className={styles.courseCode}>{course.code}</td>
+                                                                        <td className={styles.courseName}>{course.title}</td>
+                                                                        <td style={{ textAlign: 'center' }}>{course.credits}</td>
+                                                                    </tr>
+                                                                ))}
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
                                 </div>
 
                                 {/* iv) PROJECTS */}
@@ -1014,9 +1435,74 @@ const MathematicsAndComputing = () => {
                                     <p style={{ margin: 0, color: '#444' }}>
                                         Elective credits can be fulfilled by passing any course offered across the institute.
                                     </p>
-                                    <p style={{ margin: '0.25rem 0 0 0', fontStyle: 'italic', fontSize: '0.9rem', color: '#64748b' }}>
-                                        Some useful elective courses are also <span style={{ color: '#2563eb', cursor: 'pointer', textDecoration: 'underline' }} onClick={() => document.getElementById('suggested-electives')?.scrollIntoView({ behavior: 'smooth' })}>provided under the category of suggested electives in the SoI</span>.
+                                    <p style={{ margin: '0.25rem 0 1rem 0', fontStyle: 'italic', fontSize: '0.9rem', color: '#64748b' }}>
+                                        Some useful elective courses are also provided under the category of suggested electives.
                                     </p>
+
+                                    {/* Suggested Electives Accordion */}
+                                    <div className={styles.studyTrackAccordionContainer} style={{ marginTop: '1.5rem', marginBottom: '1rem' }}>
+                                        <div className={styles.accordionItem}>
+                                            <button
+                                                className={`${styles.accordionHeader} ${activeElectivesTab ? styles.accordionHeaderActive : ''}`}
+                                                onClick={() => setActiveElectivesTab(!activeElectivesTab)}
+                                            >
+                                                <span className={styles.accordionTitle} style={{ fontSize: '1rem' }}>
+                                                    View Suggested Electives List
+                                                </span>
+                                                <span className={styles.accordionIcon} style={{ fontSize: '1.25rem' }}>
+                                                    {activeElectivesTab ? '−' : '+'}
+                                                </span>
+                                            </button>
+
+                                            {activeElectivesTab && (
+                                                <div className={styles.accordionContent} style={{ padding: '1.5rem' }}>
+                                                    <div className={styles.softCoreScrollableTable} style={{ border: '1px solid #e2e8f0', borderRadius: '8px', marginBottom: 0 }}>
+                                                        <table className={styles.courseTable}>
+                                                            <thead>
+                                                                <tr>
+                                                                    <th style={{ width: '15%' }}>Code</th>
+                                                                    <th style={{ width: '70%' }}>Title</th>
+                                                                    <th style={{ width: '15%', textAlign: 'center' }}>Credits</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                {[
+                                                                    { code: "MG 201", title: "Managerial Economics", credits: "3:0" },
+                                                                    { code: "MG 265", title: "Data Mining", credits: "3:0" },
+                                                                    { code: "MG 221", title: "Applied Probability and Statistics", credits: "2:1" },
+                                                                    { code: "MG 226", title: "Time Series Analysis and Forecasting", credits: "3:0" },
+                                                                    { code: "MG 258", title: "Financial Instruments and Risk Management Strategies", credits: "3:0" },
+                                                                    { code: "PH 202", title: "Statistical Mechanics", credits: "3:0" },
+                                                                    { code: "PH 204", title: "Quantum Mechanics II", credits: "3:0" },
+                                                                    { code: "PH 206", title: "Electromagnetic Theory", credits: "3:0" },
+                                                                    { code: "BC 302", title: "Current Trends in Drug Discovery", credits: "3:0" },
+                                                                    { code: "MA 253", title: "Numerical Methods for Partial Differential Equations", credits: "3:0" },
+                                                                    { code: "EC 201", title: "Theoretical and Mathematical Ecology", credits: "2:1" },
+                                                                    { code: "EC 303", title: "Spatial dynamic in Biology", credits: "2:1" },
+                                                                    { code: "NE 101", title: "Entrepreneurship, Ethics and Societal Impact", credits: "1:0" },
+                                                                    { code: "E1 396", title: "Stochastic Approximation Algorithms", credits: "3:1" },
+                                                                    { code: "MA 331", title: "Topology and Geometry", credits: "3:0" },
+                                                                    { code: "E0 259", title: "Data Analytics", credits: "3:1" },
+                                                                    { code: "BE 218", title: "Computational Epidemiology", credits: "3:1" },
+                                                                    { code: "CP 214", title: "Foundations of Robotics", credits: "3:1" },
+                                                                    { code: "PH 354", title: "Computational Physics", credits: "3:0" },
+                                                                    { code: "E2 270", title: "Quantum Information Theory", credits: "3:0" },
+                                                                    { code: "DS 301", title: "Bioinformatics", credits: "2:0" },
+                                                                    { code: "E0 207", title: "Computational Topology", credits: "3:1" },
+                                                                ].map((course, index) => (
+                                                                    <tr key={index}>
+                                                                        <td className={styles.courseCode}>{course.code}</td>
+                                                                        <td className={styles.courseName}>{course.title}</td>
+                                                                        <td style={{ textAlign: 'center' }}>{course.credits}</td>
+                                                                    </tr>
+                                                                ))}
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
                                 </div>
 
 
@@ -1050,8 +1536,8 @@ const MathematicsAndComputing = () => {
                                         <tr>
                                             {[1, 2, 3].includes(activeSemester) && <th style={{ width: '15%' }}>Course Type</th>}
                                             <th style={{ width: '15%' }}>Course Code</th>
-                                            <th style={{ width: [1, 2, 3].includes(activeSemester) ? '60%' : '50%' }}>Course Name</th>
-                                            {![1, 2, 3].includes(activeSemester) && <th style={{ width: '25%' }}>Instructor</th>}
+                                            <th style={{ width: [1, 2, 3].includes(activeSemester) ? '35%' : '50%' }}>Course Name</th>
+                                            <th style={{ width: '25%' }}>Instructor</th>
                                             <th style={{ width: '10%', textAlign: 'center' }}>Credits</th>
                                         </tr>
                                     </thead>
@@ -1163,29 +1649,27 @@ const MathematicsAndComputing = () => {
                                                             course.name
                                                         )}
                                                     </td>
-                                                    {![1, 2, 3].includes(activeSemester) && (
-                                                        <td>
-                                                            {course.instructors ? (
-                                                                course.instructors.map((inst: any, i: number) => (
-                                                                    <React.Fragment key={i}>
-                                                                        {i > 0 && ", "}
-                                                                        <a href={inst.link} target="_blank" rel="noopener noreferrer" className={styles.instructorLink}>
-                                                                            {inst.name}
-                                                                        </a>
-                                                                    </React.Fragment>
-                                                                ))
-                                                            ) : (
-                                                                <span style={{ color: '#64748b' }}>{course.instructor}</span>
-                                                            )}
-                                                        </td>
-                                                    )}
+                                                    <td>
+                                                        {course.instructors ? (
+                                                            course.instructors.map((inst: any, i: number) => (
+                                                                <React.Fragment key={i}>
+                                                                    {i > 0 && ", "}
+                                                                    <a href={inst.link} target="_blank" rel="noopener noreferrer" className={styles.instructorLink}>
+                                                                        {inst.name}
+                                                                    </a>
+                                                                </React.Fragment>
+                                                            ))
+                                                        ) : (
+                                                            <span style={{ color: '#64748b' }}>{course.instructor}</span>
+                                                        )}
+                                                    </td>
                                                     <td style={{ textAlign: 'center' }}>{course.credits}</td>
                                                 </tr>
                                             );
                                         })}
                                         {/* Total Row - Normal Load */}
                                         <tr className={styles.totalRow}>
-                                            <td colSpan={3} className={styles.totalLabel}>Normal Load</td>
+                                            <td colSpan={[1, 2, 3].includes(activeSemester) ? 4 : 3} className={styles.totalLabel}>Normal Load</td>
                                             <td className={styles.totalCredits}>{getTotalCredits(activeSemester)}</td>
                                         </tr>
                                         {/* Reduced Load Row (Sem 2, 3, 4) */}
@@ -1281,221 +1765,9 @@ const MathematicsAndComputing = () => {
 
 
                         {/* Soft Core Courses Section */}
-                        <div id="soft-core-section" className={styles.overviewSection} style={{ marginTop: '0rem' }}>
-                            <h2 className={styles.sectionHeading}>Soft Core Courses</h2>
-                            <p className={styles.overviewText} style={{ marginBottom: '2rem' }}>
-                                The soft core consists of the Mathematics and Computing streams. Students have to take at least 6 credits in each stream from the specified lists of courses. Students have to take at least 21 credits from the list of soft core courses. Courses from the list of soft core courses can also be taken as electives.
-                            </p>
 
-                            {/* Tabs */}
-                            <div className={styles.softCoreTabs}>
-                                <button
-                                    className={`${styles.softCoreTab} ${activeSoftCoreTab === 'mathematics' ? styles.softCoreTabActive : ''}`}
-                                    onClick={() => setActiveSoftCoreTab('mathematics')}
-                                >
-                                    Mathematics
-                                </button>
-                                <button
-                                    className={`${styles.softCoreTab} ${activeSoftCoreTab === 'computing' ? styles.softCoreTabActive : ''}`}
-                                    onClick={() => setActiveSoftCoreTab('computing')}
-                                >
-                                    Computing
-                                </button>
-                            </div>
 
-                            {/* Mathematics Content */}
-                            {activeSoftCoreTab === 'mathematics' && (
-                                <div>
-                                    <h3 style={{ fontSize: '1.25rem', fontWeight: '700', color: '#1e293b', marginBottom: '0.5rem' }}>
-                                        Soft Core: Mathematics
-                                    </h3>
-                                    <div style={{ marginBottom: '1rem', color: '#475569', fontSize: '0.95rem' }}>
-                                        For details of below mathematics courses, Please <a href="https://math.iisc.ac.in/catalogue.html#ma-212" target="_blank" rel="noopener noreferrer" style={{ color: '#2563eb', fontWeight: '600', textDecoration: 'underline' }}>click here</a>.
-                                    </div>
-                                    <div className={styles.softCoreScrollableTable}>
-                                        <table className={styles.courseTable}>
-                                            <thead>
-                                                <tr>
-                                                    <th style={{ width: '15%' }}>Code</th>
-                                                    <th style={{ width: '70%' }}>Title</th>
-                                                    <th style={{ width: '15%', textAlign: 'center' }}>Credits</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {[
-                                                    { code: "E0 220", title: "Graph Theory", credits: "3:1" },
-                                                    { code: "E0 228", title: "Combinatorics", credits: "3:1" },
-                                                    { code: "E0 265", title: "Convex Optimization and Applications", credits: "3:1" },
-                                                    { code: "E0 298", title: "Linear Algebra and its Applications", credits: "3:1" },
-                                                    { code: "E0 350", title: "Advanced Convex Optimization", credits: "3:1" },
-                                                    { code: "E1 222", title: "Stochastic Models and Applications", credits: "3:0" },
-                                                    { code: "E1 251", title: "Linear and Nonlinear Optimization", credits: "3:0" },
-                                                    { code: "E2 202", title: "Random Processes", credits: "3:0" },
-                                                    { code: "E2 212", title: "Matrix Theory", credits: "3:0" },
-                                                    { code: "MA 200", title: "Multivariable Calculus", credits: "3:1" },
-                                                    { code: "MA 212", title: "Algebra I", credits: "3:0" },
-                                                    { code: "MA 216", title: "Introduction to Graph Theory", credits: "3:0" },
-                                                    { code: "MA 218", title: "Number Theory", credits: "3:0" },
-                                                    { code: "MA 219", title: "Linear Algebra", credits: "3:1" },
-                                                    { code: "MA 222", title: "Analysis – II", credits: "3:1" },
-                                                    { code: "MA 223", title: "Functional Analysis", credits: "3:0" },
-                                                    { code: "MA 224", title: "Complex Analysis", credits: "3:1" },
-                                                    { code: "MA 231", title: "Topology", credits: "3:1" },
-                                                    { code: "MA 232", title: "Introduction to Algebraic Topology", credits: "3:0" },
-                                                    { code: "MA 235", title: "Introduction to Differentiable Manifolds", credits: "3:0" },
-                                                    { code: "MA 241", title: "Ordinary Differential Equations", credits: "3:1" },
-                                                    { code: "MA 242", title: "Partial Differential Equations", credits: "3:0" },
-                                                    { code: "MA 262", title: "Introduction to Stochastic Processes", credits: "3:0" },
-                                                    { code: "MA 278", title: "Introduction to Dynamical Systems Theory", credits: "3:0" },
-                                                    { code: "MA 347A", title: "Topics in Finite Element Methods", credits: "3:1" },
-                                                    { code: "MA 361", title: "Probability Theory", credits: "3:0" },
-                                                    { code: "PH 205", title: "Mathematical Methods of Physics", credits: "3:0" },
-                                                ].map((course, index) => (
-                                                    <tr key={index}>
-                                                        <td className={styles.courseCode}>{course.code}</td>
-                                                        <td className={styles.courseName}>{course.title}</td>
-                                                        <td style={{ textAlign: 'center' }}>{course.credits}</td>
-                                                    </tr>
-                                                ))}
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div style={{ backgroundColor: '#f8fafc', padding: '1rem', borderRadius: '4px', borderLeft: '3px solid #64748b', fontSize: '0.9rem', color: '#475569' }}>
-                                        <strong>Note:</strong><br />
-                                        1. Among E1 222, E2 202 and MA 262, only one can be chosen<br />
-                                        2. Between E2 212, E0 298 and MA 219, only one can be chosen<br />
-                                        3. Between E0 220 and MA 216, only one can be chosen
-                                    </div>
-                                </div>
-                            )}
 
-                            {/* Computing Content */}
-                            {activeSoftCoreTab === 'computing' && (
-                                <div>
-                                    <h3 style={{ fontSize: '1.25rem', fontWeight: '700', color: '#1e293b', marginBottom: '0.5rem' }}>
-                                        Soft Core: Computing
-                                    </h3>
-                                    <div style={{ marginBottom: '1rem', color: '#475569', fontSize: '0.95rem' }}>
-                                        For details of below computing courses, Please <a href="https://www.csa.iisc.ac.in/academics-all/courses/descriptions/" target="_blank" rel="noopener noreferrer" style={{ color: '#2563eb', fontWeight: '600', textDecoration: 'underline' }}>click here</a>.
-                                    </div>
-                                    <div className={styles.softCoreScrollableTable}>
-                                        <table className={styles.courseTable}>
-                                            <thead>
-                                                <tr>
-                                                    <th style={{ width: '15%' }}>Code</th>
-                                                    <th style={{ width: '70%' }}>Title</th>
-                                                    <th style={{ width: '15%', textAlign: 'center' }}>Credits</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {[
-                                                    { code: "UMC 301", title: "Applied Data Science and Artificial Intelligence", credits: "3:1" },
-                                                    { code: "DS 207", title: "Introduction to Natural Language Processing", credits: "3:1" },
-                                                    { code: "DS 211", title: "Numerical Optimization", credits: "3:0" },
-                                                    { code: "DS 221", title: "Introduction to Scalable Systems", credits: "3:1" },
-                                                    { code: "DS 250", title: "Multigrid Methods", credits: "3:1" },
-                                                    { code: "DS 252", title: "Introduction to Cloud Computing", credits: "3:1" },
-                                                    { code: "DS 256", title: "Scalable Systems for Data Science", credits: "3:1" },
-                                                    { code: "DS 284", title: "Numerical Linear Algebra", credits: "2:1" },
-                                                    { code: "DS 289", title: "Numerical Solution of Differential Equations", credits: "3:1" },
-                                                    { code: "DS 291", title: "Finite Elements: Theory and Algorithms", credits: "3:1" },
-                                                    { code: "DS 294", title: "Data Analysis and Visualization", credits: "3:0" },
-                                                    { code: "DS 295", title: "Parallel Programming", credits: "3:1" },
-                                                    { code: "DS 301", title: "Bioinformatics", credits: "2:0" },
-                                                    { code: "E0 205", title: "Mathematical Logic and Theorem Proving", credits: "3:1" },
-                                                    { code: "E0 206", title: "Theorist’s Toolkit", credits: "3:1" },
-                                                    { code: "E0 208", title: "Computational Geometry", credits: "3:1" },
-                                                    { code: "E0 209", title: "Principles of Distributed Software", credits: "3:1" },
-                                                    { code: "E0 224", title: "Computational Complexity Theory", credits: "3:1" },
-                                                    { code: "E0 225", title: "Design and Analysis of Algorithms", credits: "3:1" },
-                                                    { code: "E0 227", title: "Program Analysis and Verification", credits: "3:1" },
-                                                    { code: "E0 230", title: "Computational Methods of Optimization", credits: "3:1" },
-                                                    { code: "E0 234", title: "Introduction to Randomized Algorithms", credits: "3:1" },
-                                                    { code: "E0 235", title: "Cryptography", credits: "3:1" },
-                                                    { code: "E0 240", title: "Modelling and Simulation", credits: "3:1" },
-                                                    { code: "E0 244", title: "Computational Geometry and Topology", credits: "3:1" },
-                                                    { code: "E0 248", title: "Theoretical Foundations of Cryptography", credits: "3:1" },
-                                                    { code: "E0 249", title: "Approximation Algorithms", credits: "3:1" },
-                                                    { code: "E0 255", title: "Compiler Design", credits: "3:1" },
-                                                    { code: "E0 259", title: "Data Analytics", credits: "3:1" },
-                                                    { code: "E0 267", title: "Soft Computing", credits: "3:1" },
-                                                    { code: "E0 270", title: "Machine Learning", credits: "3:1" },
-                                                    { code: "E0 272", title: "Formal Methods in Software Engineering", credits: "3:1" },
-                                                    { code: "E1 213", title: "Pattern Recognition and Neural Networks", credits: "3:1" },
-                                                    { code: "E1 244", title: "Detection and Estimation Theory", credits: "3:0" },
-                                                    { code: "E1 254", title: "Game Theory", credits: "3:1" },
-                                                    { code: "E1 277", title: "Reinforcement Learning", credits: "3:1" },
-                                                    { code: "E2 201", title: "Information Theory", credits: "3:0" },
-                                                    { code: "E2 230", title: "Network Science and Modelling", credits: "3:0" },
-                                                    { code: "E2 232", title: "TCP/IP Networking", credits: "2:1" },
-                                                    { code: "QT 207", title: "Introduction to Quantum Computation", credits: "3:0" },
-                                                    { code: "BE 218", title: "Computational Epidemiology", credits: "3:1" },
-                                                    { code: "MA 208", title: "Proofs and Programs", credits: "3:1" },
-                                                ].map((course, index) => (
-                                                    <tr key={index}>
-                                                        <td className={styles.courseCode}>{course.code}</td>
-                                                        <td className={styles.courseName}>{course.title}</td>
-                                                        <td style={{ textAlign: 'center' }}>{course.credits}</td>
-                                                    </tr>
-                                                ))}
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-
-                        {/* Suggested Electives Section */}
-                        <div id="suggested-electives" className={styles.overviewSection}>
-                            <h2 className={styles.sectionHeading}>Suggested Electives</h2>
-                            <p className={styles.overviewText} style={{ marginBottom: '1.5rem' }}>
-                                Elective credits can be fulfilled by passing any course offered across the institute. Some useful elective courses are also provided below.
-                            </p>
-
-                            <div className={styles.softCoreScrollableTable}>
-                                <table className={styles.courseTable}>
-                                    <thead>
-                                        <tr>
-                                            <th style={{ width: '15%' }}>Code</th>
-                                            <th style={{ width: '70%' }}>Title</th>
-                                            <th style={{ width: '15%', textAlign: 'center' }}>Credits</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {[
-                                            { code: "MG 201", title: "Managerial Economics", credits: "3:0" },
-                                            { code: "MG 265", title: "Data Mining", credits: "3:0" },
-                                            { code: "MG 221", title: "Applied Probability and Statistics", credits: "2:1" },
-                                            { code: "MG 226", title: "Time Series Analysis and Forecasting", credits: "3:0" },
-                                            { code: "MG 258", title: "Financial Instruments and Risk Management Strategies", credits: "3:0" },
-                                            { code: "PH 202", title: "Statistical Mechanics", credits: "3:0" },
-                                            { code: "PH 204", title: "Quantum Mechanics II", credits: "3:0" },
-                                            { code: "PH 206", title: "Electromagnetic Theory", credits: "3:0" },
-                                            { code: "BC 302", title: "Current Trends in Drug Discovery", credits: "3:0" },
-                                            { code: "MA 253", title: "Numerical Methods for Partial Differential Equations", credits: "3:0" },
-                                            { code: "EC 201", title: "Theoretical and Mathematical Ecology", credits: "2:1" },
-                                            { code: "EC 303", title: "Spatial dynamic in Biology", credits: "2:1" },
-                                            { code: "NE 101", title: "Entrepreneurship, Ethics and Societal Impact", credits: "1:0" },
-                                            { code: "E1 396", title: "Stochastic Approximation Algorithms", credits: "3:1" },
-                                            { code: "MA 331", title: "Topology and Geometry", credits: "3:0" },
-                                            { code: "E0 259", title: "Data Analytics", credits: "3:1" },
-                                            { code: "BE 218", title: "Computational Epidemiology", credits: "3:1" },
-                                            { code: "CP 214", title: "Foundations of Robotics", credits: "3:1" },
-                                            { code: "PH 354", title: "Computational Physics", credits: "3:0" },
-                                            { code: "E2 270", title: "Quantum Information Theory", credits: "3:0" },
-                                            { code: "DS 301", title: "Bioinformatics", credits: "2:0" },
-                                            { code: "E0 207", title: "Computational Topology", credits: "3:1" },
-                                        ].map((course, index) => (
-                                            <tr key={index}>
-                                                <td className={styles.courseCode}>{course.code}</td>
-                                                <td className={styles.courseName}>{course.title}</td>
-                                                <td style={{ textAlign: 'center' }}>{course.credits}</td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
 
 
 
@@ -1648,107 +1920,225 @@ const MathematicsAndComputing = () => {
                             </div>
                         </div>
 
-                        {/* Continuing to M.Tech / M.Tech (Research) - Updated Section */}
-                        <div className={styles.overviewSection} style={{ marginTop: '3rem' }}>
-                            <h2 className={styles.sectionHeading}>Continuing to M.Tech / M.Tech (Research)</h2>
-                            <p className={styles.overviewText} style={{ marginBottom: '1.5rem' }}>
-                                B.Tech students of IISc may apply for admission to the M.Tech and M.Tech (Research) programmes at the end of their third year, subject to fulfilling the existing rules and regulations.
+                        {/* Pathways to Master's Degree - New Tabbed UI */}
+                        <div className={styles.overviewSection} style={{ marginTop: '4rem' }}>
+                            <h2 className={styles.sectionHeading}>Pathways to Master's Degree</h2>
+                            <p className={styles.overviewText} style={{ marginBottom: '2rem' }}>
+                                B.Tech in Mathematics and Computing offers two distinct pathways for students to pursue a Master's degree.
                             </p>
 
-                            <div className={styles.mtechGrid} style={{ gridTemplateColumns: '1fr', gap: '2rem' }}>
-
-                                {/* Eligibility & Selection */}
-                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
-                                    {/* Eligibility Card */}
-                                    <div className={styles.mtechCard}>
-                                        <div className={styles.mtechCardAccent} style={{ backgroundColor: '#2563eb' }} />
-                                        <div className={styles.mtechCardTitle}>
-                                            <div className={styles.mtechIcon} style={{ background: '#dbeafe', color: '#2563eb' }}>✓</div>
-                                            Eligibility
-                                        </div>
-                                        <ul className={styles.mtechList}>
-                                            <li className={styles.mtechItem}>
-                                                <span style={{ fontWeight: '500' }}>Students must be in the third year of the B.Tech programme.</span>
-                                            </li>
-                                            <li className={styles.mtechItem}>
-                                                <span style={{ fontWeight: '500' }}>Students must have completed at least 80% of the prescribed credits (i.e., 102 credits) with a minimum CGPA of 8.0.</span>
-                                            </li>
-                                            <li className={styles.mtechItem}>
-                                                <span style={{ fontWeight: '500' }}>Students must have completed the minimum pool-wise credit requirements prescribed for the programme for continuation to M.Tech / M.Tech (Research).</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    {/* Selection Card */}
-                                    <div className={styles.mtechCard}>
-                                        <div className={styles.mtechCardAccent} style={{ backgroundColor: '#8b5cf6' }} />
-                                        <div className={styles.mtechCardTitle}>
-                                            <div className={styles.mtechIcon} style={{ background: '#ede9fe', color: '#8b5cf6' }}>🎯</div>
-                                            Selection
-                                        </div>
-                                        <ul className={styles.mtechList}>
-                                            <li className={styles.mtechItem}>
-                                                <span style={{ fontWeight: '500' }}>Applicants must satisfy the programme-specific eligibility conditions as notified by the concerned program from time to time.</span>
-                                            </li>
-                                            <li className={styles.mtechItem}>
-                                                <span style={{ fontWeight: '500' }}>Selection shall be based on interviews conducted by the respective program.</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                {/* Programme Structure */}
-                                <h3 style={{ fontSize: '1.4rem', fontWeight: '700', color: '#1e293b', marginTop: '1rem', marginBottom: '0.5rem' }}>
-                                    Programme Structure
-                                </h3>
-
-                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
-                                    {/* M.Tech Structure */}
-                                    <div className={styles.mtechCard}>
-                                        <div className={styles.mtechCardAccent} style={{ backgroundColor: '#10b981' }} />
-                                        <div className={styles.mtechCardTitle}>
-                                            <div className={styles.mtechIcon} style={{ background: '#ecfdf5', color: '#10b981' }}>🎓</div>
-                                            M.Tech
-                                        </div>
-                                        <ul className={styles.mtechList}>
-                                            <li className={styles.mtechItem}>
-                                                <span style={{ fontWeight: '500' }}>Admission is from the seventh semester onwards.</span>
-                                            </li>
-                                            <li className={styles.mtechItem}>
-                                                <span style={{ fontWeight: '500' }}>Students are required to complete 64 additional credits and fulfil all M.Tech degree requirements of the programme.</span>
-                                            </li>
-                                            <li className={styles.mtechItem}>
-                                                <span style={{ fontWeight: '500' }}>On successful completion, separate B. Tech and M. Tech degrees shall be awarded.</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    {/* M.Tech (Research) Structure */}
-                                    <div className={styles.mtechCard}>
-                                        <div className={styles.mtechCardAccent} style={{ backgroundColor: '#f59e0b' }} />
-                                        <div className={styles.mtechCardTitle}>
-                                            <div className={styles.mtechIcon} style={{ background: '#fef3c7', color: '#f59e0b' }}>🔬</div>
-                                            M.Tech (Research)
-                                        </div>
-                                        <ul className={styles.mtechList}>
-                                            <li className={styles.mtechItem}>
-                                                <span style={{ fontWeight: '500' }}>Students are required to complete 12 course credits beyond the B.Tech requirements, along with a research thesis.</span>
-                                            </li>
-                                            <li className={styles.mtechItem}>
-                                                <span style={{ fontWeight: '500' }}>On successful completion, separate B. Tech and M.Tech (Research) degrees shall be awarded.</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                {/* Footer Note */}
-                                <div style={{ marginTop: '1rem', padding: '1rem', backgroundColor: '#f8fafc', borderRadius: '8px', borderLeft: '4px solid #3b82f6' }}>
-                                    <p style={{ margin: 0, color: '#475569', fontSize: '0.95rem' }}>
-                                        <strong>Note:</strong> For detailed rules, eligibility conditions, and procedural requirements, students are advised to refer to the <Link href="/handbook" style={{ color: '#2563eb', textDecoration: 'underline' }}>Student Information Handbook</Link>.
-                                    </p>
-                                </div>
-
+                            {/* Pathway Tabs */}
+                            <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
+                                <button
+                                    onClick={() => setActiveMasterPath('mnc')}
+                                    style={{
+                                        flex: '1',
+                                        padding: '1rem 1.5rem',
+                                        background: activeMasterPath === 'mnc' ? '#2563eb' : '#f1f5f9',
+                                        color: activeMasterPath === 'mnc' ? 'white' : '#64748b',
+                                        border: 'none',
+                                        borderRadius: '8px',
+                                        fontWeight: '700',
+                                        cursor: 'pointer',
+                                        boxShadow: activeMasterPath === 'mnc' ? '0 10px 15px -3px rgba(37, 99, 235, 0.2)' : 'none',
+                                        transition: 'all 0.2s ease',
+                                        fontSize: '1rem'
+                                    }}
+                                >
+                                    Option A (after 4 years) : M.Tech in MnC
+                                </button>
+                                <button
+                                    onClick={() => setActiveMasterPath('general')}
+                                    style={{
+                                        flex: '1',
+                                        padding: '1rem 1.5rem',
+                                        background: activeMasterPath === 'general' ? '#0f172a' : '#f1f5f9',
+                                        color: activeMasterPath === 'general' ? 'white' : '#64748b',
+                                        border: 'none',
+                                        borderRadius: '8px',
+                                        fontWeight: '700',
+                                        cursor: 'pointer',
+                                        boxShadow: activeMasterPath === 'general' ? '0 10px 15px -3px rgba(15, 23, 42, 0.2)' : 'none',
+                                        transition: 'all 0.2s ease',
+                                        fontSize: '1rem'
+                                    }}
+                                >
+                                    Option B (after 3 years) : Early Exit to M.Tech (General)
+                                </button>
                             </div>
+
+                            {/* Option A: 5th Year M.Tech (MnC) Content */}
+                            {activeMasterPath === 'mnc' && (
+                                <div style={{ animation: 'fadeIn 0.3s ease-out' }}>
+                                    <div style={{ background: '#eff6ff', border: '1px solid #dbeafe', padding: '1.5rem', borderRadius: '8px', marginBottom: '2rem' }}>
+                                        <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#1e40af', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                            <span style={{ fontSize: '1.25rem' }}>✨</span> Exclusive to Math & Computing
+                                        </h3>
+                                        <p style={{ margin: 0, color: '#1e3a8a', fontSize: '0.95rem' }}>
+                                            Students have the option to continue for their 5th year to obtain an M.Tech degree specifically in Mathematics and Computing.
+                                        </p>
+                                    </div>
+
+                                    <div className={styles.mtechGrid} style={{ gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
+                                        <div className={styles.mtechCard}>
+                                            <div className={styles.mtechCardAccent} style={{ backgroundColor: '#2563eb' }} />
+                                            <div className={styles.mtechCardTitle}>
+                                                <div className={styles.mtechIcon} style={{ background: '#dbeafe', color: '#2563eb' }}>✓</div>
+                                                Eligibility
+                                            </div>
+                                            <div style={{ color: '#475569', fontSize: '0.95rem', lineHeight: '1.6', marginBottom: '1rem' }}>
+                                                To be eligible to exercise this option, students must:
+                                            </div>
+                                            <ul className={styles.mtechList}>
+                                                <li className={styles.mtechItem}>
+                                                    <div className={styles.mtechItemIcon} style={{ fontSize: '1.5rem', lineHeight: '1rem', color: '#000000' }}>•</div>
+                                                    <span>Have completed all the requirements of the B.Tech Mathematics and Computing degree at the end of their 8th semester.</span>
+                                                </li>
+                                                <li className={styles.mtechItem}>
+                                                    <div className={styles.mtechItemIcon} style={{ fontSize: '1.5rem', lineHeight: '1rem', color: '#000000' }}>•</div>
+                                                    <span>Have a CGPA of <strong>7.0 or more</strong> at the end of their 8th semester.</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <div className={styles.mtechCard}>
+                                            <div className={styles.mtechCardAccent} style={{ backgroundColor: '#f59e0b' }} />
+                                            <div className={styles.mtechCardTitle}>
+                                                <div className={styles.mtechIcon} style={{ background: '#fef3c7', color: '#d97706' }}>📋</div>
+                                                Requirements (32 Credits)
+                                            </div>
+                                            <div style={{ color: '#475569', fontSize: '0.95rem', lineHeight: '1.6', marginBottom: '1rem' }}>
+                                                To obtain the M.Tech degree, students need to complete 32 credits in the 9th and 10th semesters:
+                                            </div>
+                                            <ul className={styles.mtechList}>
+                                                <li className={styles.mtechItem}>
+                                                    <div className={styles.mtechItemIcon} style={{ fontSize: '1.5rem', lineHeight: '1rem', color: '#000000' }}>•</div>
+                                                    <span><strong>13 Course Credits:</strong> Completion of courses in the 9th and 10th semesters.</span>
+                                                </li>
+                                                <li className={styles.mtechItem}>
+                                                    <div className={styles.mtechItemIcon} style={{ fontSize: '1.5rem', lineHeight: '1rem', color: '#000000' }}>•</div>
+                                                    <span><strong>19 Project Credits:</strong> A research project during the 9th and 10th semesters.</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    {/* Soft Core Rule Box */}
+                                    <div className={styles.mtechRequirementBox} style={{ marginTop: '2rem', background: '#fff', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)' }}>
+                                        <div style={{ flex: 1 }}>
+                                            <h4 style={{ fontSize: '1rem', fontWeight: '700', color: '#0f172a', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                                <div style={{ width: '24px', height: '24px', background: '#f1f5f9', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem' }}>ℹ️</div>
+                                                Important Soft Core Requirement
+                                            </h4>
+                                            <p style={{ margin: 0, color: '#64748b', fontSize: '0.95rem', lineHeight: '1.6' }}>
+                                                Students are required to have completed a minimum of <strong>10 credits</strong> of courses from the Mathematics Soft Core Pool and <strong>10 credits</strong> of courses from the Computing Soft Core Pool, <span style={{ textDecoration: 'underline' }}>across the 10 semesters</span> of the B.Tech/M.Tech programme.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Option B: General M.Tech Content */}
+                            {activeMasterPath === 'general' && (
+                                <div style={{ animation: 'fadeIn 0.3s ease-out' }}>
+                                    <div className={styles.mtechGrid} style={{ gridTemplateColumns: '1fr', gap: '2rem' }}>
+                                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+                                            {/* Eligibility Card */}
+                                            <div className={styles.mtechCard}>
+                                                <div className={styles.mtechCardAccent} style={{ backgroundColor: '#0f172a' }} />
+                                                <div className={styles.mtechCardTitle}>
+                                                    <div className={styles.mtechIcon} style={{ background: '#f1f5f9', color: '#0f172a' }}>✓</div>
+                                                    Eligibility
+                                                </div>
+                                                <ul className={styles.mtechList}>
+                                                    <li className={styles.mtechItem}>
+                                                        <div className={styles.mtechItemIcon} style={{ fontSize: '1.5rem', lineHeight: '1rem', color: '#000000' }}>•</div>
+                                                        <span style={{ fontWeight: '500' }}>Students must be in the third year of the B.Tech programme.</span>
+                                                    </li>
+                                                    <li className={styles.mtechItem}>
+                                                        <div className={styles.mtechItemIcon} style={{ fontSize: '1.5rem', lineHeight: '1rem', color: '#000000' }}>•</div>
+                                                        <span style={{ fontWeight: '500' }}>Students must have completed at least 80% of the prescribed credits (i.e., 102 credits) with a minimum CGPA of 8.0.</span>
+                                                    </li>
+                                                    <li className={styles.mtechItem}>
+                                                        <div className={styles.mtechItemIcon} style={{ fontSize: '1.5rem', lineHeight: '1rem', color: '#000000' }}>•</div>
+                                                        <span style={{ fontWeight: '500' }}>Students must have completed the minimum pool-wise credit requirements prescribed for the programme.</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                            {/* Selection Card */}
+                                            <div className={styles.mtechCard}>
+                                                <div className={styles.mtechCardAccent} style={{ backgroundColor: '#8b5cf6' }} />
+                                                <div className={styles.mtechCardTitle}>
+                                                    <div className={styles.mtechIcon} style={{ background: '#ede9fe', color: '#8b5cf6' }}>🎯</div>
+                                                    Selection
+                                                </div>
+                                                <ul className={styles.mtechList}>
+                                                    <li className={styles.mtechItem}>
+                                                        <div className={styles.mtechItemIcon} style={{ fontSize: '1.5rem', lineHeight: '1rem', color: '#000000' }}>•</div>
+                                                        <span style={{ fontWeight: '500' }}>Applicants must satisfy the programme-specific eligibility conditions as notified by the concerned program.</span>
+                                                    </li>
+                                                    <li className={styles.mtechItem}>
+                                                        <div className={styles.mtechItemIcon} style={{ fontSize: '1.5rem', lineHeight: '1rem', color: '#000000' }}>•</div>
+                                                        <span style={{ fontWeight: '500' }}>Selection shall be based on interviews conducted by the respective program.</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        {/* Programme Structure */}
+                                        <h3 style={{ fontSize: '1.25rem', fontWeight: '700', color: '#1e293b', marginTop: '1rem', marginBottom: '0.5rem' }}>
+                                            Programme Structure
+                                        </h3>
+
+                                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+                                            <div className={styles.mtechCard}>
+                                                <div className={styles.mtechCardAccent} style={{ backgroundColor: '#10b981' }} />
+                                                <div className={styles.mtechCardTitle}>
+                                                    <div className={styles.mtechIcon} style={{ background: '#ecfdf5', color: '#10b981' }}>🎓</div>
+                                                    M.Tech
+                                                </div>
+                                                <ul className={styles.mtechList}>
+                                                    <li className={styles.mtechItem}>
+                                                        <div className={styles.mtechItemIcon} style={{ fontSize: '1.5rem', lineHeight: '1rem', color: '#000000' }}>•</div>
+                                                        <span style={{ fontWeight: '500' }}>Admission is from the seventh semester onwards.</span>
+                                                    </li>
+                                                    <li className={styles.mtechItem}>
+                                                        <div className={styles.mtechItemIcon} style={{ fontSize: '1.5rem', lineHeight: '1rem', color: '#000000' }}>•</div>
+                                                        <span style={{ fontWeight: '500' }}>Students are required to complete 64 additional credits and fulfil all M.Tech requirements.</span>
+                                                    </li>
+                                                    <li className={styles.mtechItem}>
+                                                        <div className={styles.mtechItemIcon} style={{ fontSize: '1.5rem', lineHeight: '1rem', color: '#000000' }}>•</div>
+                                                        <span style={{ fontWeight: '500' }}>On successful completion, separate B.Tech and M.Tech degrees shall be awarded.</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                            <div className={styles.mtechCard}>
+                                                <div className={styles.mtechCardAccent} style={{ backgroundColor: '#ec4899' }} />
+                                                <div className={styles.mtechCardTitle}>
+                                                    <div className={styles.mtechIcon} style={{ background: '#fce7f3', color: '#ec4899' }}>🔬</div>
+                                                    M.Tech (Research)
+                                                </div>
+                                                <ul className={styles.mtechList}>
+                                                    <li className={styles.mtechItem}>
+                                                        <div className={styles.mtechItemIcon} style={{ fontSize: '1.5rem', lineHeight: '1rem', color: '#000000' }}>•</div>
+                                                        <span style={{ fontWeight: '500' }}>Students are required to complete 12 course credits beyond the B.Tech requirements, along with a research thesis.</span>
+                                                    </li>
+                                                    <li className={styles.mtechItem}>
+                                                        <div className={styles.mtechItemIcon} style={{ fontSize: '1.5rem', lineHeight: '1rem', color: '#000000' }}>•</div>
+                                                        <span style={{ fontWeight: '500' }}>On successful completion, separate B.Tech and M.Tech (Research) degrees shall be awarded.</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div className={styles.note} style={{ marginTop: '1rem' }}>
+                                            <strong>Note:</strong> For detailed rules, eligibility conditions, and procedural requirements, students are advised to refer to the <Link href="/handbook" style={{ color: '#2563eb', textDecoration: 'underline' }}>Student Information Handbook</Link>.
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </>
                 )}
@@ -1817,12 +2207,36 @@ const MathematicsAndComputing = () => {
                                             {selectedCourse.details.books.map((book: any, index: number) => (
                                                 <li key={index} className={styles.bookItem}>
                                                     <div className={styles.bookNumber}>{index + 1}</div>
-                                                    <div className={styles.bookText} dangerouslySetInnerHTML={{
-                                                        __html: book.replace(
-                                                            /\((https?:\/\/[^\s]+)\)/g,
-                                                            '(<a href="$1" target="_blank" rel="noopener noreferrer" style="color: #2563eb; text-decoration: underline;">link</a>)'
-                                                        )
-                                                    }} />
+                                                    <div className={styles.bookText}>
+                                                        {(() => {
+                                                            const parts = book.split(/\((https?:\/\/[^\s]+)\)/g);
+                                                            return parts.map((part: string, i: number) => {
+                                                                if (part.match(/^https?:\/\/[^\s]+$/)) {
+                                                                    return (
+                                                                        <span key={i}>
+                                                                            (<a
+                                                                                href={part}
+                                                                                target="_blank"
+                                                                                rel="noopener noreferrer"
+                                                                                style={{ color: '#2563eb', textDecoration: 'underline' }}
+                                                                            >
+                                                                                link
+                                                                            </a>)
+                                                                        </span>
+                                                                    );
+                                                                } else if (i > 0 && parts[i - 1].match(/^https?:\/\/[^\s]+$/)) {
+                                                                    // handling the closing parenthesis which was consumed by split if we aren't careful, 
+                                                                    // but split with capturing group returns [text, group, text...]. 
+                                                                    // The regex `/\((https?:\/\/[^\s]+)\)/` matches the WHOLE `(url)`.
+                                                                    // So split will give: "Book Title " -> "https://..." -> "".
+                                                                    // My regex in replacement was specific. 
+                                                                    // Let's refine the logic to be robust.
+                                                                    return <span key={i}>{part}</span>;
+                                                                }
+                                                                return <span key={i}>{part}</span>;
+                                                            });
+                                                        })()}
+                                                    </div>
                                                 </li>
                                             ))}
                                         </ul>

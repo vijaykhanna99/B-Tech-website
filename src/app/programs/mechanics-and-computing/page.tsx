@@ -9,6 +9,7 @@ const MechanicsAndComputing = () => {
     const [activeSemester, setActiveSemester] = useState(1);
     const [selectedCourse, setSelectedCourse] = useState<any>(null);
     const [activeTheme, setActiveTheme] = useState(1);
+    const [activeOverviewElectiveTab, setActiveOverviewElectiveTab] = useState<string | null>(null);
     const [activeTab, setActiveTab] = useState('home');
     const semesters = [1, 2, 3, 4, 5, 6, 7, 8];
 
@@ -383,11 +384,8 @@ const MechanicsAndComputing = () => {
     return (
         <div className={styles.pageContainer}>
             {/* Top Header Bar */}
+            {/* Top Header Bar - Removed Back Link */}
             <div className={styles.headerSection}>
-                <Link href="/programs" className={styles.backLink}>
-                    ← Back to Programs
-                </Link>
-
             </div>
 
             {/* Hero Section */}
@@ -445,62 +443,468 @@ const MechanicsAndComputing = () => {
 
                 {/* Home Tab Content */}
                 {activeTab === 'home' && (
-                    <div className={styles.homeGrid}>
-                        <div className={styles.mainContent}>
-                            <div className={styles.introSection}>
-                                <h2 className={styles.sectionHeading} style={{ fontSize: '2rem', color: '#0f172a', marginBottom: '1rem', borderLeft: 'none', paddingLeft: 0 }}>
-                                    About the Programme
-                                </h2>
-                                <p className={styles.introText}>
-                                    The B.Tech program in Mechanics and Computing at IISc provides a unique blend of classical mechanics, modern mathematics, and advanced computing. This interdisciplinary approach prepares students to solve complex engineering problems using both theoretical insights and powerful computational tools, with applications ranging from robotics to biomechanics.
-                                </p>
-                            </div>
-
-                            <div className={styles.newsSection}>
-                                <div className={styles.newsSectionTitle}>
-                                    <span style={{ fontSize: '1.5rem' }}>📰</span> Latest News
+                    <div className={styles.mainContent}>
+                        <div className={styles.introSection}>
+                            <div className={styles.aboutWithVideo}>
+                                <div>
+                                    <h1 className={styles.heroHeading} style={{ fontSize: '2rem', color: '#0f172a', marginBottom: '1rem' }}>
+                                        About the Programme
+                                    </h1>
+                                    <p className={styles.introText} style={{ marginBottom: '1.5rem' }}>
+                                        The B.Tech programme in Mechanics and Computing integrates fundamental principles of mechanics with modern computational methods to prepare students for emerging challenges in engineering and technology. The programme develops strong foundations in mathematics, physics, engineering mechanics, and computational sciences, enabling students to analyse complex physical systems, design intelligent solutions, and apply data-driven approaches across diverse engineering domains.
+                                    </p>
+                                    <p className={styles.introText} style={{ marginBottom: 0 }}>
+                                        With an emphasis on modelling, simulation, and interdisciplinary problem-solving, the programme equips students with the technical skills required for careers in advanced engineering, robotics, computational design, and technology-driven industries, while also supporting pathways toward higher studies and research.
+                                    </p>
                                 </div>
-                                {dummyNews.map((news, index) => (
-                                    <div key={index} className={styles.newsCard}>
-                                        <div className={styles.newsContent}>
-                                            <div className={styles.newsDate}>{news.date}</div>
-                                            <div className={styles.newsTitle}>{news.title}</div>
-                                            <div className={styles.newsExcerpt}>{news.excerpt}</div>
+                                <div className={styles.videoSection}>
+                                    <div className={styles.videoWrapper}>
+                                        <iframe
+                                            src="" // Placeholder: Video to be added later
+                                            title="B.Tech in Mechanics and Computing at IISc"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowFullScreen
+                                            style={{ backgroundColor: '#e2e8f0' }} // Grey placeholder
+                                        />
+                                        {/* Video placeholder text overlay */}
+                                        <div style={{
+                                            position: 'absolute',
+                                            top: '50%',
+                                            left: '50%',
+                                            transform: 'translate(-50%, -50%)',
+                                            color: '#64748b',
+                                            fontWeight: '600',
+                                            pointerEvents: 'none',
+                                            zIndex: 0
+                                        }}>
+                                            Video Coming Soon
                                         </div>
                                     </div>
-                                ))}
+                                </div>
+                            </div>
+                            <div style={{ marginTop: '2rem', color: '#334155', lineHeight: '1.7' }}>
+                                <h3 style={{ fontSize: '1.25rem', fontWeight: '700', color: '#1e293b', marginBottom: '1rem' }}>
+                                    Key Highlights
+                                </h3>
+                                <ul style={{ listStyleType: 'disc', paddingLeft: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                                    <li><strong>Mechanics and Computing Core:</strong> Strong foundation in solid and fluid mechanics, dynamics, computational modelling, and numerical methods for analysing engineering systems.</li>
+                                    <li><strong>Scientific and computational foundations:</strong> Rigorous training in mathematics, physics, and computing to support simulation-driven engineering and modern technological applications.</li>
+                                    <li><strong>Modelling and simulation focus:</strong> Emphasis on computational tools, system-level design, and hands-on problem-solving through interdisciplinary learning.</li>
+                                    <li><strong>Flexible and interdisciplinary learning:</strong> Opportunities to explore electives across engineering, AI/ML, robotics, and applied sciences within the Institute.</li>
+                                    <li><strong>Industry and innovation exposure:</strong> Access to collaborative projects and IISc’s ecosystem in Bengaluru — India’s technology hub — preparing students for impactful engineering careers.</li>
+                                </ul>
                             </div>
                         </div>
 
-                        <div className={styles.sidebar}>
-                            <div className={styles.announcementList}>
-                                <div className={styles.newsSectionTitle} style={{ marginBottom: '1rem', fontSize: '1.1rem' }}>
-                                    <span style={{ fontSize: '1.2rem' }}>📢</span> Announcements
-                                </div>
-                                {dummyAnnouncements.map((ann, index) => (
-                                    <div key={index} className={styles.announcementItem}>
-                                        <div className={styles.announcementBadge}>New</div>
-                                        <div className={styles.announcementText}>{ann.text}</div>
-                                        {ann.link && (
-                                            <Link href={ann.link} className={styles.announcementLink}>
-                                                Read More →
-                                            </Link>
-                                        )}
-                                    </div>
-                                ))}
-                            </div>
+                        {/* Why Mechanics & Computing Section */}
+                        <div style={{ textAlign: 'center', marginTop: '5rem', marginBottom: '4rem' }}>
+                            <h2 style={{
+                                fontSize: '2rem',
+                                fontWeight: '700',
+                                color: '#0f172a',
+                                letterSpacing: '-0.02em',
+                                marginBottom: '1rem'
+                            }}>
+                                Why <span style={{ color: '#2563eb' }}>Mechanics & Computing</span>
+                            </h2>
+                            <p style={{
+                                color: '#475569',
+                                fontSize: '1.1rem',
+                                maxWidth: '900px',
+                                margin: '0 auto',
+                                lineHeight: '1.7'
+                            }}>
+                                Preparing students to solve complex engineering problems using both mechanical intuition and advanced computing tools.
+                            </p>
                         </div>
+
+                        <div className="features-grid" style={{
+                            display: 'grid',
+                            gridTemplateColumns: 'repeat(2, 1fr)',
+                            gap: '2rem',
+                            marginBottom: '4rem',
+                            width: '100%'
+                        }}>
+                            {[
+                                {
+                                    title: "The Evolution",
+                                    heading: "Why Mechanics & Computing instead of Traditional Mechanical Engineering?",
+                                    points: [
+                                        "Traditional Mechanical Engineering focuses on physical design, manufacturing, and classical mechanics.",
+                                        "Mechanics & Computing integrates these foundations with modern computational methods such as simulation, numerical modeling, and data-driven engineering.",
+                                        "The program prepares students to solve complex engineering problems using both mechanical intuition and advanced computing tools."
+                                    ],
+                                    theme: "slate",
+                                    icon: (
+                                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                                        </svg>
+                                    )
+                                },
+                                {
+                                    title: "The Institute",
+                                    heading: "Why Mechanics & Computing (M&C) at IISc?",
+                                    points: [
+                                        "IISc offers a research-oriented and interdisciplinary environment combining mechanics, mathematics, and computational engineering.",
+                                        "Students gain exposure to advanced simulation techniques, robotics, and computational design through hands-on learning and research-driven courses.",
+                                        "The flexible academic structure encourages collaboration with aerospace, AI, materials science, and applied mathematics."
+                                    ],
+                                    theme: "indigo",
+                                    icon: (
+                                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                            <path d="M3 21h18M5 21V7l8-4 8 4v14M8 21v-4h8v4" />
+                                        </svg>
+                                    )
+                                },
+                                {
+                                    title: "Uniqueness",
+                                    heading: "What is Unique about IISc Mechanics & Computing Program?",
+                                    points: [
+                                        "Core engineering fundamentals are completed early, followed by flexible electives aligned with computational mechanics and modern engineering systems.",
+                                        "Strong emphasis on numerical methods, modeling, and simulation prepares students for future technology-driven industries.",
+                                        "The curriculum bridges classical mechanics with cutting-edge computational approaches rarely offered in traditional programs."
+                                    ],
+                                    theme: "teal",
+                                    icon: (
+                                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                        </svg>
+                                    )
+                                },
+                                {
+                                    title: "Career",
+                                    heading: "What are the Career Options after IISc Mechanics & Computing?",
+                                    points: [
+                                        "Graduates can pursue careers in robotics, simulation engineering, aerospace, automotive technology, advanced manufacturing, and computational engineering.",
+                                        "Higher studies opportunities include computational mechanics, robotics, control systems, AI-driven engineering, and applied mathematics.",
+                                        "Emerging fields such as digital twins, autonomous systems, and high-performance engineering simulations are also popular pathways."
+                                    ],
+                                    theme: "blue",
+                                    icon: (
+                                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                        </svg>
+                                    )
+                                }
+                            ].map((card, idx) => (
+                                <div key={idx} style={{
+                                    background: '#ffffff',
+                                    borderRadius: '16px',
+                                    padding: '2.5rem',
+                                    border: '1px solid #e2e8f0',
+                                    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)',
+                                    transition: 'all 0.3s ease',
+                                    position: 'relative',
+                                    overflow: 'hidden',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    height: '100%',
+                                    isolation: 'isolate'
+                                }}
+                                    onMouseEnter={(e) => {
+                                        e.currentTarget.style.transform = 'translateY(-5px)';
+                                        e.currentTarget.style.boxShadow = '0 20px 25px -5px rgba(0, 0, 0, 0.1)';
+                                        e.currentTarget.style.borderColor = '#cbd5e1';
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.currentTarget.style.transform = 'translateY(0)';
+                                        e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.05)';
+                                        e.currentTarget.style.borderColor = '#e2e8f0';
+                                    }}
+                                >
+                                    {/* Accent Top Line */}
+                                    <div style={{
+                                        position: 'absolute',
+                                        top: 0,
+                                        left: 0,
+                                        right: 0,
+                                        height: '4px',
+                                        background: card.theme === 'slate' ? '#475569' :
+                                            card.theme === 'indigo' ? '#4f46e5' :
+                                                card.theme === 'teal' ? '#0d9488' : '#2563eb'
+                                    }} />
+
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem' }}>
+                                        <span style={{
+                                            fontSize: '0.8rem',
+                                            fontWeight: '700',
+                                            textTransform: 'uppercase',
+                                            letterSpacing: '0.05em',
+                                            color: card.theme === 'slate' ? '#475569' :
+                                                card.theme === 'indigo' ? '#4f46e5' :
+                                                    card.theme === 'teal' ? '#0d9488' : '#2563eb',
+                                            background: card.theme === 'slate' ? '#f1f5f9' :
+                                                card.theme === 'indigo' ? '#eef2ff' :
+                                                    card.theme === 'teal' ? '#ccfbf1' : '#eff6ff',
+                                            padding: '0.4rem 0.8rem',
+                                            borderRadius: '6px'
+                                        }}>
+                                            {card.title}
+                                        </span>
+                                        <div style={{ color: '#94a3b8' }}>
+                                            {card.icon}
+                                        </div>
+                                    </div>
+
+                                    <h3 style={{
+                                        fontSize: '1.25rem',
+                                        fontWeight: '800',
+                                        color: '#0f172a',
+                                        marginBottom: '1rem',
+                                        lineHeight: '1.3',
+                                        minHeight: '3rem'
+                                    }}>
+                                        {card.heading}
+                                    </h3>
+
+                                    <ul style={{
+                                        margin: 0,
+                                        paddingLeft: '1.5rem',
+                                        color: '#334155',
+                                        flex: 1,
+                                        listStyleType: 'disc',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        gap: '0.75rem'
+                                    }}>
+                                        {card.points.map((point, i) => (
+                                            <li key={i} style={{ lineHeight: '1.6' }}>
+                                                {point}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            ))}
+                        </div>
+                        <style jsx>{`
+                            @media (max-width: 900px) {
+                                .features-grid {
+                                    grid-template-columns: 1fr !important;
+                                }
+                            }
+                        `}</style>
                     </div>
                 )}
 
                 {/* Course Structure Tab Content */}
                 {activeTab === 'structure' && (
                     <>
+                        {/* Basic Structure */}
                         <div className={styles.overviewSection}>
-                            <h2 className={styles.sectionHeading}>Course Overview</h2>
+                            <h2 className={styles.sectionHeading}>Basic Structure</h2>
                             <p className={styles.overviewText}>
-                                The B.Tech program in Mechanics and Computing focuses on the intersection of mechanics, computation, and data science. It equips students with the skills to analyze, design, and control complex mechanical systems using modern computational tools.
+                                The Bachelor of Technology (Mechanics and Computing) is a four-year programme, organised into 8 semesters. Students need to complete 128 credits as specified in the table and sections below.
                             </p>
+
+                            <div style={{ marginBottom: '2rem', marginTop: '1.5rem' }}>
+                                <div className={styles.tableContainer}>
+                                    <table className={styles.courseTable}>
+                                        <thead>
+                                            <tr>
+                                                <th style={{ verticalAlign: 'middle', textAlign: 'center', width: '25%' }}>Course Category</th>
+                                                <th style={{ verticalAlign: 'middle', textAlign: 'center' }}>Core</th>
+                                                <th style={{ verticalAlign: 'middle', textAlign: 'center' }}>Breadth Soft Core</th>
+                                                <th style={{ verticalAlign: 'middle', textAlign: 'center' }}>Humanities</th>
+                                                <th style={{ verticalAlign: 'middle', textAlign: 'center' }}>ISP-I /ISP-II /Project /Electives</th>
+                                                <th style={{ verticalAlign: 'middle', textAlign: 'center' }}>Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td style={{ fontWeight: 600 }}>Minimum Credit Requirement</td>
+                                                <td style={{ textAlign: 'center' }}>68</td>
+                                                <td style={{ textAlign: 'center' }}>4</td>
+                                                <td style={{ textAlign: 'center' }}>9</td>
+                                                <td style={{ textAlign: 'center' }}>47*</td>
+                                                <td style={{ textAlign: 'center', fontWeight: 'bold' }}>128</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div style={{ fontSize: '0.95rem', color: '#334155', marginTop: '1rem' }}>
+                                <div style={{ marginBottom: '0.25rem' }}>
+                                    <strong>Note:</strong>
+                                </div>
+                                <div>
+                                    *Any excess credits in the Breadth Soft Core or Humanities pool will be counted towards elective credits.
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Overview of Course Requirements */}
+                        <div className={styles.overviewSection} style={{ marginTop: '3rem' }}>
+                            <h2 className={styles.sectionHeading}>Overview of Course Requirements</h2>
+
+                            {/* i) CORE */}
+                            <div style={{ marginBottom: '1.5rem' }}>
+                                <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#1e293b', marginBottom: '0.5rem', textTransform: 'uppercase' }}>
+                                    i) CORE
+                                </h3>
+                                <ul style={{ margin: 0, paddingLeft: '1.5rem', color: '#334155', fontSize: '1rem', lineHeight: '1.6' }}>
+                                    <li style={{ marginBottom: '0.5rem' }}>
+                                        <strong>Sciences:</strong> Analysis and Linear Algebra I and II, Mechanics, Oscillations and Waves, Electricity, Magnetism and Optics, Probability and Statistics.
+                                    </li>
+                                    <li style={{ marginBottom: '0.5rem' }}>
+                                        <strong>Math & Computing:</strong> Introduction to Computer Systems, Introduction to Numerical Analysis, Introduction to AI/ML.
+                                    </li>
+                                    <li style={{ marginBottom: '0.5rem' }}>
+                                        <strong>Engineering:</strong> Introduction to Electrical and Electronics Engineering, Algorithms and Programming, Numerical Methods, Introduction to Materials, Thermodynamics, Mechanics of Solids, Mechanics of Fluids, Solids & Fluids Lab.
+                                    </li>
+                                    <li>
+                                        <strong>Mechanics & Computing:</strong> Engg. Marvels, Introduction to Mech. & Comput. I and II, Product Realization, Data-driven analysis of ME systems, Sensors. measurement and hardware Lab.
+                                    </li>
+                                </ul>
+                            </div>
+
+                            {/* ii) BREADTH SOFT CORE */}
+                            <div style={{ marginBottom: '1.5rem' }}>
+                                <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#1e293b', marginBottom: '0.5rem', textTransform: 'uppercase' }}>
+                                    ii) BREADTH SOFT CORE
+                                </h3>
+                                <p style={{ margin: 0, color: '#334155', fontSize: '1rem', lineHeight: '1.6' }}>
+                                    4 credits from a selection of Physics and Electrical Engineering subject.
+                                </p>
+                                <p style={{ margin: '0.5rem 0 0', color: '#334155', fontStyle: 'italic', fontSize: '0.95rem' }}>
+                                    The list of core and breadth soft core courses and their semester wise break-up can be found in the scheme of instructions (SoI).
+                                </p>
+                            </div>
+
+                            {/* iii) PROJECTS */}
+                            <div style={{ marginBottom: '1.5rem' }}>
+                                <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#1e293b', marginBottom: '0.5rem', textTransform: 'uppercase' }}>
+                                    iii) PROJECTS
+                                </h3>
+                                <p style={{ margin: 0, color: '#334155', fontSize: '1rem', lineHeight: '1.6' }}>
+                                    ISP stands for Independent Study Project. ISP-I (semester 7), ISP-II (semester 8) carries 6 credits each. Project refers to Research or Industry Project and carries 12 credits. Detailed rules governing projects are specified in Section 6.6.
+                                </p>
+                            </div>
+
+                            {/* iv) ELECTIVES */}
+                            <div style={{ marginBottom: '1.5rem' }}>
+                                <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#1e293b', marginBottom: '0.5rem', textTransform: 'uppercase' }}>
+                                    iv) ELECTIVES
+                                </h3>
+                                <p style={{ margin: 0, color: '#334155', fontSize: '1rem', lineHeight: '1.6', marginBottom: '1.5rem' }}>
+                                    Elective credits can be fulfilled by passing any course offered across the institute. Thematic Elective streams are provided below as suggested electives.
+                                </p>
+
+                                <div className={styles.accordionContainer}>
+                                    {[
+                                        {
+                                            id: 'theme1',
+                                            title: 'Theme I: Fluid, Thermal and Energy',
+                                            courses: [
+                                                "ME 202 (Microhydrodynamics)",
+                                                "ME 207 (Capillarity and Wetting Phenomena)",
+                                                "ME 272 (Thermal management of electronics)",
+                                                "ME 274 (Convective Heat Transfer)",
+                                                "ME 279 (Radiative Transport)",
+                                                "ME 280 (Fundamentals of Nanoscale Conduction Heat Transport)",
+                                                "ME 284 (Applied Combustion)",
+                                                "ME 285 (Turbomachine Theory)",
+                                                "ME 298 (Fluid Turbulence)",
+                                                "SS 205 (Symmetry and Structure in the Solid State)",
+                                                "PD 202 (Elements of solid and fluid mechanics)"
+                                            ],
+                                            note: "Suggested Basket of Courses"
+                                        },
+                                        {
+                                            id: 'theme2',
+                                            title: 'Theme II: Mechanisms and Robots',
+                                            courses: [
+                                                "ME 246 (Introduction to Robotics)",
+                                                "ME 254 (Compliant Mechanisms)",
+                                                "ME 260 (Structural Optimization)",
+                                                "IN 227 (Control Systems Design)",
+                                                "CP 315 (Robot learning and control)",
+                                                "CP 232 (Swarm robotic systems)",
+                                                "CP 230 (Autonomous navigation and planning)",
+                                                "CP 260 (Robot perception)"
+                                            ],
+                                            note: "Suggested Basket of Courses"
+                                        },
+                                        {
+                                            id: 'theme3',
+                                            title: 'Theme III: Computational Mechanics',
+                                            courses: [
+                                                "ME 257 (Finite Element Methods)",
+                                                "ME 259 (Nonlinear Finite Element Methods)",
+                                                "ME 278 (Practical introduction to Data Analysis for Engineers)",
+                                                "ME 303 (Partial Differential Equations with Applications)",
+                                                "ME 282 (Computational Heat Transfer and Fluid Flow)",
+                                                "DS 211 (Numerical Optimization)",
+                                                "DS 226 (Introduction to computing for AI and machine learning)",
+                                                "DS 284 (Numerical linear algebra)"
+                                            ],
+                                            note: "Suggested Basket of Courses"
+                                        },
+                                        {
+                                            id: 'theme4',
+                                            title: 'Theme IV: Core Mechanics',
+                                            courses: [
+                                                "ME 253 (Vibrations of Plates and Shells)",
+                                                "ME 255 (Fundamentals of Tribology)",
+                                                "ME 204 (Mechanics of the Elastica)",
+                                                "ME 292 (Contact and Impact Mechanics)",
+                                                "ME 293 (Fracture Mechanics)",
+                                                "ME 223 (Nonlinear Dynamics of Physical Systems)",
+                                                "ME 242 (Solid Mechanics)",
+                                                "ME 224 (Mechanical Vibrations)"
+                                            ],
+                                            note: "Suggested Basket of Courses"
+                                        },
+                                        {
+                                            id: 'theme5',
+                                            title: 'Theme V: Mechanobiology',
+                                            courses: [
+                                                "ME 225 (Introduction to Soft Matter)",
+                                                "ME 251 (Biomechanics)",
+                                                "ME 264 (Mechanics in Biology)",
+                                                "BE 213 (Fundamentals of Bioengineering)",
+                                                "BE 211 (Cell Mechanics)",
+                                                "BE 207 (Mathematical Methods for Bioengineers)",
+                                                "MT 271 (Introduction to Biomaterials Science and Engineering)",
+                                                "PH 350 (Physics of Soft Condensed Matter)",
+                                                "EC 303 (Stochastic and Spatial Dynamics in Biology)"
+                                            ],
+                                            note: "ME courses"
+                                        }
+                                    ].map((theme) => (
+                                        <div key={theme.id} className={styles.accordionItem}>
+                                            <button
+                                                className={`${styles.accordionHeader} ${activeOverviewElectiveTab === theme.id ? styles.accordionHeaderActive : ''}`}
+                                                onClick={() => setActiveOverviewElectiveTab(activeOverviewElectiveTab === theme.id ? null : theme.id)}
+                                            >
+                                                <span className={styles.accordionTitle}>
+                                                    {theme.title}
+                                                </span>
+                                                <span className={styles.accordionIcon}>
+                                                    {activeOverviewElectiveTab === theme.id ? '−' : '+'}
+                                                </span>
+                                            </button>
+                                            {activeOverviewElectiveTab === theme.id && (
+                                                <div className={styles.accordionContent} style={{ padding: '1.5rem' }}>
+                                                    <div style={{ fontWeight: 600, marginBottom: '1rem', color: '#1e293b', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.5rem' }}>
+                                                        {theme.note}
+                                                    </div>
+                                                    <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem', color: '#475569', fontSize: '0.95rem' }}>
+                                                        {theme.courses.map((course, idx) => (
+                                                            <li key={idx} style={{ display: 'flex', gap: '0.5rem' }}>
+                                                                <span style={{ color: '#2563eb', fontWeight: 'bold' }}>•</span>
+                                                                {course}
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                            )}
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
 
                         {/* Semester-wise Requirements Section */}
@@ -786,164 +1190,7 @@ const MechanicsAndComputing = () => {
                             </div>
                         </div>
 
-                        <div className={styles.overviewSection} style={{ marginTop: '3rem' }}>
-                            <h2 id="thematic-electives" className={styles.sectionHeading} style={{ borderLeft: 'none', paddingLeft: 0, fontSize: '1.75rem', marginBottom: '1.5rem' }}>
-                                Thematic Elective streams:
-                            </h2>
 
-                            {/* Thematic Electives Tabs */}
-                            <div className={styles.semesterNav} style={{ marginBottom: '1.5rem', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.5rem' }}>
-                                {[
-                                    'I: Fluid, Thermal and Energy',
-                                    'II: Mechanisms and Robots',
-                                    'III: Computational Mechanics',
-                                    'IV: Core Mechanics',
-                                    'V: Mechanobiology'
-                                ].map((theme, index) => (
-                                    <button
-                                        key={index}
-                                        className={`${styles.semesterTab} ${activeTheme === index + 1 ? styles.activeTab : ''}`}
-                                        onClick={() => setActiveTheme(index + 1)}
-                                        style={{
-                                            borderRadius: '99px',
-                                            padding: '0.6rem 1.25rem',
-                                            backgroundColor: activeTheme === index + 1 ? '#0f172a' : '#f1f5f9',
-                                            color: activeTheme === index + 1 ? 'white' : '#64748b'
-                                        }}
-                                    >
-                                        {theme}
-                                    </button>
-                                ))}
-                            </div>
-
-                            <div style={{ background: '#f8fafc', borderRadius: '12px', padding: '2rem', border: '1px solid #e2e8f0' }}>
-
-                                {activeTheme === 1 && (
-                                    <div>
-                                        <h4 style={{ margin: '0 0 1.5rem 0', color: '#3b82f6', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                            <span style={{ background: '#dbeafe', width: '32px', height: '32px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.9rem', fontWeight: 'bold' }}>I</span>
-                                            Fluid, Thermal and Energy
-                                        </h4>
-                                        <div style={{ fontWeight: 600, marginBottom: '1rem', color: '#1e293b', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.5rem' }}>Suggested Basket of Courses</div>
-                                        <ul style={{ columnCount: 1, margin: 0, paddingLeft: '1.2rem' }}>
-                                            {[
-                                                "ME 202 (Microhydrodynamics)",
-                                                "ME 207 (Capillarity and Wetting Phenomena)",
-                                                "ME 272 (Thermal management of electronics)",
-                                                "ME 274 (Convective Heat Transfer)",
-                                                "ME 279 (Radiative Transport)",
-                                                "ME 280 (Fundamentals of Nanoscale Conduction Heat Transport)",
-                                                "ME 284 (Applied Combustion)",
-                                                "ME 285 (Turbomachine Theory)",
-                                                "ME 298 (Fluid Turbulence)",
-                                                "SS 205 (Symmetry and Structure in the Solid State)",
-                                                "PD 202 (Elements of solid and fluid mechanics)"
-                                            ].map((item, idx) => (
-                                                <li key={idx} style={{ marginBottom: '0.5rem', color: '#334155' }}>{item}</li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                )}
-
-                                {activeTheme === 2 && (
-                                    <div>
-                                        <h4 style={{ margin: '0 0 1.5rem 0', color: '#3b82f6', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                            <span style={{ background: '#dbeafe', width: '32px', height: '32px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.9rem', fontWeight: 'bold' }}>II</span>
-                                            Mechanisms and Robots
-                                        </h4>
-                                        <div style={{ fontWeight: 600, marginBottom: '1rem', color: '#1e293b', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.5rem' }}>Suggested Basket of Courses</div>
-                                        <ul style={{ columnCount: 1, margin: 0, paddingLeft: '1.2rem' }}>
-                                            {[
-                                                "ME 246 (Introduction to Robotics)",
-                                                "ME 254 (Compliant Mechanisms)",
-                                                "ME 260 (Structural Optimization)",
-                                                "IN 227 (Control Systems Design)",
-                                                "CP 315 (Robot learning and control)",
-                                                "CP 232 (Swarm robotic systems)",
-                                                "CP 230 (Autonomous navigation and planning)",
-                                                "CP 260 (Robot perception)"
-                                            ].map((item, idx) => (
-                                                <li key={idx} style={{ marginBottom: '0.5rem', color: '#334155' }}>{item}</li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                )}
-
-                                {activeTheme === 3 && (
-                                    <div>
-                                        <h4 style={{ margin: '0 0 1.5rem 0', color: '#3b82f6', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                            <span style={{ background: '#dbeafe', width: '32px', height: '32px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.9rem', fontWeight: 'bold' }}>III</span>
-                                            Computational Mechanics
-                                        </h4>
-                                        <div style={{ fontWeight: 600, marginBottom: '1rem', color: '#1e293b', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.5rem' }}>Suggested Basket of Courses</div>
-                                        <ul style={{ columnCount: 1, margin: 0, paddingLeft: '1.2rem' }}>
-                                            {[
-                                                "ME 257 (Finite Element Methods)",
-                                                "ME 259 (Nonlinear Finite Element Methods)",
-                                                "ME 278 (Practical introduction to Data Analysis for Engineers)",
-                                                "ME 303 (Partial Differential Equations with Applications)",
-                                                "ME 282 (Computational Heat Transfer and Fluid Flow)",
-                                                "DS 211 (Numerical Optimization)",
-                                                "DS 226 (Introduction to computing for AI and machine learning)",
-                                                "DS 284 (Numerical linear algebra)"
-                                            ].map((item, idx) => (
-                                                <li key={idx} style={{ marginBottom: '0.5rem', color: '#334155' }}>{item}</li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                )}
-
-                                {activeTheme === 4 && (
-                                    <div>
-                                        <h4 style={{ margin: '0 0 1.5rem 0', color: '#3b82f6', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                            <span style={{ background: '#dbeafe', width: '32px', height: '32px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.9rem', fontWeight: 'bold' }}>IV</span>
-                                            Core Mechanics
-                                        </h4>
-                                        <div style={{ fontWeight: 600, marginBottom: '1rem', color: '#1e293b', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.5rem' }}>Suggested Basket of Courses</div>
-                                        <ul style={{ columnCount: 1, margin: 0, paddingLeft: '1.2rem' }}>
-                                            {[
-                                                "ME 253 (Vibrations of Plates and Shells)",
-                                                "ME 255 (Fundamentals of Tribology)",
-                                                "ME 204 (Mechanics of the Elastica)",
-                                                "ME 292 (Contact and Impact Mechanics)",
-                                                "ME 293 (Fracture Mechanics)",
-                                                "ME 223 (Nonlinear Dynamics of Physical Systems)",
-                                                "ME 242 (Solid Mechanics)",
-                                                "ME 224 (Mechanical Vibrations)"
-                                            ].map((item, idx) => (
-                                                <li key={idx} style={{ marginBottom: '0.5rem', color: '#334155' }}>{item}</li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                )}
-
-                                {activeTheme === 5 && (
-                                    <div>
-                                        <h4 style={{ margin: '0 0 1.5rem 0', color: '#3b82f6', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                            <span style={{ background: '#dbeafe', width: '32px', height: '32px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.9rem', fontWeight: 'bold' }}>V</span>
-                                            Mechanobiology
-                                        </h4>
-                                        <div style={{ fontWeight: 600, marginBottom: '1rem', color: '#1e293b', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.5rem' }}>ME courses</div>
-                                        <ul style={{ columnCount: 1, margin: 0, paddingLeft: '1.2rem' }}>
-                                            {[
-                                                "ME 225 (Introduction to Soft Matter)",
-                                                "ME 251 (Biomechanics)",
-                                                "ME 264 (Mechanics in Biology)",
-                                                "BE 213 (Fundamentals of Bioengineering)",
-                                                "BE 211 (Cell Mechanics)",
-                                                "BE 207 (Mathematical Methods for Bioengineers)",
-                                                "MT 271 (Introduction to Biomaterials Science and Engineering)",
-                                                "PH 350 (Physics of Soft Condensed Matter)",
-                                                "EC 303 (Stochastic and Spatial Dynamics in Biology)"
-                                            ].map((item, idx) => (
-                                                <li key={idx} style={{ marginBottom: '0.5rem', color: '#334155' }}>{item}</li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                )}
-
-                            </div>
-                        </div>
 
                         {/* Continuing to M.Tech / M.Tech (Research) - Updated Section */}
                         <div className={styles.overviewSection} style={{ marginTop: '3rem' }}>

@@ -19,8 +19,7 @@ const DeansPage = () => {
             name: "Prof. Srikanth Krishnan Iyer",
             program: "Mathematics",
             image: "https://iisc.ac.in/wp-content/uploads/2022/01/skiyer-1.jpg",
-            link: "https://math.iisc.ac.in/~skiyer/",
-            description: "Oversees the academic framework of the B.Tech program in collaboration with program faculty advisors."
+            link: "https://math.iisc.ac.in/~skiyer/"
         }
     ];
 
@@ -43,7 +42,6 @@ const DeansPage = () => {
                             </h2>
                             <p className={styles.deanRole}>{person.role}</p>
                             <p className={styles.deanProgram}>{person.program}</p>
-                            <p className={styles.deanDesc}>{person.description}</p>
                         </div>
                     </div>
                 ))}

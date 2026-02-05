@@ -10,6 +10,7 @@ const MaterialsScienceAndEngineering = () => {
     const [selectedCourse, setSelectedCourse] = useState<any>(null);
     const [activeTheme, setActiveTheme] = useState(1);
     const [activeTab, setActiveTab] = useState('home');
+    const [activeOverviewSoftCoreTab, setActiveOverviewSoftCoreTab] = useState<string | null>(null);
 
     const dummyNews = [
         {
@@ -513,11 +514,8 @@ const MaterialsScienceAndEngineering = () => {
     return (
         <div className={styles.pageContainer}>
             {/* Top Header Bar */}
+            {/* Top Header Bar - Removed Back Link */}
             <div className={styles.headerSection}>
-                <Link href="/programs" className={styles.backLink}>
-                    ← Back to Programs
-                </Link>
-
             </div>
 
             {/* Hero Section */}
@@ -576,63 +574,542 @@ const MaterialsScienceAndEngineering = () => {
 
                 {/* Home Tab Content */}
                 {activeTab === 'home' && (
-                    <div className={styles.homeGrid}>
-                        <div className={styles.mainContent}>
-                            <div className={styles.introSection}>
-                                <h2 className={styles.sectionHeading} style={{ borderLeft: 'none', paddingLeft: 0, fontSize: '2rem', marginBottom: '1.5rem', color: '#0f172a' }}>
-                                    About the Programme
-                                </h2>
-                                <p className={styles.introText}>
-                                    The B.Tech program in Materials Science and Engineering at IISc offers a comprehensive education that integrates science, mathematics, and engineering principles with a focus on advanced materials. Students engage in rigorous coursework and research in processing, characterization, and application of materials, preparing them for leadership roles in industry and academia.
-                                </p>
-                            </div>
-
-                            <div className={styles.newsSection}>
-                                <div className={styles.newsSectionTitle}>
-                                    <span style={{ fontSize: '1.5rem' }}>📰</span> Latest News
+                    <div className={styles.mainContent}>
+                        <div className={styles.introSection}>
+                            <div className={styles.aboutWithVideo}>
+                                <div>
+                                    <h1 className={styles.heroHeading} style={{ fontSize: '2rem', color: '#0f172a', marginBottom: '1rem' }}>
+                                        About the Programme
+                                    </h1>
+                                    <p className={styles.introText} style={{ marginBottom: '1.5rem' }}>
+                                        The B.Tech programme in Materials Science and Engineering prepares students to become future engineers and innovators at the forefront of the global materials revolution. The programme builds strong foundations across physics, chemistry, biology, mathematics, and informatics, enabling students to understand how materials influence advancements in artificial intelligence, quantum technologies, space systems, healthcare, energy, and sustainable infrastructure.
+                                    </p>
+                                    <p className={styles.introText} style={{ marginBottom: 0 }}>
+                                        With a strong emphasis on scientific fundamentals, interdisciplinary learning, and practical problem-solving, the programme equips students with the knowledge and skills required for impactful careers in industry, deep-tech innovation, and advanced engineering domains, while also providing pathways toward higher studies and research.
+                                    </p>
                                 </div>
-                                {dummyNews.map((news, index) => (
-                                    <div key={index} className={styles.newsCard}>
-                                        <div className={styles.newsContent}>
-                                            <div className={styles.newsDate}>{news.date}</div>
-                                            <div className={styles.newsTitle}>{news.title}</div>
-                                            <div className={styles.newsExcerpt}>{news.excerpt}</div>
+                                <div className={styles.videoSection}>
+                                    <div className={styles.videoWrapper}>
+                                        <iframe
+                                            src="" // Placeholder: Video to be added later
+                                            title="B.Tech in Materials Science and Engineering at IISc"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowFullScreen
+                                            style={{ backgroundColor: '#e2e8f0' }} // Grey placeholder
+                                        />
+                                        {/* Video placeholder text overlay */}
+                                        <div style={{
+                                            position: 'absolute',
+                                            top: '50%',
+                                            left: '50%',
+                                            transform: 'translate(-50%, -50%)',
+                                            color: '#64748b',
+                                            fontWeight: '600',
+                                            pointerEvents: 'none',
+                                            zIndex: 0
+                                        }}>
+                                            Video Coming Soon
                                         </div>
                                     </div>
-                                ))}
+                                </div>
+                            </div>
+                            <div style={{ marginTop: '2rem', color: '#334155', lineHeight: '1.7' }}>
+                                <h3 style={{ fontSize: '1.25rem', fontWeight: '700', color: '#1e293b', marginBottom: '1rem' }}>
+                                    Key Highlights
+                                </h3>
+                                <ul style={{ listStyleType: 'disc', paddingLeft: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                                    <li><strong>Materials Science Core:</strong> Comprehensive training in structure–property–processing relationships of materials, covering metals, ceramics, polymers, electronic materials, biomaterials, and emerging functional materials.</li>
+                                    <li><strong>Interdisciplinary scientific foundation:</strong> Strong grounding in physics, chemistry, biology, mathematics, and computational methods, enabling students to approach materials challenges from multiple scientific perspectives.</li>
+                                    <li><strong>Innovation-driven curriculum:</strong> Focus on designing, characterising, and engineering materials for next-generation applications across energy, electronics, healthcare, aerospace, and sustainability.</li>
+                                    <li><strong>Institute-wide collaboration:</strong> Opportunities to engage with IISc initiatives such as the medical school, AI and high-performance computing centres, and specialised centres of excellence in advanced materials and characterisation.</li>
+                                    <li><strong>Flexibility through electives and specialisations:</strong> Students can shape their academic trajectory through interdisciplinary electives and diverse project opportunities across the Institute.</li>
+                                    <li><strong>Industry and research exposure:</strong> Access to world-class laboratories, collaborative projects, and IISc’s ecosystem in Bengaluru — India’s technology hub — enabling strong academic, industrial, and strategic impact.</li>
+                                </ul>
                             </div>
                         </div>
 
-                        <div className={styles.sidebar}>
-                            <div className={styles.announcementList}>
-                                <div className={styles.newsSectionTitle} style={{ marginBottom: '1rem', fontSize: '1.1rem' }}>
-                                    <span style={{ fontSize: '1.2rem' }}>📢</span> Announcements
-                                </div>
-                                {dummyAnnouncements.map((ann, index) => (
-                                    <div key={index} className={styles.announcementItem}>
-                                        <div className={styles.announcementBadge}>New</div>
-                                        <div className={styles.announcementText}>{ann.text}</div>
-                                        {ann.link && (
-                                            <Link href={ann.link} className={styles.announcementLink}>
-                                                Read More →
-                                            </Link>
-                                        )}
-                                    </div>
-                                ))}
-                            </div>
+                        {/* Why Materials Science & Engineering Section */}
+                        <div style={{ textAlign: 'center', marginTop: '5rem', marginBottom: '4rem' }}>
+                            <h2 style={{
+                                fontSize: '2rem',
+                                fontWeight: '700',
+                                color: '#0f172a',
+                                letterSpacing: '-0.02em',
+                                marginBottom: '1rem'
+                            }}>
+                                Why <span style={{ color: '#2563eb' }}>Materials Science & Engineering</span>
+                            </h2>
+                            <p style={{
+                                color: '#475569',
+                                fontSize: '1.1rem',
+                                maxWidth: '900px',
+                                margin: '0 auto',
+                                lineHeight: '1.7'
+                            }}>
+                                Fostering innovation through the understanding and design of advanced materials for future technologies.
+                            </p>
                         </div>
+
+                        <div className="features-grid" style={{
+                            display: 'grid',
+                            gridTemplateColumns: 'repeat(2, 1fr)',
+                            gap: '2rem',
+                            marginBottom: '4rem',
+                            width: '100%'
+                        }}>
+                            {[
+                                {
+                                    title: "The Foundation",
+                                    heading: "Why Materials Science & Engineering?",
+                                    points: [
+                                        "Materials Science & Engineering focuses on understanding how the structure, properties, and processing of materials influence their performance in real-world applications.",
+                                        "The field combines principles from physics, chemistry, and engineering to design advanced materials used in electronics, aerospace, energy, and biomedical technologies.",
+                                        "Students develop strong analytical and experimental skills to innovate at the material level."
+                                    ],
+                                    theme: "slate",
+                                    icon: (
+                                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <line x1="12" y1="16" x2="12" y2="12"></line>
+                                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                                        </svg>
+                                    )
+                                },
+                                {
+                                    title: "The Institute",
+                                    heading: "Why Materials Science & Engineering at IISc?",
+                                    points: [
+                                        "IISc offers a research-driven environment with strong interdisciplinary foundations across science and engineering.",
+                                        "Students gain exposure to advanced laboratories, modern characterization techniques, and collaborative research opportunities.",
+                                        "The academic structure emphasizes both fundamental science and engineering applications of materials."
+                                    ],
+                                    theme: "indigo",
+                                    icon: (
+                                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                            <path d="M3 21h18M5 21V7l8-4 8 4v14M8 21v-4h8v4" />
+                                        </svg>
+                                    )
+                                },
+                                {
+                                    title: "Uniqueness",
+                                    heading: "What is Unique about IISc Materials Science & Engineering Program?",
+                                    points: [
+                                        "Core scientific and engineering fundamentals are built in the early years, followed by flexible electives aligned with student interests.",
+                                        "The curriculum integrates experimentation, computational methods, and real-world research problems.",
+                                        "This flexibility allows students to explore areas such as nanomaterials, electronic materials, biomaterials, and energy materials."
+                                    ],
+                                    theme: "teal",
+                                    icon: (
+                                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                        </svg>
+                                    )
+                                },
+                                {
+                                    title: "Career",
+                                    heading: "What are the Career Options after IISc Materials Science & Engineering?",
+                                    points: [
+                                        "Graduates can pursue careers in semiconductor technology, advanced manufacturing, aerospace materials, energy storage, and research laboratories.",
+                                        "Higher studies opportunities include nanotechnology, biomaterials, electronic materials, metallurgy, and materials physics.",
+                                        "Emerging areas such as sustainable materials, quantum materials, and next-generation electronics are also growing pathways."
+                                    ],
+                                    theme: "blue",
+                                    icon: (
+                                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                        </svg>
+                                    )
+                                }
+                            ].map((card, idx) => (
+                                <div key={idx} style={{
+                                    background: '#ffffff',
+                                    borderRadius: '16px',
+                                    padding: '2.5rem',
+                                    border: '1px solid #e2e8f0',
+                                    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)',
+                                    transition: 'all 0.3s ease',
+                                    position: 'relative',
+                                    overflow: 'hidden',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    height: '100%',
+                                    isolation: 'isolate'
+                                }}
+                                    onMouseEnter={(e) => {
+                                        e.currentTarget.style.transform = 'translateY(-5px)';
+                                        e.currentTarget.style.boxShadow = '0 20px 25px -5px rgba(0, 0, 0, 0.1)';
+                                        e.currentTarget.style.borderColor = '#cbd5e1';
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.currentTarget.style.transform = 'translateY(0)';
+                                        e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.05)';
+                                        e.currentTarget.style.borderColor = '#e2e8f0';
+                                    }}
+                                >
+                                    {/* Accent Top Line */}
+                                    <div style={{
+                                        position: 'absolute',
+                                        top: 0,
+                                        left: 0,
+                                        right: 0,
+                                        height: '4px',
+                                        background: card.theme === 'slate' ? '#475569' :
+                                            card.theme === 'indigo' ? '#4f46e5' :
+                                                card.theme === 'teal' ? '#0d9488' : '#2563eb'
+                                    }} />
+
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem' }}>
+                                        <span style={{
+                                            fontSize: '0.8rem',
+                                            fontWeight: '700',
+                                            textTransform: 'uppercase',
+                                            letterSpacing: '0.05em',
+                                            color: card.theme === 'slate' ? '#475569' :
+                                                card.theme === 'indigo' ? '#4f46e5' :
+                                                    card.theme === 'teal' ? '#0d9488' : '#2563eb',
+                                            background: card.theme === 'slate' ? '#f1f5f9' :
+                                                card.theme === 'indigo' ? '#eef2ff' :
+                                                    card.theme === 'teal' ? '#ccfbf1' : '#eff6ff',
+                                            padding: '0.4rem 0.8rem',
+                                            borderRadius: '6px'
+                                        }}>
+                                            {card.title}
+                                        </span>
+                                        <div style={{ color: '#94a3b8' }}>
+                                            {card.icon}
+                                        </div>
+                                    </div>
+
+                                    <h3 style={{
+                                        fontSize: '1.25rem',
+                                        fontWeight: '800',
+                                        color: '#0f172a',
+                                        marginBottom: '1rem',
+                                        lineHeight: '1.3',
+                                        minHeight: '3rem'
+                                    }}>
+                                        {card.heading}
+                                    </h3>
+
+                                    <ul style={{
+                                        margin: 0,
+                                        paddingLeft: '1.5rem',
+                                        color: '#334155',
+                                        flex: 1,
+                                        listStyleType: 'disc',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        gap: '0.75rem'
+                                    }}>
+                                        {card.points.map((point, i) => (
+                                            <li key={i} style={{ lineHeight: '1.6' }}>
+                                                {point}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            ))}
+                        </div>
+                        <style jsx>{`
+                            @media (max-width: 900px) {
+                                .features-grid {
+                                    grid-template-columns: 1fr !important;
+                                }
+                            }
+                        `}</style>
                     </div>
                 )}
 
                 {/* Course Structure Tab Content */}
                 {activeTab === 'structure' && (
                     <>
-                        {/* Course Overview */}
+                        {/* Basic Structure */}
                         <div className={styles.overviewSection}>
-                            <h2 className={styles.sectionHeading}>Course Overview</h2>
+                            <h2 className={styles.sectionHeading}>Basic Structure</h2>
                             <p className={styles.overviewText}>
-                                The B.Tech program in Materials Science and Engineering provides a comprehensive education in the processing, structure, properties, and performance of materials. It integrates fundamental sciences with engineering principles to prepare students for challenges in advanced materials development.
+                                The Bachelor of Technology (Materials Science and Engineering) is a four-year programme, organised into 8 semesters. Students need to complete 128 credits as specified in the table and sections below.
                             </p>
+
+                            <div style={{ marginBottom: '2rem', marginTop: '1.5rem' }}>
+                                <div className={styles.tableContainer}>
+                                    <table className={styles.courseTable}>
+                                        <thead>
+                                            <tr>
+                                                <th rowSpan={2} style={{ verticalAlign: 'middle', textAlign: 'center' }}>Core</th>
+                                                <th rowSpan={2} style={{ verticalAlign: 'middle', textAlign: 'center' }}>Breadth Soft Core</th>
+                                                <th rowSpan={2} style={{ verticalAlign: 'middle', textAlign: 'center' }}>Humanities</th>
+                                                <th colSpan={4} style={{ verticalAlign: 'middle', textAlign: 'center' }}>Soft Core</th>
+                                                <th rowSpan={2} style={{ verticalAlign: 'middle', textAlign: 'center' }}>ISP/Project</th>
+                                                <th rowSpan={2} style={{ verticalAlign: 'middle', textAlign: 'center' }}>Elective</th>
+                                                <th rowSpan={2} style={{ verticalAlign: 'middle', textAlign: 'center' }}>Total</th>
+                                            </tr>
+                                            <tr>
+                                                <th style={{ textAlign: 'center', padding: '0.5rem' }}>I</th>
+                                                <th style={{ textAlign: 'center', padding: '0.5rem' }}>II</th>
+                                                <th style={{ textAlign: 'center', padding: '0.5rem' }}>III</th>
+                                                <th style={{ textAlign: 'center', padding: '0.5rem' }}>IV</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr style={{ textAlign: 'center' }}>
+                                                <td>65</td>
+                                                <td>4</td>
+                                                <td>9</td>
+                                                <td>6</td>
+                                                <td>6</td>
+                                                <td>6</td>
+                                                <td>0-24</td>
+                                                <td>0-12</td>
+                                                <td>8*</td>
+                                                <td style={{ fontWeight: 'bold' }}>128</td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td colSpan={5} style={{ textAlign: 'center', fontWeight: 'bold', backgroundColor: '#f8fafc' }}>
+                                                    42<sup>#</sup>
+                                                </td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div style={{ fontSize: '0.95rem', color: '#334155', marginTop: '1rem' }}>
+                                <div style={{ marginBottom: '0.25rem' }}>
+                                    <strong>Note:</strong>
+                                </div>
+                                <div style={{ marginBottom: '0.25rem' }}>
+                                    <sup>#</sup> A student shall complete a total of 42 credits from Soft Core Courses (I, II, and III), Core Electives, and ISP. A minimum of 6 credits each must be completed from Soft core I, II & III.
+                                </div>
+                                <div>
+                                    *Excess credits from any pool will be counted towards elective credits.
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Overview of Course Requirements */}
+                        <div className={styles.overviewSection} style={{ marginTop: '3rem' }}>
+                            <h2 className={styles.sectionHeading}>Overview of Course Requirements</h2>
+                            {/* i) CORE */}
+                            <div style={{ marginBottom: '1.5rem' }}>
+                                <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#1e293b', marginBottom: '0.5rem', textTransform: 'uppercase' }}>
+                                    i) CORE
+                                </h3>
+                                <ul style={{ margin: 0, paddingLeft: '1.5rem', color: '#334155', fontSize: '1rem', lineHeight: '1.6' }}>
+                                    <li style={{ marginBottom: '0.5rem' }}>
+                                        <strong>Sciences:</strong> Analysis and Linear Algebra I, Mechanics, Oscillations and Waves, Physical Principles of Chemistry, Electricity, Probability and Statistics
+                                    </li>
+                                    <li style={{ marginBottom: '0.5rem' }}>
+                                        <strong>Engineering:</strong> Introduction to Electrical and Electronics Engineering, Algorithms and Programming, Numerical Methods, Engineering Mechanics, Thermodynamics, Science of Design, Transport phenomena.
+                                    </li>
+                                    <li>
+                                        <strong>Materials:</strong> Introduction, Structure, Thermodynamics, Mechanics, Physics, and Transport.
+                                    </li>
+                                </ul>
+                            </div>
+
+                            {/* ii) BREADTH */}
+                            <div style={{ marginBottom: '1.5rem' }}>
+                                <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#1e293b', marginBottom: '0.5rem', textTransform: 'uppercase' }}>
+                                    ii) BREADTH SOFT CORE
+                                </h3>
+                                <p style={{ margin: 0, color: '#334155', fontSize: '1rem', lineHeight: '1.6' }}>
+                                    4 credits from a selection of Mathematics and Physics subjects.
+                                </p>
+                                <p style={{ margin: '0.5rem 0 0', color: '#334155', fontStyle: 'italic', fontSize: '0.95rem' }}>
+                                    The list of core and breadth soft core courses and their semester wise break-up can be found in the scheme of instructions (SoI).
+                                </p>
+                            </div>
+
+                            {/* iii) SOFT CORE */}
+                            <div id="soft-core-section" style={{ marginBottom: '1.5rem' }}>
+                                <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#1e293b', marginBottom: '0.5rem', textTransform: 'uppercase' }}>
+                                    iii) SOFT CORE
+                                </h3>
+                                <p style={{ margin: 0, color: '#334155', marginBottom: '1rem', fontSize: '1rem', lineHeight: '1.6' }}>
+                                    There are four Soft Core pools.
+                                </p>
+                                <ul style={{ margin: 0, paddingLeft: '1.5rem', color: '#334155', marginBottom: '1rem', fontSize: '1rem', lineHeight: '1.6' }}>
+                                    <li style={{ marginBottom: '0.5rem' }}>
+                                        <strong>Soft Core Pool I (Structural Materials):</strong> Courses pertaining to the Structural Materials theme are included in this pool. Students are required to complete a minimum of 06 credits from this pool by the end of the 6th semester.
+                                    </li>
+                                    <li style={{ marginBottom: '0.5rem' }}>
+                                        <strong>Soft Core Pool II (Functional Materials):</strong> Courses pertaining to the Functional Materials theme are included in this pool. Students are required to complete a minimum of 06 credits from this pool by the end of the 6th semester.
+                                    </li>
+                                    <li style={{ marginBottom: '0.5rem' }}>
+                                        <strong>Soft Core Pool III (Computational Materials):</strong> Courses pertaining to the Computational Materials theme are included in this pool. Students are required to complete a minimum of 06 credits from this pool by the end of the 6th semester.
+                                    </li>
+                                    <li>
+                                        <strong>Soft Core Pool IV:</strong> This pool consists of all courses listed within soft core pools I, II, and III, any MTE/MRC department courses that are offered, and select non-MTE/non-MRC department courses that are not listed in soft core pools I, II, and III.
+                                    </li>
+                                </ul>
+                                <p style={{ margin: 0, color: '#334155', marginBottom: '1rem', fontSize: '1rem', lineHeight: '1.6' }}>
+                                    In addition, students are required to complete a minimum of 42 credits in total from the Soft Core pools by the end of the 8th semester.
+                                </p>
+                                <p style={{ margin: 0, color: '#334155', fontStyle: 'italic', marginBottom: '1rem', fontSize: '0.95rem' }}>
+                                    The list of courses in each soft-core pool is specified below.
+                                </p>
+
+                                {/* Accordions */}
+                                <div className={styles.studyTrackAccordionContainer} style={{ marginTop: '1rem', marginBottom: '1rem' }}>
+                                    {/* Structural Accordion */}
+                                    <div className={styles.accordionItem}>
+                                        <button
+                                            className={`${styles.accordionHeader} ${activeOverviewSoftCoreTab === 'structural' ? styles.accordionHeaderActive : ''}`}
+                                            onClick={() => setActiveOverviewSoftCoreTab(activeOverviewSoftCoreTab === 'structural' ? null : 'structural')}
+                                        >
+                                            <span className={styles.accordionTitle} style={{ fontSize: '1rem' }}>
+                                                Pool I: Structural Materials
+                                            </span>
+                                            <span className={styles.accordionIcon} style={{ fontSize: '1.25rem' }}>
+                                                {activeOverviewSoftCoreTab === 'structural' ? '−' : '+'}
+                                            </span>
+                                        </button>
+                                        {activeOverviewSoftCoreTab === 'structural' && (
+                                            <div className={styles.accordionContent} style={{ padding: '1.5rem' }}>
+                                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', columnGap: '4rem' }}>
+                                                    <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem', color: '#475569', fontSize: '0.95rem' }}>
+                                                        <li><strong>MT 201</strong> (Phase Transformations)</li>
+                                                        <li><strong>MT 202</strong> (Thermodynamics and Kinetics of Materials)*</li>
+                                                        <li><strong>MT 204</strong> (Structure and Properties of Materials)*</li>
+                                                        <li><strong>MT 205</strong> (Structural Characterization of materials)</li>
+                                                        <li><strong>MT 208</strong> (Diffusion in solids)</li>
+                                                    </ul>
+                                                    <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem', color: '#475569', fontSize: '0.95rem' }}>
+                                                        <li><strong>MT 209</strong> (Defects in Materials)</li>
+                                                        <li><strong>MT 220</strong> (Microstructural Engineering of Structural Materials)</li>
+                                                        <li><strong>MT 253</strong> (Mechanical Behavior of Materials)</li>
+                                                        <li><strong>MT 255</strong> (Solidification Processing)</li>
+                                                        <li><strong>MT 309</strong> (Introduction to Manufacturing Science)</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    {/* Functional Accordion */}
+                                    <div className={styles.accordionItem}>
+                                        <button
+                                            className={`${styles.accordionHeader} ${activeOverviewSoftCoreTab === 'functional' ? styles.accordionHeaderActive : ''}`}
+                                            onClick={() => setActiveOverviewSoftCoreTab(activeOverviewSoftCoreTab === 'functional' ? null : 'functional')}
+                                        >
+                                            <span className={styles.accordionTitle} style={{ fontSize: '1rem' }}>
+                                                Pool II: Functional Materials
+                                            </span>
+                                            <span className={styles.accordionIcon} style={{ fontSize: '1.25rem' }}>
+                                                {activeOverviewSoftCoreTab === 'functional' ? '−' : '+'}
+                                            </span>
+                                        </button>
+                                        {activeOverviewSoftCoreTab === 'functional' && (
+                                            <div className={styles.accordionContent} style={{ padding: '1.5rem' }}>
+                                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', columnGap: '4rem' }}>
+                                                    <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem', color: '#475569', fontSize: '0.95rem' }}>
+                                                        <li><strong>MT 213</strong> (Electronic Properties of Materials)* OR <strong>IN 232</strong> (Concepts in Solid State Physics)</li>
+                                                        <li><strong>MT 211</strong> (Magnetism, Magnetic Materials and Devices)</li>
+                                                        <li><strong>MT 240</strong> (Principles of Electrochemistry and Corrosion) OR <strong>SS 209</strong> (Electrochemical Systems)</li>
+                                                    </ul>
+                                                    <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem', color: '#475569', fontSize: '0.95rem' }}>
+                                                        <li><strong>MT 312</strong> (Polymer Engineering and Sustainable Materials)</li>
+                                                        <li><strong>MT 271</strong> (Introduction to Biomaterials Science and Engineering) OR <strong>MR 203</strong> (Introduction to Biomaterials)</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    {/* Computational Accordion */}
+                                    <div className={styles.accordionItem}>
+                                        <button
+                                            className={`${styles.accordionHeader} ${activeOverviewSoftCoreTab === 'computational' ? styles.accordionHeaderActive : ''}`}
+                                            onClick={() => setActiveOverviewSoftCoreTab(activeOverviewSoftCoreTab === 'computational' ? null : 'computational')}
+                                        >
+                                            <span className={styles.accordionTitle} style={{ fontSize: '1rem' }}>
+                                                Pool III: Computational Materials
+                                            </span>
+                                            <span className={styles.accordionIcon} style={{ fontSize: '1.25rem' }}>
+                                                {activeOverviewSoftCoreTab === 'computational' ? '−' : '+'}
+                                            </span>
+                                        </button>
+                                        {activeOverviewSoftCoreTab === 'computational' && (
+                                            <div className={styles.accordionContent} style={{ padding: '1.5rem' }}>
+                                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', columnGap: '4rem' }}>
+                                                    <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem', color: '#475569', fontSize: '0.95rem' }}>
+                                                        <li><strong>MT 217</strong> (Computational Mathematics for Materials Engineers)* OR <strong>CH 202</strong> (Numerical methods)</li>
+                                                        <li><strong>MT 218</strong> (Modelling and Simulation in Materials Engineering)</li>
+                                                        <li><strong>MT 227</strong> (Introduction to Crystal Mechanics and Plasticity)</li>
+                                                    </ul>
+                                                    <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem', color: '#475569', fontSize: '0.95rem' }}>
+                                                        <li><strong>MT 303</strong> (Materials Informatics)</li>
+                                                        <li><strong>MT 305</strong> (Integrated Computational Materials Engineering)</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    {/* Non-MTE Accordion */}
+                                    <div className={styles.accordionItem}>
+                                        <button
+                                            className={`${styles.accordionHeader} ${activeOverviewSoftCoreTab === 'non_mte' ? styles.accordionHeaderActive : ''}`}
+                                            onClick={() => setActiveOverviewSoftCoreTab(activeOverviewSoftCoreTab === 'non_mte' ? null : 'non_mte')}
+                                        >
+                                            <span className={styles.accordionTitle} style={{ fontSize: '1rem' }}>
+                                                Pool IV: Non-MTE / Non MRC
+                                            </span>
+                                            <span className={styles.accordionIcon} style={{ fontSize: '1.25rem' }}>
+                                                {activeOverviewSoftCoreTab === 'non_mte' ? '−' : '+'}
+                                            </span>
+                                        </button>
+                                        {activeOverviewSoftCoreTab === 'non_mte' && (
+                                            <div className={styles.accordionContent} style={{ padding: '1.5rem' }}>
+                                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', columnGap: '4rem' }}>
+                                                    <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem', color: '#475569', fontSize: '0.95rem' }}>
+                                                        <li><strong>NE 240</strong> (Materials Design Principles)</li>
+                                                        <li><strong>NE 201</strong> (Micro and Nano Characterization Methods) OR <strong>IN 201</strong> (Analytical Instrumentation)</li>
+                                                        <li><strong>NE 205 / IN 214 / E3 282</strong> (Semiconductor Devices)</li>
+                                                        <li><strong>IN 224</strong> (Nanoscience and Device Fabrication)</li>
+                                                        <li><strong>PD 201</strong> (Elements of Design) OR <strong>NE 203</strong> (Advanced fabrication)</li>
+                                                        <li><strong>QT 204</strong> (Introduction to Materials for Quantum Technology)</li>
+                                                        <li><strong>SS 205</strong> (Symmetry and Structure in the Solid State)</li>
+                                                    </ul>
+                                                    <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem', color: '#475569', fontSize: '0.95rem' }}>
+                                                        <li><strong>PD 202</strong> (Elements of solid and fluid mechanics)</li>
+                                                        <li><strong>PH 351</strong> (Crystal Growth) OR <strong>NE 241</strong> (Materials synthesis)</li>
+                                                        <li><strong>QT 207</strong> (Introduction to Quantum Computing)</li>
+                                                        <li><strong>PD 212</strong> (Computer Aided Design)</li>
+                                                        <li><strong>CE 235</strong> (Optimization Methods)</li>
+                                                        <li><strong>UMC 203</strong> (Introduction to AI & ML)</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* iv) PROJECTS */}
+                            <div style={{ marginBottom: '1.5rem' }}>
+                                <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#1e293b', marginBottom: '0.5rem', textTransform: 'uppercase' }}>
+                                    iv) PROJECTS
+                                </h3>
+                                <p style={{ margin: 0, color: '#444' }}>
+                                    ISP stands for Independent Study Project. ISP-I (semester 7), ISP-II (semester 8) carries 6 credits each. Detailed rules governing ISP/Research Projects are specified in Section 5.6.
+                                </p>
+                            </div>
+
+                            {/* v) ELECTIVES */}
+                            <div style={{ marginBottom: '1.5rem' }}>
+                                <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#1e293b', marginBottom: '0.5rem', textTransform: 'uppercase' }}>
+                                    v) ELECTIVES
+                                </h3>
+                                <p style={{ margin: 0, color: '#444' }}>
+                                    Elective credits can be fulfilled by passing any course offered across the institute. Some useful elective courses are also provided under the category of suggested electives in the SoI.
+                                </p>
+                            </div>
                         </div>
 
                         {/* Semester-wise Requirements Section */}
@@ -949,124 +1426,7 @@ const MaterialsScienceAndEngineering = () => {
                                 </table>
                             </div>
 
-                            <h2 id="thematic-electives" className={styles.sectionHeading} style={{ borderLeft: 'none', paddingLeft: 0, fontSize: '1.75rem', marginTop: '3rem', marginBottom: '1.5rem' }}>
-                                Thematic Electives
-                            </h2>
 
-                            <div className={styles.note} style={{ marginBottom: '2rem', padding: '1.5rem', background: '#f8fafc', borderRadius: '8px' }}>
-                                <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#334155', lineHeight: '1.6' }}>
-                                    <li style={{ marginBottom: '0.5rem' }}>B.Tech. students need to take 2 courses from each bucket (I, II, and III), one in 5th and another in 6th semesters.</li>
-                                    <li style={{ marginBottom: '0.5rem' }}>There is flexibility for students to take more than one thematic elective in a semester (e.g., IA and IB can be done in the 5th semester, and no thematic elective in category I can be taken in the 6th semester).</li>
-                                    <li style={{ marginBottom: '0.5rem' }}>If courses have been listed in multiple thematic categories, such courses will be counted only once as a thematic elective in one specific category only (i.e., either I, II, or III).</li>
-                                    <li>Non-MTE courses that have been taken as electives can’t be double-counted as a thematic elective also.</li>
-                                </ul>
-                            </div>
-
-                            {/* Thematic Electives Tabs */}
-                            <div className={styles.semesterNav} style={{ marginBottom: '1.5rem', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.5rem' }}>
-                                {['I. Structural Materials', 'II. Functional Materials', 'III. Computational Materials', 'Non-MTE / Non MRC'].map((theme, index) => (
-                                    <button
-                                        key={index}
-                                        className={`${styles.semesterTab} ${activeTheme === index + 1 ? styles.activeTab : ''}`}
-                                        onClick={() => setActiveTheme(index + 1)}
-                                        style={{
-                                            borderRadius: '99px',
-                                            padding: '0.6rem 1.25rem',
-                                            backgroundColor: activeTheme === index + 1 ? '#0f172a' : '#f1f5f9',
-                                            color: activeTheme === index + 1 ? 'white' : '#64748b'
-                                        }}
-                                    >
-                                        {theme}
-                                    </button>
-                                ))}
-                            </div>
-
-                            <div style={{ background: '#f8fafc', borderRadius: '12px', padding: '2rem', border: '1px solid #e2e8f0' }}>
-
-                                {activeTheme === 1 && (
-                                    <div>
-                                        <h4 style={{ margin: '0 0 1.5rem 0', color: '#3b82f6', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                            <span style={{ background: '#dbeafe', width: '32px', height: '32px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.9rem', fontWeight: 'bold' }}>I</span>
-                                            Structural Materials
-                                        </h4>
-                                        <ul style={{ columnCount: 2, columnGap: '2rem', margin: 0, paddingLeft: '1.2rem' }}>
-                                            {[
-                                                "MT 201 (Phase Transformations)",
-                                                "MT 202 (Thermodynamics and Kinetics of Materials)*",
-                                                "MT 204 (Structure and Properties of Materials)*",
-                                                "MT 205 (Structural Characterization of materials)",
-                                                "MT 208 (Diffusion in solids)",
-                                                "MT 209 (Defects in Materials)",
-                                                "MT 220 (Microstructural Engineering of Structural Materials)",
-                                                "MT 253 (Mechanical Behavior of Materials)",
-                                                "MT 255 (Solidification Processing)",
-                                                "MT 309 (Introduction to Manufacturing Science)"
-                                            ].map((c, i) => <li key={i} style={{ marginBottom: '0.75rem', color: '#334155' }}>{c}</li>)}
-                                        </ul>
-                                    </div>
-                                )}
-
-                                {activeTheme === 2 && (
-                                    <div>
-                                        <h4 style={{ margin: '0 0 1.5rem 0', color: '#10b981', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                            <span style={{ background: '#d1fae5', width: '32px', height: '32px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.9rem', fontWeight: 'bold' }}>II</span>
-                                            Functional Materials
-                                        </h4>
-                                        <ul style={{ margin: 0, paddingLeft: '1.2rem' }}>
-                                            {[
-                                                "MT 213 (Electronic Properties of Materials)* OR IN 232 (Concepts in Solid State Physics)",
-                                                "MT 211 (Magnetism, Magnetic Materials and Devices)",
-                                                "MT 240 (Principles of Electrochemistry and Corrosion) OR SS 209 (Electrochemical Systems)",
-                                                "MT 312 (Polymer Engineering and Sustainable Materials)",
-                                                "MT 271 (Introduction to Biomaterials Science and Engineering) OR MR 203 (Introduction to Biomaterials)"
-                                            ].map((c, i) => <li key={i} style={{ marginBottom: '0.75rem', color: '#334155' }}>{c}</li>)}
-                                        </ul>
-                                    </div>
-                                )}
-
-                                {activeTheme === 3 && (
-                                    <div>
-                                        <h4 style={{ margin: '0 0 1.5rem 0', color: '#f59e0b', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                            <span style={{ background: '#fef3c7', width: '32px', height: '32px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.9rem', fontWeight: 'bold' }}>III</span>
-                                            Computational Materials
-                                        </h4>
-                                        <ul style={{ margin: 0, paddingLeft: '1.2rem' }}>
-                                            {[
-                                                "MT 217 (Computational Mathematics for Materials Engineers)* OR CH 202 (Numerical methods)",
-                                                "MT 218 (Modelling and Simulation in Materials Engineering)",
-                                                "MT 227 (Introduction to Crystal Mechanics and Plasticity)",
-                                                "MT 303 (Materials Informatics)",
-                                                "MT 305 (Integrated Computational Materials Engineering)"
-                                            ].map((c, i) => <li key={i} style={{ marginBottom: '0.75rem', color: '#334155' }}>{c}</li>)}
-                                        </ul>
-                                    </div>
-                                )}
-
-                                {activeTheme === 4 && (
-                                    <div>
-                                        <h4 style={{ margin: '0 0 1.5rem 0', color: '#8b5cf6', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                            Non-MTE / Non MRC Courses
-                                        </h4>
-                                        <ul style={{ columnCount: 2, columnGap: '2rem', margin: 0, paddingLeft: '1.2rem' }}>
-                                            {[
-                                                "NE 240 (Materials Design Principles)",
-                                                "NE 201 (Micro and Nano Characterization Methods) OR IN 201 (Analytical Instrumentation)",
-                                                "NE 205 / IN 214 / E3 282 (Semiconductor Devices)",
-                                                "IN 224 (Nanoscience and Device Fabrication)",
-                                                "PD 201 (Elements of Design) OR NE 203 (Advanced fabrication)",
-                                                "QT 204 (Introduction to Materials for Quantum Technology)",
-                                                "SS 205 (Symmetry and Structure in the Solid State)",
-                                                "PD 202 (Elements of solid and fluid mechanics)",
-                                                "PH 351 (Crystal Growth) OR NE 241 (Materials synthesis)",
-                                                "QT 207 (Introduction to Quantum Computing)",
-                                                "PD 212 (Computer Aided Design)",
-                                                "CE 235 (Optimization Methods)",
-                                                "UMC 203 (Introduction to AI & ML)"
-                                            ].map((c, i) => <li key={i} style={{ marginBottom: '0.75rem', color: '#334155' }}>{c}</li>)}
-                                        </ul>
-                                    </div>
-                                )}
-                            </div>
                         </div>
 
                         {/* Continuing to M.Tech / M.Tech (Research) - Updated Section */}

@@ -547,10 +547,8 @@ const AerospaceEngineering = () => {
     return (
         <div className={styles.pageContainer}>
             {/* Top Header Bar */}
+            {/* Top Header Bar - Removed Back Link */}
             <div className={styles.headerSection}>
-                <Link href="/programs" className={styles.backLink}>
-                    ← Back to Programs
-                </Link>
             </div>
 
             {/* Hero Section */}
@@ -612,47 +610,229 @@ const AerospaceEngineering = () => {
                     <div className={styles.homeGrid}>
                         <div className={styles.mainContent}>
                             <div className={styles.introSection}>
-                                <h1 className={styles.heroHeading} style={{ fontSize: '2rem', color: '#0f172a', marginBottom: '1rem' }}>
-                                    About the Programme
-                                </h1>
-                                <p className={styles.introText}>
-                                    The B.Tech program in Aerospace Engineering at IISc offers a comprehensive education that integrates science, mathematics, and engineering principles with a focus on flight vehicles and systems. Students engage in rigorous coursework and research in aerodynamics, structures, propulsion, and flight mechanics, preparing them for leadership roles in the aerospace sector.
-                                </p>
-                            </div>
-
-                            <div className={styles.newsSection}>
-                                <div className={styles.newsSectionTitle}>
-                                    <span style={{ fontSize: '1.5rem' }}>📰</span> Latest News
-                                </div>
-                                {dummyNews.map((news, index) => (
-                                    <div key={index} className={styles.newsCard}>
-                                        <div className={styles.newsContent}>
-                                            <div className={styles.newsDate}>{news.date}</div>
-                                            <div className={styles.newsTitle}>{news.title}</div>
-                                            <div className={styles.newsExcerpt}>{news.excerpt}</div>
+                                <div className={styles.aboutWithVideo}>
+                                    <div>
+                                        <h1 className={styles.heroHeading} style={{ fontSize: '2rem', color: '#0f172a', marginBottom: '1rem' }}>
+                                            About the Programme
+                                        </h1>
+                                        <p className={styles.introText} style={{ marginBottom: 0 }}>
+                                            The B.Tech programme in Aerospace Engineering trains students in core aerospace disciplines, while building the necessary foundations in mathematics, physical sciences, and engineering mechanics. The programme focuses on analysis, design, and experimentation, preparing students for research, industry, and deep tech entrepreneurial opportunities in aerospace and related engineering fields.
+                                        </p>
+                                    </div>
+                                    <div className={styles.videoSection}>
+                                        <div className={styles.videoWrapper}>
+                                            <iframe
+                                                src="" // Placeholder: Video to be added later
+                                                title="B.Tech in Aerospace Engineering at IISc"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                allowFullScreen
+                                                style={{ backgroundColor: '#e2e8f0' }} // Grey placeholder
+                                            />
+                                            {/* Video placeholder text overlay */}
+                                            <div style={{
+                                                position: 'absolute',
+                                                top: '50%',
+                                                left: '50%',
+                                                transform: 'translate(-50%, -50%)',
+                                                color: '#64748b',
+                                                fontWeight: '600',
+                                                pointerEvents: 'none',
+                                                zIndex: 0
+                                            }}>
+                                                Video Coming Soon
+                                            </div>
                                         </div>
                                     </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        <div className={styles.sidebar}>
-                            <div className={styles.announcementList}>
-                                <div className={styles.newsSectionTitle} style={{ marginBottom: '1rem', fontSize: '1.1rem' }}>
-                                    <span style={{ fontSize: '1.2rem' }}>📢</span> Announcements
                                 </div>
-                                {dummyAnnouncements.map((ann, index) => (
-                                    <div key={index} className={styles.announcementItem}>
-                                        <div className={styles.announcementBadge}>New</div>
-                                        <div className={styles.announcementText}>{ann.text}</div>
-                                        {ann.link && (
-                                            <Link href={ann.link} className={styles.announcementLink}>
-                                                Read More →
-                                            </Link>
-                                        )}
-                                    </div>
-                                ))}
+                                <div style={{ marginTop: '2rem', color: '#334155', lineHeight: '1.7' }}>
+                                    <h3 style={{ fontSize: '1.25rem', fontWeight: '700', color: '#1e293b', marginBottom: '1rem' }}>
+                                        Key Highlights
+                                    </h3>
+                                    <ul style={{ listStyleType: 'disc', paddingLeft: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                                        <li><strong>Aerospace Engineering Core:</strong> A comprehensive foundation in the science and engineering of flight and space systems, encompassing aerodynamics, propulsion, structures and materials, flight and space mechanics, and guidance and control.</li>
+                                        <li><strong>Strong scientific foundations:</strong> Rigorous training in mathematics, statistics, physics, chemistry and engineering mechanics as preparation for topics in aerospace engineering.</li>
+                                        <li><strong>Design and experimentation focus:</strong> Dedicated laboratories, AE X Lab, and the Design–Build–Fly capstone emphasize hands-on learning and system-level thinking.</li>
+                                        <li><strong>Flexibility through electives:</strong> Students may tailor their academic trajectory by choosing electives across the Institute, enabling interdisciplinary exposure.</li>
+                                        <li><strong>Advanced coursework:</strong> Exposure to advanced graduate-level courses in fundamental science, engineering and AI/ML, providing a deep foundation for aerospace research and innovation.</li>
+                                        <li><strong>Research and industry engagement:</strong> Structured project components fostering independent inquiry, industry-relevant research, and preparation for higher studies.</li>
+                                    </ul>
+                                </div>
                             </div>
+
+                            {/* Why Aerospace Engineering - Section */}
+                            <div style={{ marginTop: '5rem', marginBottom: '4rem' }}>
+                                <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+                                    <h2 style={{
+                                        fontSize: '2rem',
+                                        fontWeight: '700',
+                                        color: '#0f172a',
+                                        letterSpacing: '-0.02em',
+                                        marginBottom: '1rem'
+                                    }}>
+                                        Why <span style={{ color: '#d97706' }}>Aerospace Engineering</span>
+                                    </h2>
+                                    <p style={{
+                                        color: '#475569',
+                                        fontSize: '1.1rem',
+                                        maxWidth: '900px',
+                                        margin: '0 auto',
+                                        lineHeight: '1.7'
+                                    }}>
+                                        Empowering future leaders with a rigorous, interdisciplinary blend of flight science and engineering innovation.
+                                    </p>
+                                </div>
+
+                                <div className="features-grid" style={{
+                                    display: 'grid',
+                                    gridTemplateColumns: 'repeat(2, 1fr)',
+                                    gap: '2rem',
+                                    maxWidth: '1200px',
+                                    margin: '0 auto',
+                                    width: '100%'
+                                }}>
+                                    {[
+                                        {
+                                            title: "The Field",
+                                            subtitle: "Why Aerospace Engineering?",
+                                            text: "Aerospace Engineering focuses on aircraft, spacecraft, aerodynamics, propulsion, and flight systems, combining strong foundations in physics, mathematics, and engineering design. The field addresses modern challenges in aviation, space exploration, and autonomous flight technologies.",
+                                            theme: "blue",
+                                            icon: (
+                                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                                    <path d="M2 12h20M2 12l5-5m-5 5l5 5" />
+                                                    <path d="M22 12l-5-5m5 5l-5 5" opacity="0" />
+                                                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                                                </svg>
+                                            )
+                                        },
+                                        {
+                                            title: "The Institute",
+                                            subtitle: "Why IISc Aerospace?",
+                                            text: "IISc offers a research-driven aerospace program integrating theoretical learning with experimental and computational approaches. Students gain exposure to advanced laboratories and interdisciplinary collaboration across mechanics, AI, robotics, and materials science.",
+                                            theme: "indigo",
+                                            icon: (
+                                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                                    <path d="M3 21h18M5 21V7l8-4 8 4v14M8 21v-4h8v4" />
+                                                </svg>
+                                            )
+                                        },
+                                        {
+                                            title: "Uniqueness",
+                                            subtitle: "What Defines Us?",
+                                            text: "Core engineering fundamentals are built in the early years, followed by flexible electives aligned with student interests. The curriculum emphasizes computational modeling, design projects, and practical laboratory experience, exploring both theoretical concepts and real-world applications.",
+                                            theme: "sky",
+                                            icon: (
+                                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                                    <circle cx="12" cy="12" r="10" />
+                                                    <path d="M12 16v-4M12 8h.01" />
+                                                </svg>
+                                            )
+                                        },
+                                        {
+                                            title: "Career",
+                                            subtitle: "Future Horizons",
+                                            text: "Graduates pursue careers in aerospace industries, space research (ISRO, NASA), defense (DRDO), and advanced tech sectors. Emerging pathways like AI for aerospace, autonomous systems, and computational fluid dynamics offer vast opportunities for innovation.",
+                                            theme: "slate",
+                                            icon: (
+                                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                                </svg>
+                                            )
+                                        }
+                                    ].map((card, idx) => (
+                                        <div key={idx} style={{
+                                            background: '#ffffff',
+                                            borderRadius: '16px',
+                                            padding: '2.5rem',
+                                            border: '1px solid #e2e8f0',
+                                            boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)',
+                                            transition: 'all 0.3s ease',
+                                            position: 'relative',
+                                            overflow: 'hidden',
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            height: '100%',
+                                            isolation: 'isolate'
+                                        }}
+                                            onMouseEnter={(e) => {
+                                                e.currentTarget.style.transform = 'translateY(-5px)';
+                                                e.currentTarget.style.boxShadow = '0 20px 25px -5px rgba(0, 0, 0, 0.1)';
+                                                e.currentTarget.style.borderColor = '#cbd5e1';
+                                            }}
+                                            onMouseLeave={(e) => {
+                                                e.currentTarget.style.transform = 'translateY(0)';
+                                                e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.05)';
+                                                e.currentTarget.style.borderColor = '#e2e8f0';
+                                            }}
+                                        >
+                                            {/* Accent Top Line */}
+                                            <div style={{
+                                                position: 'absolute',
+                                                top: 0,
+                                                left: 0,
+                                                right: 0,
+                                                height: '4px',
+                                                background: card.theme === 'blue' ? '#2563eb' :
+                                                    card.theme === 'indigo' ? '#4f46e5' :
+                                                        card.theme === 'sky' ? '#0ea5e9' : '#475569'
+                                            }} />
+
+                                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem' }}>
+                                                <span style={{
+                                                    fontSize: '0.8rem',
+                                                    fontWeight: '700',
+                                                    textTransform: 'uppercase',
+                                                    letterSpacing: '0.05em',
+                                                    color: card.theme === 'blue' ? '#2563eb' :
+                                                        card.theme === 'indigo' ? '#4f46e5' :
+                                                            card.theme === 'sky' ? '#0ea5e9' : '#475569',
+                                                    background: card.theme === 'blue' ? '#eff6ff' :
+                                                        card.theme === 'indigo' ? '#eef2ff' :
+                                                            card.theme === 'sky' ? '#e0f2fe' : '#f1f5f9',
+                                                    padding: '0.4rem 0.8rem',
+                                                    borderRadius: '6px'
+                                                }}>
+                                                    {card.title}
+                                                </span>
+                                                <div style={{ color: '#94a3b8' }}>
+                                                    {card.icon}
+                                                </div>
+                                            </div>
+
+                                            <h3 style={{
+                                                fontSize: '1.5rem',
+                                                fontWeight: '800',
+                                                color: '#0f172a',
+                                                marginBottom: '1rem',
+                                                lineHeight: '1.3'
+                                            }}>
+                                                {card.subtitle}
+                                            </h3>
+
+                                            <p style={{
+                                                fontSize: '1rem',
+                                                lineHeight: '1.7',
+                                                color: '#475569',
+                                                flex: 1
+                                            }}>
+                                                {card.text}
+                                            </p>
+                                        </div>
+                                    ))}
+                                </div>
+                                <style jsx>{`
+                                    @media (max-width: 900px) {
+                                        .features-grid {
+                                            grid-template-columns: 1fr !important;
+                                        }
+                                    }
+                                `}</style>
+
+                            </div>
+
+                        </div>
+                        <div className={styles.sidebar}>
+                            {/* Sidebar kept empty as per request */}
                         </div>
                     </div>
                 )}
@@ -660,12 +840,85 @@ const AerospaceEngineering = () => {
                 {/* Course Structure Tab Content */}
                 {activeTab === 'structure' && (
                     <>
-                        {/* Course Overview */}
+                        {/* Basic Structure */}
                         <div className={styles.overviewSection}>
-                            <h2 className={styles.sectionHeading}>Course Overview</h2>
+                            <h2 className={styles.sectionHeading}>Basic Structure</h2>
                             <p className={styles.overviewText}>
-                                The B.Tech program in Aerospace Engineering is designed to provide students with a strong foundation in the fundamental principles of flight, propulsion, structures, and control. The curriculum blends theoretical knowledge with hands-on laboratory experience and design projects to prepare graduates for careers in the aerospace industry and research.
+                                The Bachelor of Technology (Aerospace Engineering) is a four-year programme, organised into 8 semesters. Students need to complete 128 credits as specified in the table and sections below.
                             </p>
+
+                            <div style={{ marginBottom: '2rem', marginTop: '1.5rem' }}>
+                                <div className={styles.tableContainer}>
+                                    <table className={styles.courseTable}>
+                                        <thead>
+                                            <tr>
+                                                <th style={{ verticalAlign: 'middle', textAlign: 'center', width: '25%' }}>Course Category</th>
+                                                <th style={{ verticalAlign: 'middle', textAlign: 'center' }}>Core</th>
+                                                <th style={{ verticalAlign: 'middle', textAlign: 'center' }}>Humanities</th>
+                                                <th style={{ verticalAlign: 'middle', textAlign: 'center' }}>Project</th>
+                                                <th style={{ verticalAlign: 'middle', textAlign: 'center' }}>Electives</th>
+                                                <th style={{ verticalAlign: 'middle', textAlign: 'center' }}>Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td style={{ fontWeight: 600 }}>Minimum Credit Requirement</td>
+                                                <td style={{ textAlign: 'center' }}>86</td>
+                                                <td style={{ textAlign: 'center' }}>9</td>
+                                                <td style={{ textAlign: 'center' }}>14</td>
+                                                <td style={{ textAlign: 'center' }}>19</td>
+                                                <td style={{ textAlign: 'center', fontWeight: 'bold' }}>128</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Overview of Course Requirements */}
+                        <div className={styles.overviewSection} style={{ marginTop: '3rem' }}>
+                            <h2 className={styles.sectionHeading}>Overview of Course Requirements</h2>
+
+                            {/* i) CORE */}
+                            <div style={{ marginBottom: '1.5rem' }}>
+                                <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#1e293b', marginBottom: '0.5rem', textTransform: 'uppercase' }}>
+                                    i) CORE
+                                </h3>
+                                <ul style={{ margin: 0, paddingLeft: '1.5rem', color: '#334155', fontSize: '1rem', lineHeight: '1.6' }}>
+                                    <li style={{ marginBottom: '0.5rem' }}>
+                                        <strong>Science:</strong> Analysis and Linear Algebra I and II, Mechanics, Oscillations and Waves, Physical Principles of Chemistry, Electricity, Magnetism and Optics, Probability and Statistics.
+                                    </li>
+                                    <li style={{ marginBottom: '0.5rem' }}>
+                                        <strong>Engineering:</strong> Introduction to Electrical and Electronics Engineering, Programming and AI, Engineering Mechanics, Solid and Fluid Mechanics, Thermodynamics, Science of Design.
+                                    </li>
+                                    <li>
+                                        <strong>Aerospace:</strong> Flight Vehicle Aerodynamics, Flight Vehicle Propulsion, Flight Vehicle Structures, Flight Vehicle Navigation, Guidance, and Control, and Flight and Space Mechanics., AE X Lab, and Design-Build-Fly.
+                                    </li>
+                                </ul>
+                                <p style={{ margin: '0.5rem 0 0', color: '#334155', fontStyle: 'italic', fontSize: '0.95rem' }}>
+                                    The list of core courses and their semester wise break-up can be found in the scheme of instructions (SoI).
+                                </p>
+                            </div>
+
+                            {/* ii) PROJECTS */}
+                            <div style={{ marginBottom: '1.5rem' }}>
+                                <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#1e293b', marginBottom: '0.5rem', textTransform: 'uppercase' }}>
+                                    ii) PROJECTS
+                                </h3>
+                                <p style={{ margin: 0, color: '#334155', fontSize: '1rem', lineHeight: '1.6' }}>
+                                    Project refers to Research or Industry Project and carries 14 credits. Detailed rules governing projects are specified in Section 4.6.
+                                </p>
+                            </div>
+
+                            {/* iii) ELECTIVES */}
+                            <div style={{ marginBottom: '1.5rem' }}>
+                                <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#1e293b', marginBottom: '0.5rem', textTransform: 'uppercase' }}>
+                                    iii) ELECTIVES
+                                </h3>
+                                <p style={{ margin: 0, color: '#334155', fontSize: '1rem', lineHeight: '1.6' }}>
+                                    Elective credits can be fulfilled by passing any course offered across the institute.
+                                </p>
+                            </div>
                         </div>
 
                         {/* Semester-wise Requirements Section */}

@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    poweredByHeader: false,
     images: {
         domains: ['upload.wikimedia.org'],
     },
@@ -31,6 +32,14 @@ const nextConfig = {
                     {
                         key: 'Referrer-Policy',
                         value: 'strict-origin-when-cross-origin'
+                    },
+                    {
+                        key: 'Content-Security-Policy',
+                        value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' *.google.com *.gstatic.com; style-src 'self' 'unsafe-inline' *.googleapis.com; img-src 'self' data: https: *.iisc.ac.in; font-src 'self' data: *.gstatic.com; frame-src 'self' *.google.com;"
+                    },
+                    {
+                        key: 'Permissions-Policy',
+                        value: 'camera=(), microphone=(), geolocation=(), browsing-topics=()'
                     }
                 ]
             }

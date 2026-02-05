@@ -37,6 +37,8 @@ const Footer = () => {
                         <h3 className={styles.heading}>Quick Links</h3>
                         <div className={styles.linksColumns}>
                             <div className={styles.column}>
+                                <a href="https://bs-ug.iisc.ac.in/" target="_blank" rel="noopener noreferrer" className={styles.footerLink}>UG Website</a>
+                                <a href="/ug_academic_calendar_2026.pdf" target="_blank" rel="noopener noreferrer" className={styles.footerLink}>Academic Calendar</a>
                                 <a href="https://scouncil.iisc.ac.in/" target="_blank" rel="noopener noreferrer" className={styles.footerLink}>Student Council</a>
                                 <a href="https://iisc.ac.in/complaints/" target="_blank" rel="noopener noreferrer" className={styles.footerLink}>Internal Complaint Committee</a>
                                 <a href="https://www.iisc.ac.in/health-centre/" target="_blank" rel="noopener noreferrer" className={styles.footerLink}>Health Center</a>
