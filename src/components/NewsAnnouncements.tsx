@@ -30,28 +30,25 @@ const NewsAnnouncements = () => {
 
     const newsItems = [
         {
-            id: 0,
-            date: 'August 01, 2023',
-            title: 'New Computer Lab Opened for All UG Students',
-            excerpt: 'A new state-of-the-art computer lab facility is now open and accessible to all undergraduate students for academic and research purposes.'
+            id: 2,
+            date: 'February 05, 2026',
+            title: 'New Suggested Electives Introduced for MnC Students',
+            excerpt: 'A new set of suggested electives has been added to the Mathematics & Computing programme, enabling students to pursue diverse academic interests and emerging topics. Students can now view the updated elective options in the course structure.',
+            link: '/programs/mathematics-and-computing'
         },
         {
             id: 1,
             date: 'January 28, 2026',
-            title: 'IISc Researchers Develop New Material for Aerospace Applications',
-            excerpt: 'A team of researchers at the Program of Materials Engineering has developed a novel lightweight alloy...'
+            title: 'Team Vicharaka Secures Strong Finish at International Rover Challenge (IRC) 2026 Finals',
+            excerpt: 'Team Vicharaka, the undergraduate rover team at IISc, achieved an impressive milestone at the IRC 2026 Finals, securing 15th place among 33 finalist teams...',
+            link: '/news/team-vicharaka'
         },
         {
-            id: 2,
-            date: 'January 15, 2026',
-            title: 'Mathematics and Computing Student Wins International Hackathon',
-            excerpt: 'Second-year B.Tech student secures first place in the global AI challenge hosted by...'
-        },
-        {
-            id: 3,
-            date: 'December 10, 2025',
-            title: 'New Interdisciplinary Centre for Mechanics Announced',
-            excerpt: 'The institute announces the opening of a state-of-the-art facility dedicated to computational mechanics...'
+            id: 0,
+            date: 'August 01, 2023',
+            title: 'New Computer Lab Opened for All UG Students',
+            excerpt: 'A new state-of-the-art computer lab facility is now open and accessible to all undergraduate students for academic and research purposes.',
+            link: '#'
         }
     ];
 
@@ -77,18 +74,18 @@ const NewsAnnouncements = () => {
             link: '#'
         },
         {
-            id: 3,
-            date: 'December 20, 2025', // User said "December 2025", setting specific day to parse correctly
-            title: '🌞 Applications Open: Summer Internship Programme 2026',
-            excerpt: 'Applications are now open for the Summer Internship Programme 2026. Eligible students are encouraged to apply through the official application portal.',
-            link: 'https://occap.iisc.ac.in/'
-        },
-        {
             id: 4,
             date: 'January 01, 2026',
             title: '🚀 Annual Tech Symposium “Pravega” – Schedule Released',
             excerpt: 'The schedule for the Annual Technical Symposium “Pravega” has been released. Students are invited to visit the official event website for details on sessions, workshops, competitions, and registrations.',
             link: 'https://www.pravega.in/'
+        },
+        {
+            id: 3,
+            date: 'December 20, 2025', // User said "December 2025", setting specific day to parse correctly
+            title: '🌞 Applications Open: Summer Internship Programme 2026',
+            excerpt: 'Applications are now open for the Summer Internship Programme 2026. Eligible students are encouraged to apply through the official application portal.',
+            link: 'https://occap.iisc.ac.in/'
         }
     ];
 
@@ -110,7 +107,7 @@ const NewsAnnouncements = () => {
                         {newsItems.map(item => (
                             <li key={item.id} className={styles.newsItem}>
                                 <span className={styles.date}>{getDisplayDate(item.date)}</span>
-                                <Link href="#" className={styles.link}>
+                                <Link href={item.link} className={styles.link}>
                                     {item.title}
                                 </Link>
                                 <p className={styles.excerpt}>{item.excerpt}</p>

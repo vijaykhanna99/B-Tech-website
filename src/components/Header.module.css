@@ -298,8 +298,7 @@
 .dropdownItem:hover {
     background-color: #f8fafc;
     color: #002855;
-    padding-left: 1.5rem;
-    /* Subtle shift effect */
+    /* Removed padding-left to prevent size jump */
 }
 
 .itemIcon {

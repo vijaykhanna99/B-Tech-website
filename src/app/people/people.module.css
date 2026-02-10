@@ -154,6 +154,49 @@
     font-size: 0.9rem;
 }
 
+/* PCC Page Specific Styles */
+.pccGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.pccCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+    text-align: center;
+    height: 100%;
+}
+
+.pccCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border-color: #cbd5e1;
+}
+
+.pccImage {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1.5rem;
+    border: 4px solid #eff6ff;
+}
+
+@media (max-width: 1024px) {
+    .pccGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 @media (max-width: 768px) {
     .deansGrid {
         grid-template-columns: 1fr;
@@ -168,5 +211,15 @@
     .deanImage {
         margin-right: 0;
         margin-bottom: 1rem;
+    }
+
+    .pccGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .pccGrid {
+        grid-template-columns: 1fr;
     }
 }

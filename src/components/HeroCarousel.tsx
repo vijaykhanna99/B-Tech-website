@@ -6,9 +6,10 @@ import styles from './HeroCarousel.module.css';
 
 const images = [
     "/banner1.jpg",
-    "/banner2.png",
-    "/banner_hq_1.jpg",
-    "/banner_hq_2.jpg"
+    "/banner3.png",
+    "/banner4.jpg",
+    "/banner5.png",
+    "/banner_hq_1.jpg"
 ];
 
 const HeroCarousel = () => {

@@ -10,24 +10,7 @@ const AerospaceEngineering = () => {
     const [selectedCourse, setSelectedCourse] = useState<any>(null);
     const [activeTab, setActiveTab] = useState('home');
 
-    const dummyNews = [
-        {
-            date: "October 10, 2025",
-            title: "Aerospace Team Wins Design Award",
-            excerpt: "The IISc DBF team secured the first place in the National Unmanned Flight Vehicle Design competition."
-        },
-        {
-            date: "September 15, 2025",
-            title: "New Propulsion Lab Opened",
-            excerpt: "The program inaugurated a state-of-the-art propulsion testing facility for advanced research."
-        }
-    ];
 
-    const dummyAnnouncements = [
-        { text: "Workshop on 'Computational Fluid Dynamics' scheduled for Nov 5th.", link: "#" },
-        { text: "Registration for Spring 2026 electives is now open.", link: "#" },
-        { text: "Selected students for international internship announced.", link: "#" }
-    ];
 
     const semesters = [1, 2, 3, 4, 5, 6, 7, 8];
 
@@ -602,6 +585,16 @@ const AerospaceEngineering = () => {
                             </svg>
                             Course Structure
                         </button>
+                        <button
+                            className={`${styles.pageTabButton} ${activeTab === 'mtech' ? styles.pageTabButtonActive : ''}`}
+                            onClick={() => setActiveTab('mtech')}
+                        >
+                            <svg className={styles.tabIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                                <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                            </svg>
+                            Continuing to M.Tech
+                        </button>
                     </div>
                 </div>
 
@@ -610,40 +603,12 @@ const AerospaceEngineering = () => {
                     <div className={styles.homeGrid}>
                         <div className={styles.mainContent}>
                             <div className={styles.introSection}>
-                                <div className={styles.aboutWithVideo}>
-                                    <div>
-                                        <h1 className={styles.heroHeading} style={{ fontSize: '2rem', color: '#0f172a', marginBottom: '1rem' }}>
-                                            About the Programme
-                                        </h1>
-                                        <p className={styles.introText} style={{ marginBottom: 0 }}>
-                                            The B.Tech programme in Aerospace Engineering trains students in core aerospace disciplines, while building the necessary foundations in mathematics, physical sciences, and engineering mechanics. The programme focuses on analysis, design, and experimentation, preparing students for research, industry, and deep tech entrepreneurial opportunities in aerospace and related engineering fields.
-                                        </p>
-                                    </div>
-                                    <div className={styles.videoSection}>
-                                        <div className={styles.videoWrapper}>
-                                            <iframe
-                                                src="" // Placeholder: Video to be added later
-                                                title="B.Tech in Aerospace Engineering at IISc"
-                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                allowFullScreen
-                                                style={{ backgroundColor: '#e2e8f0' }} // Grey placeholder
-                                            />
-                                            {/* Video placeholder text overlay */}
-                                            <div style={{
-                                                position: 'absolute',
-                                                top: '50%',
-                                                left: '50%',
-                                                transform: 'translate(-50%, -50%)',
-                                                color: '#64748b',
-                                                fontWeight: '600',
-                                                pointerEvents: 'none',
-                                                zIndex: 0
-                                            }}>
-                                                Video Coming Soon
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <h1 className={styles.heroHeading} style={{ fontSize: '2rem', color: '#0f172a', marginBottom: '1rem' }}>
+                                    About the Programme
+                                </h1>
+                                <p className={styles.introText} style={{ marginBottom: 0 }}>
+                                    The B.Tech programme in Aerospace Engineering trains students in core aerospace disciplines, while building the necessary foundations in mathematics, physical sciences, and engineering mechanics. The programme focuses on analysis, design, and experimentation, preparing students for research, industry, and deep tech entrepreneurial opportunities in aerospace and related engineering fields.
+                                </p>
                                 <div style={{ marginTop: '2rem', color: '#334155', lineHeight: '1.7' }}>
                                     <h3 style={{ fontSize: '1.25rem', fontWeight: '700', color: '#1e293b', marginBottom: '1rem' }}>
                                         Key Highlights
@@ -1124,6 +1089,11 @@ const AerospaceEngineering = () => {
                             </div>
                         </div>
 
+                    </>
+                )}
+
+                {activeTab === 'mtech' && (
+                    <>
                         {/* Continuing to M.Tech / M.Tech (Research) - Updated Section */}
                         <div className={styles.overviewSection} style={{ marginTop: '3rem' }}>
                             <h2 className={styles.sectionHeading}>Continuing to M.Tech / M.Tech (Research)</h2>

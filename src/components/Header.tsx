@@ -118,11 +118,7 @@ const Header = () => {
                         </div>
                     </li>
 
-                    <li className={styles.navItem}>
-                        <Link href="/handbook" className={styles.navLink}>
-                            Student Handbook
-                        </Link>
-                    </li>
+
 
                     <li className={styles.navItem}>
                         <Link href="/admissions" className={styles.navButton}>
@@ -168,15 +164,53 @@ const Header = () => {
 
                     </li>
 
-                    <li className={styles.navItem}>
-                        <Link href="https://odaa.iisc.ac.in/fellowships/" className={styles.navLink} target="_blank" rel="noopener noreferrer">
-                            Fellowship
-                        </Link>
-                    </li>
+
 
                     <li className={styles.navItem}>
                         <Link href="https://occap.iisc.ac.in/" className={styles.navLink} target="_blank" rel="noopener noreferrer">
                             Placements
+                        </Link>
+                    </li>
+
+                    <li className={styles.navItem}>
+                        <span className={styles.navButton}>
+                            Student Corner
+                            <svg xmlns="http://www.w3.org/2000/svg" className={styles.chevronIcon} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </span>
+                        <div className={styles.dropdownMenu}>
+                            <Link href="https://odaa.iisc.ac.in/fellowships/" className={styles.dropdownItem} target="_blank" rel="noopener noreferrer">
+                                Fellowship
+                            </Link>
+                            <Link href="/handbook" className={styles.dropdownItem}>
+                                Student Handbook
+                            </Link>
+                            <Link href="/ug_academic_calendar_2026.pdf" className={styles.dropdownItem} target="_blank" rel="noopener noreferrer">
+                                Academic Calendar
+                            </Link>
+
+                            <Link href="https://scouncil.iisc.ac.in/" className={styles.dropdownItem} target="_blank" rel="noopener noreferrer">
+                                Student Council
+                            </Link>
+                            <Link href="https://iisc.ac.in/about/administration/internal-complaints-committee/" className={styles.dropdownItem} target="_blank" rel="noopener noreferrer">
+                                Internal Complaint Committee
+                            </Link>
+                            <Link href="https://hc.iisc.ac.in/" className={styles.dropdownItem} target="_blank" rel="noopener noreferrer">
+                                Health Center
+                            </Link>
+                            <Link href="https://s4ppas.iisc.ac.in:8081/sap/bc/ui2/flp?sap-client=800&sap-language=EN" className={styles.dropdownItem} target="_blank" rel="noopener noreferrer">
+                                SAP
+                            </Link>
+                            <Link href="/Travelling Allowance Form.pdf" className={styles.dropdownItem} target="_blank" rel="noopener noreferrer">
+                                Travelling Allowance Form
+                            </Link>
+                        </div>
+                    </li>
+
+                    <li className={styles.navItem}>
+                        <Link href="/student-corner/campus-life" className={styles.navLink}>
+                            Campus Life
                         </Link>
                     </li>
 
@@ -191,8 +225,8 @@ const Header = () => {
                             <Link href="/people/deans" className={styles.dropdownItem}>
                                 Deans
                             </Link>
-                            <Link href="/people/coordinators" className={styles.dropdownItem}>
-                                Coordinators
+                            <Link href="/people/pcc" className={styles.dropdownItem}>
+                                PCC (Programme Curriculum Committee)
                             </Link>
                             <Link href="/people/ug-instructors" className={styles.dropdownItem}>
                                 UG Instructors
@@ -278,9 +312,7 @@ const Header = () => {
                         </div>
                     </div>
 
-                    <Link href="/handbook" className={styles.mobileNavItem} onClick={closeMobileMenu}>
-                        Student Handbook
-                    </Link>
+
 
                     {/* Admissions Mobile Submenu */}
                     <div>
@@ -323,13 +355,68 @@ const Header = () => {
                         </div>
                     </div>
 
-                    <Link href="https://odaa.iisc.ac.in/fellowships/" className={styles.mobileNavItem} target="_blank" rel="noopener noreferrer" onClick={closeMobileMenu}>
-                        Fellowship
-                    </Link>
+
 
                     <Link href="https://occap.iisc.ac.in/" className={styles.mobileNavItem} target="_blank" rel="noopener noreferrer" onClick={closeMobileMenu}>
                         Placements
                     </Link>
+
+                    {/* Student Corner Mobile Submenu */}
+                    <div>
+                        <button
+                            className={`${styles.mobileSubmenuHeader} ${activeMobileSubmenu === 'student-corner' ? styles.activeMobileSubmenuHeader : ''}`}
+                            onClick={() => toggleSubmenu('student-corner')}
+                        >
+                            Student Corner
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                style={{
+                                    width: 20,
+                                    height: 20,
+                                    transform: activeMobileSubmenu === 'student-corner' ? 'rotate(180deg)' : 'rotate(0deg)',
+                                    transition: 'transform 0.2s'
+                                }}
+                            >
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div className={`${styles.mobileSubmenuList} ${activeMobileSubmenu === 'student-corner' ? styles.mobileSubmenuOpen : ''}`}>
+                            <Link href="https://odaa.iisc.ac.in/fellowships/" className={styles.mobileSubItem} target="_blank" rel="noopener noreferrer" onClick={closeMobileMenu}>
+                                Fellowship
+                            </Link>
+                            <Link href="/handbook" className={styles.mobileSubItem} onClick={closeMobileMenu}>
+                                Student Handbook
+                            </Link>
+                            <Link href="/ug_academic_calendar_2026.pdf" className={styles.mobileSubItem} target="_blank" rel="noopener noreferrer" onClick={closeMobileMenu}>
+                                Academic Calendar
+                            </Link>
+
+                            <Link href="https://scouncil.iisc.ac.in/" className={styles.mobileSubItem} target="_blank" rel="noopener noreferrer" onClick={closeMobileMenu}>
+                                Student Council
+                            </Link>
+                            <Link href="https://iisc.ac.in/about/administration/internal-complaints-committee/" className={styles.mobileSubItem} target="_blank" rel="noopener noreferrer" onClick={closeMobileMenu}>
+                                Internal Complaint Committee
+                            </Link>
+                            <Link href="https://hc.iisc.ac.in/" className={styles.mobileSubItem} target="_blank" rel="noopener noreferrer" onClick={closeMobileMenu}>
+                                Health Center
+                            </Link>
+                            <Link href="https://s4ppas.iisc.ac.in:8081/sap/bc/ui2/flp?sap-client=800&sap-language=EN" className={styles.mobileSubItem} target="_blank" rel="noopener noreferrer" onClick={closeMobileMenu}>
+                                SAP
+                            </Link>
+                            <Link href="/Travelling Allowance Form.pdf" className={styles.mobileSubItem} target="_blank" rel="noopener noreferrer" onClick={closeMobileMenu}>
+                                Travelling Allowance Form
+                            </Link>
+                        </div>
+                    </div>
+
+                    <Link href="/student-corner/campus-life" className={styles.mobileNavItem} onClick={closeMobileMenu}>
+                        Campus Life
+                    </Link>
+
+
 
                     {/* People Mobile Submenu */}
                     <div>
@@ -357,8 +444,8 @@ const Header = () => {
                             <Link href="/people/deans" className={styles.mobileSubItem} onClick={closeMobileMenu}>
                                 Deans
                             </Link>
-                            <Link href="/people/coordinators" className={styles.mobileSubItem} onClick={closeMobileMenu}>
-                                Coordinators
+                            <Link href="/people/pcc" className={styles.mobileSubItem} onClick={closeMobileMenu}>
+                                PCC (Programme Curriculum Committee)
                             </Link>
                             <Link href="/people/ug-instructors" className={styles.mobileSubItem} onClick={closeMobileMenu}>
                                 UG Instructors

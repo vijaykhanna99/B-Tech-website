@@ -865,7 +865,7 @@
 
 @media (max-width: 768px) {
     .testimonialsGrid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
     }
 }
 
@@ -976,7 +976,7 @@
 
 @media (max-width: 768px) {
     .studyTrackGrid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
         gap: 2rem;
     }
 }
@@ -1039,6 +1039,48 @@
 .pageTabButtonActive:hover {
     transform: translateY(-2px);
     background-color: #f8fafc !important;
+}
+
+@media (max-width: 900px) {
+    .pageTabs {
+        justify-content: flex-start;
+        padding: 0 1rem;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        width: 100%;
+        margin-top: -3rem;
+        padding-bottom: 4px;
+        /* Space for shadow */
+    }
+
+    /* Hide scrollbar */
+    .pageTabs::-webkit-scrollbar {
+        display: none;
+    }
+
+    .pageTabs {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .pageTabContainer {
+        display: inline-flex;
+        justify-content: flex-start;
+        width: max-content;
+        min-width: 100%;
+        padding: 0.5rem;
+        gap: 0.5rem;
+        border-radius: 12px;
+        overflow: visible;
+        /* Fix clipping */
+    }
+
+    .pageTabButton {
+        padding: 0.75rem 1rem;
+        font-size: 0.95rem;
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
 }
 
 .tabIcon {
@@ -1348,7 +1390,7 @@
 
 @media (max-width: 900px) {
     .aboutWithVideo {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
         gap: 2rem;
     }
 }
@@ -1375,4 +1417,861 @@
     width: 100%;
     height: 100%;
     border: 0;
+}
+
+/* Premium Redesign for Pathways Section */
+.pathwaySection {
+    position: relative;
+    padding: 4rem 2rem;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    border-radius: 32px;
+    margin-top: 4rem;
+    overflow: hidden;
+    border: 1px solid #f1f5f9;
+}
+
+.pathwayHeader {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+}
+
+.pathwayTitle {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
+}
+
+.pathwaySubtitle {
+    font-size: 1.125rem;
+    color: #64748b;
+    line-height: 1.6;
+}
+
+/* Modern Tabs */
+.pathwayTabsContainer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+.pathwayTabs {
+    display: inline-flex;
+    background: #f1f5f9;
+    padding: 0.5rem;
+    border-radius: 16px;
+    gap: 0.5rem;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.pathwayTab {
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    border: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: #64748b;
+    background: transparent;
+}
+
+.pathwayTabActive {
+    background: #ffffff;
+    color: #2563eb;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    transform: scale(1.02);
+}
+
+/* Feature Cards */
+.featureCard {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 2rem;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.featureCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+    border-color: #cbd5e1;
+}
+
+.cardIconBox {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.featureCard:hover .cardIconBox {
+    transform: scale(1.1) rotate(3deg);
+}
+
+.cardTitle {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+}
+
+.cardList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cardListItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+    color: #475569;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.checkIcon {
+    width: 20px;
+    height: 20px;
+    background: #dcfce7;
+    color: #16a34a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+    font-size: 0.75rem;
+}
+
+/* Info Box */
+.highlightBox {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    border-radius: 20px;
+    padding: 2rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    margin-bottom: 2rem;
+    border: 1px solid #bfdbfe;
+    position: relative;
+    overflow: hidden;
+}
+
+.highlightBox::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 70%);
+    transform: translate(30%, -30%);
+}
+
+.highlightIcon {
+    width: 64px;
+    height: 64px;
+    background: #ffffff;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.1);
+    z-index: 1;
+}
+
+.highlightContent {
+    flex: 1;
+    z-index: 1;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animateFadeIn {
+    animation: fadeInUp 0.4s ease-out forwards;
+}
+
+/* Responsive Grid */
+.responsiveGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+
+/* --- ULTRA WIDE PATHWAY SECTION --- */
+
+.pathwaySection {
+    position: relative;
+    padding: 3rem;
+    background: #ffffff;
+    border-radius: 20px;
+    margin-top: 3rem;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+}
+
+.pathwayHeader {
+    text-align: center;
+    max-width: 100%;
+    margin: 0 auto 3rem;
+}
+
+.pathwayTitle {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #1e293b;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.025em;
+}
+
+.pathwaySubtitle {
+    font-size: 1.1rem;
+    color: #64748b;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Wide Tabs */
+.pathwayTabsContainer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+    width: 100%;
+}
+
+.pathwayTabs {
+    display: flex;
+    background: #f1f5f9;
+    padding: 0.35rem;
+    border-radius: 12px;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 900px;
+}
+
+.pathwayTab {
+    flex: 1;
+    padding: 1rem;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #64748b;
+    background: transparent;
+    text-align: center;
+}
+
+.pathwayTabActive {
+    background: #ffffff;
+    color: #2563eb;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Feature Cards - Wide Grid */
+/* Use responsiveGrid class from before, but ensure it stretches */
+.responsiveGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+@media (max-width: 768px) {
+    .responsiveGrid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .pathwayTabs {
+        flex-direction: column;
+    }
+}
+
+.featureCard {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid #e2e8f0;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.featureCard:hover {
+    border-color: #cbd5e1;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+.cardIconBox {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+.cardTitle {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 1rem;
+}
+
+.cardList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.cardListItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 0.85rem;
+    color: #475569;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.checkIcon {
+    width: 18px;
+    height: 18px;
+    background: #dcfce7;
+    color: #16a34a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+    font-size: 0.65rem;
+}
+
+/* Highlight Box Wide */
+.highlightBox {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    border-radius: 16px;
+    padding: 2rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    margin-bottom: 2rem;
+    border: 1px solid #bfdbfe;
+}
+
+.highlightIcon {
+    width: 56px;
+    height: 56px;
+    background: #ffffff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    color: #2563eb;
+    flex-shrink: 0;
+}
+
+.highlightContent h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1e40af;
+}
+
+.highlightContent p {
+    margin: 0;
+    color: #1e3a8a;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+
+/* --- COMPLETE REDESIGN: DUAL PILLARS --- */
+
+.dualPillarSection {
+    margin-top: 5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.dualPillarHeader {
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+}
+
+.dualPillarTitle {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    background: linear-gradient(to right, #1e3a8a, #2563eb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
+}
+
+.dualPillarSubtitle {
+    font-size: 1.25rem;
+    color: #64748b;
+    max-width: 700px;
+    margin: 0 auto;
+    font-weight: 400;
+}
+
+.pillarContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: stretch;
+}
+
+@media (max-width: 1024px) {
+    .pillarContainer {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+    }
+}
+
+.pillarCard {
+    background: #ffffff;
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(226, 232, 240, 0.6);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.pillarCard:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+    border-color: #cbd5e1;
+    z-index: 2;
+}
+
+/* Option A Specifics */
+.pillarCardA {
+    background: linear-gradient(180deg, #ffffff 0%, #f0f9ff 100%);
+    border-top: 6px solid #2563eb;
+}
+
+.pillarCardA .pillarIcon {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+    box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.4);
+}
+
+/* Option B Specifics */
+.pillarCardB {
+    background: linear-gradient(180deg, #ffffff 0%, #fdf4ff 100%);
+    border-top: 6px solid #9333ea;
+}
+
+.pillarCardB .pillarIcon {
+    background: linear-gradient(135deg, #9333ea, #7e22ce);
+    color: white;
+    box-shadow: 0 10px 20px -5px rgba(147, 51, 234, 0.4);
+}
+
+/* Inner Content */
+.pillarContent {
+    padding: 3rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.pillarHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+}
+
+.pillarIcon {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+.pillarBadge {
+    padding: 0.5rem 1rem;
+    border-radius: 99px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.badgeA {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.badgeB {
+    background: #f3e8ff;
+    color: #6b21a8;
+}
+
+.pillarTitle {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #1e293b;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.pillarDesc {
+    font-size: 1.1rem;
+    color: #475569;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+}
+
+/* Sections inside card */
+.pillarSection {
+    margin-bottom: 2rem;
+}
+
+.pillarSectionTitle {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    color: #94a3b8;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.pillarSectionTitle::after {
+    content: '';
+    flex-grow: 1;
+    height: 1px;
+    background: #e2e8f0;
+}
+
+.pillarList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pillarItem {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    color: #334155;
+    font-size: 1rem;
+}
+
+.check {
+    color: #10b981;
+    font-weight: bold;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+/* Footer of Card */
+.pillarFooter {
+    margin-top: auto;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.pillarFooterTitle {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.pillarFooterText {
+    font-size: 0.9rem;
+    color: #64748b;
+    line-height: 1.5;
+}
+
+
+
+/* --- STATE-OF-THE-ART PATHWAY SCHEMATIC --- */
+
+.schematicSection {
+    margin-top: 5rem;
+    position: relative;
+    background: #ffffff;
+    border-radius: 40px;
+    padding: 3rem;
+    box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.05);
+    border: 1px solid #f1f5f9;
+}
+
+.schematicHeader {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.schematicTitle {
+    font-size: 2.75rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: #1e293b;
+    letter-spacing: -0.03em;
+}
+
+.schematicSubtitle {
+    font-size: 1.15rem;
+    color: #64748b;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.schematicGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+
+@media (max-width: 1024px) {
+    .schematicGrid {
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+    }
+}
+
+/* Card Styling */
+.schematicCard {
+    background: #ffffff;
+    border-radius: 28px;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+}
+
+.schematicCard:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+    border-color: #cbd5e1;
+    z-index: 10;
+}
+
+.schematicCardHeader {
+    padding: 2.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.schematicCardTitle {
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    line-height: 1.2;
+}
+
+.schematicCardDesc {
+    font-size: 1.1rem;
+    color: #475569;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.schematicContent {
+    padding: 2.5rem;
+    flex-grow: 1;
+}
+
+/* Option A Specifics */
+.cardA {
+    background: linear-gradient(160deg, #f0fdf4 0%, #ffffff 80%);
+    border: 1px solid #dcfce7;
+}
+
+.titleA {
+    color: #166534;
+}
+
+/* Option B Specifics */
+.cardB {
+    background: linear-gradient(160deg, #fdf4ff 0%, #ffffff 80%);
+    border: 1px solid #f0abfc;
+}
+
+.titleB {
+    color: #86198f;
+}
+
+/* Data Points */
+.dataPoint {
+    margin-bottom: 2.5rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.dataLabel {
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #94a3b8;
+    letter-spacing: 0.08em;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.dataList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dataItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    color: #334155;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.dataIcon {
+    width: 24px;
+    height: 24px;
+    background: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.iconSuccess {
+    color: #16a34a;
+    background: #dcfce7;
+}
+
+.iconInfo {
+    color: #2563eb;
+    background: #dbeafe;
+}
+
+.iconWarning {
+    color: #ca8a04;
+    background: #fef08a;
+}
+
+/* Sub-Options Container for Option B */
+.subOptionsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.subOptionCard {
+    background: #ffffff;
+    border: 1px solid #e9d5ff;
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: transform 0.2s ease;
+}
+
+.subOptionCard:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px -5px rgba(147, 51, 234, 0.1);
+}
+
+.subOptionTitle {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.highlightNote {
+    background: #fffbeb;
+    border: 1px solid #fcd34d;
+    padding: 1.25rem;
+    border-radius: 12px;
+    margin-top: 2rem;
+    font-size: 0.95rem;
+    color: #92400e;
+    line-height: 1.6;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.footerNote {
+    text-align: center;
+    margin-top: 4rem;
+    padding: 2rem;
+    background: #f8fafc;
+    border-radius: 16px;
+    color: #64748b;
+    font-size: 0.95rem;
+    border: 1px solid #e2e8f0;
 }

@@ -12,24 +12,7 @@ const MaterialsScienceAndEngineering = () => {
     const [activeTab, setActiveTab] = useState('home');
     const [activeOverviewSoftCoreTab, setActiveOverviewSoftCoreTab] = useState<string | null>(null);
 
-    const dummyNews = [
-        {
-            date: "October 10, 2025",
-            title: "Breakthrough in Sustainable Materials",
-            excerpt: "Researchers at IISc develop new biodegradable polymer for industrial applications."
-        },
-        {
-            date: "September 15, 2025",
-            title: "Alumni Spotlight: Materials Innovation",
-            excerpt: "Former B.Tech student recognized for pioneering work in semiconductor design."
-        }
-    ];
 
-    const dummyAnnouncements = [
-        { text: "Workshop on 'Nanomaterials Characterization' next month.", link: "#" },
-        { text: "Call for applications: Materials Science Summer Internship.", link: "#" },
-        { text: "Updated labs safety protocols for 2025 academic year.", link: "#" }
-    ];
 
     const semesters = [1, 2, 3, 4, 5, 6, 7, 8];
 
@@ -569,6 +552,16 @@ const MaterialsScienceAndEngineering = () => {
                             </svg>
                             Course Structure
                         </button>
+                        <button
+                            className={`${styles.pageTabButton} ${activeTab === 'mtech' ? styles.pageTabButtonActive : ''}`}
+                            onClick={() => setActiveTab('mtech')}
+                        >
+                            <svg className={styles.tabIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                                <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                            </svg>
+                            Continuing to M.Tech
+                        </button>
                     </div>
                 </div>
 
@@ -582,33 +575,45 @@ const MaterialsScienceAndEngineering = () => {
                                         About the Programme
                                     </h1>
                                     <p className={styles.introText} style={{ marginBottom: '1.5rem' }}>
-                                        The B.Tech programme in Materials Science and Engineering prepares students to become future engineers and innovators at the forefront of the global materials revolution. The programme builds strong foundations across physics, chemistry, biology, mathematics, and informatics, enabling students to understand how materials influence advancements in artificial intelligence, quantum technologies, space systems, healthcare, energy, and sustainable infrastructure.
+                                        The BTech program in Materials Science and Engineering is aimed at producing engineers and leaders who will be at the forefront of the materials revolution that drives our transition into a developed, sustainable, and futuristic society that enables the advancements in artificial intelligence, quantum computing, space, healthcare, energy, and infrastructure.
                                     </p>
                                     <p className={styles.introText} style={{ marginBottom: 0 }}>
                                         With a strong emphasis on scientific fundamentals, interdisciplinary learning, and practical problem-solving, the programme equips students with the knowledge and skills required for impactful careers in industry, deep-tech innovation, and advanced engineering domains, while also providing pathways toward higher studies and research.
                                     </p>
                                 </div>
                                 <div className={styles.videoSection}>
-                                    <div className={styles.videoWrapper}>
-                                        <iframe
-                                            src="" // Placeholder: Video to be added later
-                                            title="B.Tech in Materials Science and Engineering at IISc"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowFullScreen
-                                            style={{ backgroundColor: '#e2e8f0' }} // Grey placeholder
-                                        />
-                                        {/* Video placeholder text overlay */}
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', height: '100%' }}>
                                         <div style={{
-                                            position: 'absolute',
-                                            top: '50%',
-                                            left: '50%',
-                                            transform: 'translate(-50%, -50%)',
-                                            color: '#64748b',
-                                            fontWeight: '600',
-                                            pointerEvents: 'none',
-                                            zIndex: 0
+                                            position: 'relative',
+                                            width: '100%',
+                                            height: '220px',
+                                            borderRadius: '16px',
+                                            overflow: 'hidden',
+                                            boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)'
                                         }}>
-                                            Video Coming Soon
+                                            <Image
+                                                src="/images/campus-life/image8.jpg"
+                                                alt="Materials Science Facility"
+                                                fill
+                                                style={{ objectFit: 'cover' }}
+                                                sizes="(max-width: 768px) 100vw, 50vw"
+                                            />
+                                        </div>
+                                        <div style={{
+                                            position: 'relative',
+                                            width: '100%',
+                                            height: '220px',
+                                            borderRadius: '16px',
+                                            overflow: 'hidden',
+                                            boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)'
+                                        }}>
+                                            <Image
+                                                src="/images/campus-life/image9.jpg"
+                                                alt="Research at Materials Department"
+                                                fill
+                                                style={{ objectFit: 'cover' }}
+                                                sizes="(max-width: 768px) 100vw, 50vw"
+                                            />
                                         </div>
                                     </div>
                                 </div>
@@ -1429,6 +1434,11 @@ const MaterialsScienceAndEngineering = () => {
 
                         </div>
 
+                    </>
+                )}
+
+                {activeTab === 'mtech' && (
+                    <>
                         {/* Continuing to M.Tech / M.Tech (Research) - Updated Section */}
                         <div className={styles.overviewSection} style={{ marginTop: '3rem' }}>
                             <h2 className={styles.sectionHeading}>Continuing to M.Tech / M.Tech (Research)</h2>

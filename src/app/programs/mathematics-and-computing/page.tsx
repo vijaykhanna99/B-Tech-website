@@ -18,24 +18,7 @@ const MathematicsAndComputing = () => {
     const [showTestimonials, setShowTestimonials] = useState(false);
     const [selectedStudentTestimonial, setSelectedStudentTestimonial] = useState<any>(null);
 
-    const dummyNews = [
-        {
-            date: "October 15, 2025",
-            title: "MnC Students Win Hackathon",
-            excerpt: "A team of third-year Mathematics and Computing students secured the first place in the International Algo-Challenge."
-        },
-        {
-            date: "September 2, 2025",
-            title: "New Research Lab Inaugurated",
-            excerpt: "The program announcement the opening of the new High-Performance Computing facility for undergraduate research."
-        }
-    ];
 
-    const dummyAnnouncements = [
-        { text: "End Semester Exam Schedule released.", link: "#" },
-        { text: "Registration for Spring 2026 electives opens next week.", link: "#" },
-        { text: "Guest Lecture on 'Quantum Computing' by Dr. A. Smith.", link: "#" }
-    ];
 
     const toggleTrack = (trackId: string) => {
         setOpenTrack(openTrack === trackId ? null : trackId);
@@ -842,6 +825,16 @@ const MathematicsAndComputing = () => {
                                 <polyline points="2 12 12 17 22 12" />
                             </svg>
                             Course Structure
+                        </button>
+                        <button
+                            className={`${styles.pageTabButton} ${activeTab === 'mtech' ? styles.pageTabButtonActive : ''}`}
+                            onClick={() => setActiveTab('mtech')}
+                        >
+                            <svg className={styles.tabIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                                <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                            </svg>
+                            Continuing to M.Tech
                         </button>
                     </div>
                 </div>
@@ -1920,6 +1913,11 @@ const MathematicsAndComputing = () => {
                             </div>
                         </div>
 
+                    </>
+                )}
+
+                {activeTab === 'mtech' && (
+                    <>
                         {/* Pathways to Master's Degree - New Tabbed UI */}
                         <div className={styles.overviewSection} style={{ marginTop: '4rem' }}>
                             <h2 className={styles.sectionHeading}>Pathways to Master's Degree</h2>
@@ -1945,7 +1943,7 @@ const MathematicsAndComputing = () => {
                                         fontSize: '1rem'
                                     }}
                                 >
-                                    Option A (after 4 years) : M.Tech in MnC
+                                    Option A (after 4 years) : M.Tech in Maths & Computing
                                 </button>
                                 <button
                                     onClick={() => setActiveMasterPath('general')}
@@ -1963,7 +1961,7 @@ const MathematicsAndComputing = () => {
                                         fontSize: '1rem'
                                     }}
                                 >
-                                    Option B (after 3 years) : Early Exit to M.Tech (General)
+                                    Option B (after 3 years) Accelerated Pathway to M.Tech / M.Tech (Research)
                                 </button>
                             </div>
 
@@ -1972,7 +1970,7 @@ const MathematicsAndComputing = () => {
                                 <div style={{ animation: 'fadeIn 0.3s ease-out' }}>
                                     <div style={{ background: '#eff6ff', border: '1px solid #dbeafe', padding: '1.5rem', borderRadius: '8px', marginBottom: '2rem' }}>
                                         <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#1e40af', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                            <span style={{ fontSize: '1.25rem' }}>✨</span> Exclusive to Math & Computing
+                                            <span style={{ fontSize: '1.25rem' }}>✨</span> Exclusive to Maths & Computing
                                         </h3>
                                         <p style={{ margin: 0, color: '#1e3a8a', fontSize: '0.95rem' }}>
                                             Students have the option to continue for their 5th year to obtain an M.Tech degree specifically in Mathematics and Computing.
@@ -2041,6 +2039,15 @@ const MathematicsAndComputing = () => {
                             {/* Option B: General M.Tech Content */}
                             {activeMasterPath === 'general' && (
                                 <div style={{ animation: 'fadeIn 0.3s ease-out' }}>
+                                    <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', padding: '1.5rem', borderRadius: '8px', marginBottom: '2rem' }}>
+                                        <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#0f172a', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                            <span style={{ fontSize: '1.25rem' }}>🚀</span> Accelerated Pathway
+                                        </h3>
+                                        <p style={{ margin: 0, color: '#334155', fontSize: '0.95rem', lineHeight: '1.6' }}>
+                                            B.Tech students of IISc may apply for admission to the M.Tech and M.Tech (Research) programmes at the end of their third year, subject to fulfilling the existing rules and regulations.
+                                        </p>
+                                    </div>
+
                                     <div className={styles.mtechGrid} style={{ gridTemplateColumns: '1fr', gap: '2rem' }}>
                                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
                                             {/* Eligibility Card */}

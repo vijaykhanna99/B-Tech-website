@@ -13,24 +13,7 @@ const MechanicsAndComputing = () => {
     const [activeTab, setActiveTab] = useState('home');
     const semesters = [1, 2, 3, 4, 5, 6, 7, 8];
 
-    const dummyNews = [
-        {
-            date: "October 12, 2025",
-            title: "Robotics Team Competes in Global Challenge",
-            excerpt: "Advanced Mechanics students represent IISc at the International Robotics and Automation summit."
-        },
-        {
-            date: "September 20, 2025",
-            title: "Computational Mechanics Research Grant",
-            excerpt: "The program was awarded a major grant for developing next-gen computational modeling tools."
-        }
-    ];
 
-    const dummyAnnouncements = [
-        { text: "Introductory seminar on 'Mechanobiology' this Friday.", link: "#" },
-        { text: "Registration for 2026-2027 is opening soon.", link: "#" },
-        { text: "New software licenses available for student research.", link: "#" }
-    ];
 
     const semesterCourses: any = {
         1: [
@@ -438,6 +421,16 @@ const MechanicsAndComputing = () => {
                             </svg>
                             Course Structure
                         </button>
+                        <button
+                            className={`${styles.pageTabButton} ${activeTab === 'mtech' ? styles.pageTabButtonActive : ''}`}
+                            onClick={() => setActiveTab('mtech')}
+                        >
+                            <svg className={styles.tabIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                                <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                            </svg>
+                            Continuing to M.Tech
+                        </button>
                     </div>
                 </div>
 
@@ -458,26 +451,22 @@ const MechanicsAndComputing = () => {
                                     </p>
                                 </div>
                                 <div className={styles.videoSection}>
-                                    <div className={styles.videoWrapper}>
-                                        <iframe
-                                            src="" // Placeholder: Video to be added later
-                                            title="B.Tech in Mechanics and Computing at IISc"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowFullScreen
-                                            style={{ backgroundColor: '#e2e8f0' }} // Grey placeholder
-                                        />
-                                        {/* Video placeholder text overlay */}
-                                        <div style={{
-                                            position: 'absolute',
-                                            top: '50%',
-                                            left: '50%',
-                                            transform: 'translate(-50%, -50%)',
-                                            color: '#64748b',
-                                            fontWeight: '600',
-                                            pointerEvents: 'none',
-                                            zIndex: 0
-                                        }}>
-                                            Video Coming Soon
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                        <div style={{ position: 'relative', width: '100%', height: '220px', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' }}>
+                                            <Image
+                                                src="/images/programs/mechanics-and-computing/lab-image-1.jpg"
+                                                alt="Mechanics and Computing Lab Machine"
+                                                fill
+                                                style={{ objectFit: 'cover' }}
+                                            />
+                                        </div>
+                                        <div style={{ position: 'relative', width: '100%', height: '220px', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' }}>
+                                            <Image
+                                                src="/images/programs/mechanics-and-computing/lab-image-2.jpg"
+                                                alt="Mechanics and Computing Lab Overview"
+                                                fill
+                                                style={{ objectFit: 'cover' }}
+                                            />
                                         </div>
                                     </div>
                                 </div>
@@ -1192,6 +1181,11 @@ const MechanicsAndComputing = () => {
 
 
 
+                    </>
+                )}
+
+                {activeTab === 'mtech' && (
+                    <>
                         {/* Continuing to M.Tech / M.Tech (Research) - Updated Section */}
                         <div className={styles.overviewSection} style={{ marginTop: '3rem' }}>
                             <h2 className={styles.sectionHeading}>Continuing to M.Tech / M.Tech (Research)</h2>

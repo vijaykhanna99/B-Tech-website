@@ -11,9 +11,9 @@ const PeoplePage = () => {
             icon: "🎓"
         },
         {
-            title: "Coordinators",
-            description: "Program Coordinators across departments.",
-            link: "/people/coordinators",
+            title: "PCC",
+            description: "Programme Curriculum Committee across departments.",
+            link: "/people/pcc",
             icon: "👥"
         },
         {

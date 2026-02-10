@@ -36,7 +36,7 @@ const DeansPage = () => {
                         />
                         <div className={styles.deanInfo}>
                             <h2>
-                                <Link href={person.link} target="_blank" className={styles.deanLink}>
+                                <Link href={person.link} target="_blank" rel="noopener noreferrer" className={styles.deanLink}>
                                     {person.name}
                                 </Link>
                             </h2>
