@@ -180,7 +180,7 @@ const Header = () => {
                             </svg>
                         </span>
                         <div className={styles.dropdownMenu}>
-                            <Link href="https://odaa.iisc.ac.in/fellowships/" className={styles.dropdownItem} target="_blank" rel="noopener noreferrer">
+                            <Link href="/student-corner/fellowship" className={styles.dropdownItem}>
                                 Fellowship
                             </Link>
                             <Link href="/handbook" className={styles.dropdownItem}>
@@ -384,7 +384,7 @@ const Header = () => {
                             </svg>
                         </button>
                         <div className={`${styles.mobileSubmenuList} ${activeMobileSubmenu === 'student-corner' ? styles.mobileSubmenuOpen : ''}`}>
-                            <Link href="https://odaa.iisc.ac.in/fellowships/" className={styles.mobileSubItem} target="_blank" rel="noopener noreferrer" onClick={closeMobileMenu}>
+                            <Link href="/student-corner/fellowship" className={styles.mobileSubItem} onClick={closeMobileMenu}>
                                 Fellowship
                             </Link>
                             <Link href="/handbook" className={styles.mobileSubItem} onClick={closeMobileMenu}>

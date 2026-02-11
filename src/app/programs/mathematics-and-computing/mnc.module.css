@@ -1443,6 +1443,7 @@
     margin-bottom: 1rem;
     background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     letter-spacing: -0.02em;
 }
@@ -1843,6 +1844,7 @@
     margin-bottom: 1rem;
     background: linear-gradient(to right, #1e3a8a, #2563eb);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     letter-spacing: -0.02em;
 }
