@@ -167,12 +167,6 @@ const Header = () => {
 
 
                     <li className={styles.navItem}>
-                        <Link href="https://occap.iisc.ac.in/" className={styles.navLink} target="_blank" rel="noopener noreferrer">
-                            Placements
-                        </Link>
-                    </li>
-
-                    <li className={styles.navItem}>
                         <span className={styles.navButton}>
                             Student Corner
                             <svg xmlns="http://www.w3.org/2000/svg" className={styles.chevronIcon} fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -180,14 +174,14 @@ const Header = () => {
                             </svg>
                         </span>
                         <div className={styles.dropdownMenu}>
-                            <Link href="/student-corner/fellowship" className={styles.dropdownItem}>
-                                Fellowship
-                            </Link>
                             <Link href="/handbook" className={styles.dropdownItem}>
                                 Student Handbook
                             </Link>
                             <Link href="/ug_academic_calendar_2026.pdf" className={styles.dropdownItem} target="_blank" rel="noopener noreferrer">
                                 Academic Calendar
+                            </Link>
+                            <Link href="https://occap.iisc.ac.in/" className={styles.dropdownItem} target="_blank" rel="noopener noreferrer">
+                                Placements
                             </Link>
 
                             <Link href="https://scouncil.iisc.ac.in/" className={styles.dropdownItem} target="_blank" rel="noopener noreferrer">
@@ -206,6 +200,14 @@ const Header = () => {
                                 Travelling Allowance Form
                             </Link>
                         </div>
+                    </li>
+
+
+
+                    <li className={styles.navItem}>
+                        <Link href="/fellowships-support" className={styles.navLink}>
+                            Fellowships & Support
+                        </Link>
                     </li>
 
                     <li className={styles.navItem}>
@@ -357,10 +359,6 @@ const Header = () => {
 
 
 
-                    <Link href="https://occap.iisc.ac.in/" className={styles.mobileNavItem} target="_blank" rel="noopener noreferrer" onClick={closeMobileMenu}>
-                        Placements
-                    </Link>
-
                     {/* Student Corner Mobile Submenu */}
                     <div>
                         <button
@@ -384,14 +382,14 @@ const Header = () => {
                             </svg>
                         </button>
                         <div className={`${styles.mobileSubmenuList} ${activeMobileSubmenu === 'student-corner' ? styles.mobileSubmenuOpen : ''}`}>
-                            <Link href="/student-corner/fellowship" className={styles.mobileSubItem} onClick={closeMobileMenu}>
-                                Fellowship
-                            </Link>
                             <Link href="/handbook" className={styles.mobileSubItem} onClick={closeMobileMenu}>
                                 Student Handbook
                             </Link>
                             <Link href="/ug_academic_calendar_2026.pdf" className={styles.mobileSubItem} target="_blank" rel="noopener noreferrer" onClick={closeMobileMenu}>
                                 Academic Calendar
+                            </Link>
+                            <Link href="https://occap.iisc.ac.in/" className={styles.mobileSubItem} target="_blank" rel="noopener noreferrer" onClick={closeMobileMenu}>
+                                Placements
                             </Link>
 
                             <Link href="https://scouncil.iisc.ac.in/" className={styles.mobileSubItem} target="_blank" rel="noopener noreferrer" onClick={closeMobileMenu}>
@@ -411,6 +409,12 @@ const Header = () => {
                             </Link>
                         </div>
                     </div>
+
+
+
+                    <Link href="/fellowships-support" className={styles.mobileNavItem} onClick={closeMobileMenu}>
+                        Fellowships & Support
+                    </Link>
 
                     <Link href="/student-corner/campus-life" className={styles.mobileNavItem} onClick={closeMobileMenu}>
                         Campus Life

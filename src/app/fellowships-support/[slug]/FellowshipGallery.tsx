@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import styles from './page.module.css';
-import { FellowshipWinner } from '../data';
+import { FellowshipWinner } from '../../../data/fellowships';
 
 interface Props {
     winners: FellowshipWinner[];
@@ -37,7 +37,7 @@ export default function FellowshipGallery({ winners, fellowshipName }: Props) {
         <div className={styles.gallerySection}>
             <div className={styles.galleryGrid}>
                 {winners.map((yearGroup) => (
-                    yearGroup.images && yearGroup.images.map((img, i) => (
+                    yearGroup.images && yearGroup.images.map((img: string, i: number) => (
                         <div
                             key={`${yearGroup.year}-${i}`}
                             className={styles.galleryThumbnailWrapper}

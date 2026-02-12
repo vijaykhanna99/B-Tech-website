@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getFellowshipBySlug, fellowshipsData } from '../data';
+import { getFellowshipBySlug, fellowshipsData } from '../../../data/fellowships';
 import styles from './page.module.css';
 import FellowshipGallery from './FellowshipGallery';
 
@@ -35,7 +35,7 @@ export default async function FellowshipDetailPage({ params }: { params: Promise
         <div className={styles.page}>
             <div className={styles.container}>
                 {/* Back Link */}
-                <Link href="/student-corner/fellowship" className={styles.backLink}>
+                <Link href="/fellowships-support" className={styles.backLink}>
                     ← Back to All Fellowships
                 </Link>
 
