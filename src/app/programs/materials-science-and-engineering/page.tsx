@@ -480,8 +480,7 @@ const MaterialsScienceAndEngineering = () => {
         if (sem === 2) return '13-15 (Min 11 + UHS)';
         if (sem === 3) return '14-16 (Any Course)';
         if (sem === 4) return '14-16 (Any Course)';
-        if (sem === 5) return '14-15 (Any Course)';
-        if (sem === 6) return '14-15 (Min 14 + UHS)';
+
         return '';
     };
 

@@ -350,9 +350,8 @@ const MechanicsAndComputing = () => {
     const getReducedCredits = (sem: number) => {
         if (sem === 2) return '13 (Drop breadth soft core course)';
         if (sem === 3) return '16 (Drop UENG 201)';
-        if (sem === 4) return '13-15 (Drop one Humanities / UG elective / Elective)';
-        if (sem === 5) return '13-15 (Drop one Humanities / UG elective / Elective)';
-        if (sem === 6) return '14-16';
+        if (sem === 4) return '15 (Drop one Humanities / UG elective / Elective)';
+
         return '';
     };
 

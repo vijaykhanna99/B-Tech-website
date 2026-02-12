@@ -513,8 +513,7 @@ const AerospaceEngineering = () => {
         if (sem === 2) return '14-16 (Drop any one course)';
         if (sem === 3) return '13-15 (Drop any one course)';
         if (sem === 4) return '14-16 (Drop any one course)';
-        if (sem === 5) return '12-15 (Drop any one course)';
-        if (sem === 6) return '13-15';
+
         return '';
     };
 
